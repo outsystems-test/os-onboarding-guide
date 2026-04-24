@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malorie Weber — Week One at OutSystems</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,40,360;0,40,540;0,40,720;1,40,360&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #171717;
+    --paper: #FFFFFF;
+    --rule: #C7C7C7;
+    --accent: #E62028;
+    --accent-soft: #F9D0D2;
+    --green: #171717;
+    --green-soft: #F5F5F5;
+    --gold: #A51018;
+    --gold-soft: #F9D0D2;
+    --blue: #454545;
+    --blue-soft: #F5F5F5;
+    --muted: #666666;
+    --mono: 'DM Sans', Calibri, sans-serif;
+    --serif: 'DM Sans', Calibri, sans-serif;
+    --sans: 'DM Sans', Calibri, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 360; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 48px 32px 80px; }
+  .masthead { border-top: 4px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 28px 0 20px; margin-bottom: 0; display: grid; grid-template-columns: 1fr 120px auto; align-items: center; gap: 24px; }
+  .masthead-logo { display: flex; align-items: center; justify-content: center; }
+  .masthead-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .masthead h1 { font-family: var(--serif); font-size: clamp(34px, 6vw, 56px); font-weight: 720; line-height: 1.0; letter-spacing: -1px; }
+  .masthead h1 em { font-style: italic; color: var(--accent); }
+  .masthead-meta { text-align: right; }
+  .masthead-meta .badge { font-family: var(--mono); font-size: 8px; letter-spacing: 0.03em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 5px 10px; display: inline-block; margin-bottom: 8px; }
+  .masthead-meta p { font-size: 11px; color: var(--muted); font-family: var(--mono); line-height: 1.7; }
+  .byline-strip { border-bottom: 1px solid var(--rule); padding: 10px 0; display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; }
+  .byline-item { display: flex; flex-direction: column; }
+  .byline-item .label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); }
+  .byline-item .value { font-size: 13px; font-weight: 540; color: var(--ink); }
+  .welcome-block { display: grid; grid-template-columns: 1fr 280px; gap: 40px; margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--rule); }
+  .welcome-block .lead { font-family: var(--serif); font-size: 18px; line-height: 1.55; font-weight: 400; }
+  .welcome-block .lead strong { font-weight: 720; }
+  .welcome-block .lead em { font-style: italic; color: var(--accent); }
+  .context-card { background: var(--ink); color: var(--paper); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+  .context-card .context-title { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.6; }
+  .context-card .context-stat { border-top: 1px solid rgba(255,255,255,.15); padding-top: 14px; }
+  .context-card .stat-label { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; opacity: 0.55; margin-bottom: 3px; }
+  .context-card .stat-value { font-family: var(--serif); font-size: 15px; font-weight: 720; line-height: 1.3; }
+  .context-card .stat-sub { font-size: 11px; opacity: 0.65; margin-top: 2px; }
+  .section { margin-bottom: 48px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .section-num { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .1em; min-width: 24px; }
+  .section-title { font-family: var(--serif); font-size: 22px; font-weight: 720; letter-spacing: -0.3px; }
+  .section-rule { flex: 1; height: 1px; background: var(--rule); }
+  .schedule-grid { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .schedule-day { background: var(--paper); display: grid; grid-template-columns: 100px 1fr; }
+  .schedule-day.highlight { background: var(--accent-soft); }
+  .day-label { padding: 16px; border-right: 1px solid var(--rule); display: flex; flex-direction: column; justify-content: flex-start; }
+  .day-name { font-family: var(--serif); font-size: 16px; font-weight: 720; line-height: 1; margin-bottom: 3px; }
+  .day-tag { font-family: var(--mono); font-size: 8px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); }
+  .day-events { padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .event { display: flex; gap: 10px; align-items: flex-start; }
+  .event-time { font-family: var(--mono); font-size: 10px; color: var(--muted); min-width: 60px; padding-top: 2px; letter-spacing: .04em; }
+  .event-body {}
+  .event-title { font-size: 13px; font-weight: 540; line-height: 1.3; }
+  .event-note { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .event-link { color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: 10px; }
+  .event-link:hover { text-decoration: underline; }
+  .pill { display: inline-block; font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; padding: 2px 7px; border-radius: 2px; margin-left: 6px; vertical-align: middle; }
+  .pill-red { background: var(--accent); color: white; }
+  .pill-gold { background: var(--gold); color: white; }
+  .pill-blue { background: var(--blue); color: white; }
+  .pill-outline { border: 1px solid var(--rule); color: var(--muted); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .info-card { border: 1px solid var(--rule); padding: 20px; }
+  .info-card .card-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .info-card p { font-size: 13px; color: var(--ink); margin-bottom: 6px; line-height: 1.5; }
+  .info-card p strong { font-weight: 540; }
+  .tool-row { display: grid; grid-template-columns: 28px 1fr auto; align-items: start; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--rule); }
+  .tool-row:last-child { border-bottom: none; }
+  .tool-icon { width: 28px; height: 28px; background: var(--ink); color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 9px; font-weight: 540; letter-spacing: .05em; flex-shrink: 0; margin-top: 2px; }
+  .tool-icon.gold { background: var(--gold); }
+  .tool-icon.blue { background: var(--blue); }
+  .tool-icon.red { background: var(--accent); }
+  .tool-name { font-size: 13.5px; font-weight: 540; line-height: 1.2; margin-bottom: 2px; }
+  .tool-desc { font-size: 11.5px; color: var(--muted); }
+  .tool-status { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--green); padding-top: 3px; }
+  .team-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .team-table th { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 0 12px 8px 0; border-bottom: 1px solid var(--rule); font-weight: 400; }
+  .team-table td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.45; }
+  .team-table td:last-child { border-right: none; }
+  .team-table tr:last-child td { border-bottom: none; }
+  .name-cell { font-weight: 540; white-space: nowrap; }
+  .role-cell { color: var(--muted); font-size: 12px; }
+  .slack-cell { font-family: var(--mono); font-size: 10px; color: var(--blue); }
+  .channel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .channel-item { display: flex; align-items: flex-start; gap: 8px; padding: 10px; background: white; border: 1px solid var(--rule); }
+  .channel-hash { font-family: var(--mono); font-size: 14px; color: var(--muted); line-height: 1; margin-top: 2px; flex-shrink: 0; }
+  .channel-body {}
+  .channel-name { font-family: var(--mono); font-size: 11px; font-weight: 540; color: var(--blue); margin-bottom: 2px; }
+  .channel-desc { font-size: 11px; color: var(--muted); line-height: 1.35; }
+  .faq-item { border-bottom: 1px solid var(--rule); padding: 16px 0; }
+  .faq-item:first-child { padding-top: 0; }
+  .faq-q { font-family: var(--serif); font-size: 15px; font-weight: 720; margin-bottom: 8px; display: flex; gap: 10px; align-items: baseline; }
+  .faq-q::before { content: 'Q'; font-family: var(--mono); font-size: 9px; color: var(--accent); letter-spacing: .1em; padding-top: 2px; flex-shrink: 0; }
+  .faq-a { font-size: 13px; line-height: 1.6; color: var(--ink); padding-left: 20px; }
+  .faq-a a { color: var(--accent); text-decoration: none; font-weight: 540; }
+  .faq-a a:hover { text-decoration: underline; }
+  .spiff-banner { background: var(--green); color: white; padding: 20px 24px; margin-bottom: 24px; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
+  .spiff-banner .spiff-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.7; margin-bottom: 5px; }
+  .spiff-banner .spiff-title { font-family: var(--serif); font-size: 17px; font-weight: 720; line-height: 1.3; }
+  .spiff-banner .spiff-mult { font-family: var(--serif); font-size: 36px; font-weight: 720; line-height: 1; opacity: 0.9; }
+  .spiff-sub { font-family: var(--mono); font-size: 9px; opacity: 0.65; text-align: right; letter-spacing: .06em; }
+  .logistics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 20px; }
+  .logistics-cell { background: var(--paper); padding: 16px; }
+  .logistics-cell .lc-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .logistics-cell .lc-value { font-size: 13px; font-weight: 540; line-height: 1.4; }
+  .logistics-cell .lc-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .resource-row { display: flex; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--rule); font-size: 12.5px; }
+  .resource-row:last-child { border-bottom: none; }
+  .resource-row .res-type { font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 7px; background: var(--gold-soft); color: var(--gold); white-space: nowrap; flex-shrink: 0; min-width: 58px; text-align: center; }
+  .resource-row a { color: var(--accent); text-decoration: none; font-weight: 540; }
+  .resource-row a:hover { text-decoration: underline; }
+  .resource-row .res-note { color: var(--muted); font-size: 11px; margin-left: auto; flex-shrink: 0; }
+  .footer { border-top: 1px solid var(--rule); margin-top: 60px; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer p { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .06em; }
+  .sources-list { font-family: var(--mono); font-size: 9px; color: var(--muted); line-height: 1.8; letter-spacing: .03em; margin-top: 8px; }
+  .aside-box { border-left: 3px solid var(--accent); padding: 14px 16px; background: var(--accent-soft); margin-top: 16px; font-size: 12px; line-height: 1.5; }
+  .aside-box strong { display: block; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  @media (max-width: 680px) { .welcome-block, .two-col { grid-template-columns: 1fr; } .logistics-grid { grid-template-columns: 1fr 1fr; } .channel-grid { grid-template-columns: 1fr; } .masthead { grid-template-columns: 1fr auto; } .masthead-logo { display: none; } .masthead-meta { text-align: left; } body { padding: 28px 18px 60px; } }
+  @media print { body { background: white; padding: 20px; } .spiff-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .context-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ MASTHEAD ══════════════ -->
+<header class="masthead">
+  <div>
+    <div class="masthead-label">OutSystems · Americas Field Enablement</div>
+    <h1>Welcome,<br><em>Malorie.</em></h1>
+  </div>
+  <div class="masthead-logo">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+      <defs><mask id="donut-ring"><circle cx="50" cy="50" r="48" fill="white"/><circle cx="50" cy="50" r="22" fill="black"/></mask></defs>
+      <circle cx="50" cy="50" r="48" fill="#E62028" mask="url(#donut-ring)"/>
+    </svg>
+  </div>
+  <div class="masthead-meta">
+    <div class="badge">Day One Guide</div>
+    <p>Role: Sr. Manager, Field Enablement<br>
+       Team: Revenue Enablement — Americas<br>
+       Manager: Bobbie Jo Frazier<br>
+       Start: April 20, 2026</p>
+  </div>
+</header>
+
+<div class="byline-strip">
+  <div class="byline-item"><span class="label">Region</span><span class="value">Americas</span></div>
+  <div class="byline-item"><span class="label">Manager</span><span class="value">Bobbie Jo Frazier</span></div>
+  <div class="byline-item"><span class="label">Org Leader</span><span class="value">Kim Seabrook, CRO</span></div>
+  <div class="byline-item"><span class="label">Company Mission</span><span class="value">Bend the Curve to €1B</span></div>
+  <div class="byline-item"><span class="label">Based</span><span class="value">Austin, TX</span></div>
+</div>
+
+
+<!-- ══════════════ WELCOME ══════════════ -->
+<section class="section">
+  <div class="welcome-block">
+    <div>
+      <div class="masthead-label" style="margin-bottom:12px">§ Welcome</div>
+      <p class="lead">
+        You're joining OutSystems at the moment the whole revenue enablement function is being rebuilt from the ground up. In Q2 2026, we launched <em>Agentic Systems Engineering</em> — a brand new category — and are running eight Sales Plays through May with a relentless Tuesday cadence. Your job as Sr. Manager, Field Enablement Americas is to make sure every single rep is <strong>equipped, prepared, and confident</strong> to execute this in every conversation.
+      </p>
+      <p class="lead" style="margin-top:16px">
+        Bobbie Jo Frazier described your background as the "rare trifecta": you know how to teach, you've lived the sales experience, and you know how to <strong>build programs that move the needle</strong>. That background is exactly what OutSystems needs right now. The Revenue Launchpad bootcamp just wrapped its first-ever cohort in Lisbon — and the Americas field org is waiting for someone to raise the bar further.
+      </p>
+      <div class="aside-box">
+        <strong>Your Manager's Context</strong>
+        Bobbie Jo Frazier leads Revenue Enablement globally and just ran the first-ever Revenue Launchpad cohort in Lisbon (April 14–16). She is hands-on, energetic, and moves fast. Also note: <strong>Carolyn Birsky</strong> co-facilitates Launchpad and is a close collaborator. Book time with both in week 1 to understand the current program state and what she needs from you for Americas specifically.
+      </div>
+    </div>
+
+    <div class="context-card">
+      <div class="context-title">Company Snapshot · Q2 2026</div>
+      <div class="context-stat">
+        <div class="stat-label">Category</div>
+        <div class="stat-value">Agentic Systems Engineering</div>
+        <div class="stat-sub">Launched March 31 — reps need fluency now</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">ARR Target</div>
+        <div class="stat-value">€1 Billion</div>
+        <div class="stat-sub">"Bending the curve" — enablement accelerates this</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">Active Sales Plays</div>
+        <div class="stat-value">BFS + Insurance + Compete</div>
+        <div class="stat-sub">New play every Tuesday through May</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">Q2 SPIFF</div>
+        <div class="stat-value">1.5× Quota + Commission</div>
+        <div class="stat-sub">New ARR created Mar 1 – Jun 30, closed Q2</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">ONE Conference</div>
+        <div class="stat-value">June 2–3, 2026</div>
+        <div class="stat-sub">Apply via ONE Internal App by April 24</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ WEEK SCHEDULE ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Your First Week — Day by Day</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="schedule-grid">
+
+    <div class="schedule-day">
+      <div class="day-label"><div class="day-name">Mon</div><div class="day-tag">Day One</div></div>
+      <div class="day-events">
+        <div class="event"><div class="event-time">9 AM</div><div class="event-body"><div class="event-title">IT Setup &amp; Systems Access <span class="pill pill-red">Priority</span></div><div class="event-note">Laptop, Okta/SSO, email, corporate VPN. Post in <strong>#digital-spot</strong> for any issues — you've already been through the onboarding ticket process, so you know the channel!</div></div></div>
+        <div class="event"><div class="event-time">Morning</div><div class="event-body"><div class="event-title">1:1 with Bobbie Jo Frazier</div><div class="event-note">Understand the current enablement cadence, your immediate Americas priorities, and what she needs from you in the first 30/60/90 days. Ask about the Carolyn Birsky co-facilitation model and the next Launchpad cohort.</div></div></div>
+        <div class="event"><div class="event-time">Afternoon</div><div class="event-body"><div class="event-title">Review the Field Enablement Roadmap</div><div class="event-note">Pinned canvas in #one-revenue-team. This is the Q2 master plan: 8 sales plays, Agentic Confidence series, Regional Seller Sessions, and ONE Conference. You're now a delivery owner for the Americas portion.</div></div></div>
+        <div class="event"><div class="event-time">EOD</div><div class="event-body"><div class="event-title">Join all Slack channels in this guide</div><div class="event-note">Introduce yourself in <strong>#one-revenue-team</strong> and <strong>#americas-revenue-allhands</strong>. Your welcome from Bobbie Jo is already live in #americas-revenue-allhands — respond if you haven't already!</div></div></div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="day-label"><div class="day-name">Tue</div><div class="day-tag">Sales Play Day</div></div>
+      <div class="day-events">
+        <div class="event"><div class="event-time">Morning</div><div class="event-body"><div class="event-title">Sales Play Tuesday — Attend as Enablement <span class="pill pill-gold">Weekly</span></div><div class="event-note">You'll be a key delivery partner for these sessions. This week's play: Compete vs. Pro-Code &amp; AI-Native Code. Attend to understand the format, content quality, and field engagement before you start owning Americas delivery.</div></div></div>
+        <div class="event"><div class="event-time">Afternoon</div><div class="event-body"><div class="event-title">Watch BFS &amp; Insurance Play Replays</div><div class="event-note">Catch up on the two previous plays. BFS replay: <a href="https://outsystems.zoom.us/rec/share/OPKKBNpoR1jjXj3Ai0pGcXOw0qNwzmbAD49YmJod3lpA4RTF1MIgirIRXTDQMeng.r65YjSoaSkNEEUlB?startTime=1775591912000" class="event-link">AMER BFS →</a> | Insurance replay: <a href="https://outsystems.zoom.us/rec/share/-0m3b4qQhxuI0du7xw9ezCpCv2ZxesW35g5Vo7i-RdioWk_pMrbQQCP3uHfxpmek.9WaDomA1sKxuHino?startTime=1776196349000" class="event-link">AMER Insurance →</a></div></div></div>
+        <div class="event"><div class="event-time">EOD</div><div class="event-body"><div class="event-title">Review Seismic content library</div><div class="event-note">Understand what the field has access to. Seismic is the source of truth for all plays, decks, and battlecards. This is the content layer you'll be building on.</div></div></div>
+      </div>
+    </div>
+
+    <div class="schedule-day highlight">
+      <div class="day-label"><div class="day-name">Wed</div><div class="day-tag">Meet the Field</div></div>
+      <div class="day-events">
+        <div class="event"><div class="event-time">Morning</div><div class="event-body"><div class="event-title">Meet the Americas RVPs <span class="pill pill-blue">Critical</span></div><div class="event-note">Your internal customers: Josh Cranfill (West, eff. May 1), Dan Morrison (East), Adam Wooderson (Central), Elliot Staley (Public Sector), Grace Robinson (Partner Alliances). Schedule intros this week — understand their top enablement pain points right now.</div></div></div>
+        <div class="event"><div class="event-time">Afternoon</div><div class="event-body"><div class="event-title">Meet Paul Golding — Launchpad Co-Facilitator</div><div class="event-note">Paul co-runs Revenue Launchpad with Bobbie Jo and Carolyn. Get a full debrief on the April Lisbon cohort — what worked, what the April cohort said, and what needs improvement for the next one.</div></div></div>
+        <div class="event"><div class="event-time">EOD</div><div class="event-body"><div class="event-title">Review Revenue Launchpad materials</div><div class="event-note">Ask Bobbie Jo for access to the Lisbon cohort curriculum. Understand the program structure — POV building, prospecting plan, account entry package — so you can iterate and scale it for Americas.</div></div></div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="day-label"><div class="day-name">Thu</div><div class="day-tag">Agentic Thursday</div></div>
+      <div class="day-events">
+        <div class="event"><div class="event-time">Live session</div><div class="event-body"><div class="event-title">Agentic Confidence Thursdays <span class="pill pill-red">Attend</span></div><div class="event-note">Weekly series you'll help deliver. Today: Agent Workbench value selling. Join the AMER/EMEA session at 11 AM ET to see the format, presenter style, and field engagement. You'll be co-owning these sessions for the Americas.</div></div></div>
+        <div class="event"><div class="event-time">Afternoon</div><div class="event-body"><div class="event-title">ASE Deep Dive — Self-Study</div><div class="event-note">Read the <a href="https://docs.google.com/document/d/1u8t5rJ1N7iFvYEpmM6rkR0BYzK9vzMRHQg_7RO3-hxA/edit" class="event-link">ASE FAQ →</a>, watch the <a href="http://youtube.com/watch?v=QwSJnd-NSQU" class="event-link">Product Sizzle Demo →</a>, and review the <a href="https://docs.google.com/presentation/d/1IAtTEYJUrQ92Gyna_YoR1pSbIkQ-xEr349uuARh9GiQ/edit" class="event-link">Customer-Facing Slides →</a>. You need to be fluent in ASE to deliver great enablement on it.</div></div></div>
+        <div class="event"><div class="event-time">EOD</div><div class="event-body"><div class="event-title">Meet Sarah Cropp — Revenue Pulse</div><div class="event-note">Sarah produces the weekly Revenue Pulse Headlines &amp; Previews. Your enablement programs plug directly into her cadence. Understand what she's posting so your sessions reinforce — not duplicate — her content.</div></div></div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="day-label"><div class="day-name">Fri</div><div class="day-tag">Synthesis Day</div></div>
+      <div class="day-events">
+        <div class="event"><div class="event-time">Morning</div><div class="event-body"><div class="event-title">Draft your Americas Enablement 30-day plan</div><div class="event-note">Based on your week 1 immersion: identify the top 3 enablement gaps in the Americas field org and how you'll address them. What does the next Revenue Launchpad cohort need? What regional content does Sales Play Tuesday need?</div></div></div>
+        <div class="event"><div class="event-time">Midday</div><div class="event-body"><div class="event-title">End-of-week check-in with Bobbie Jo</div><div class="event-note">Share your 30-day draft, observations from the field intros, and any open access issues. Align on which upcoming Sales Play session you'll take ownership of first.</div></div></div>
+        <div class="event"><div class="event-time">EOD</div><div class="event-body"><div class="event-title">Apply for ONE Conference 2026 <span class="pill pill-outline">Deadline Apr 24</span></div><div class="event-note">June 2–3 — as a field enablement leader, you should be there. Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation" class="event-link">ONE Internal App →</a>. Review guidelines: <a href="https://drive.google.com/file/d/1nay32GhcxKYEeiviDXKQAkdpWiE2YzXd/view" class="event-link">Guidelines →</a></div></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="aside-box" style="margin-top:16px">
+    <strong>Revenue Launchpad — Your Flagship Program</strong>
+    OutSystems' first-ever field-specific onboarding bootcamp ran its inaugural cohort in Lisbon, April 14–16. Graduates leave Day One ready with a territory POV and account entry package. As Sr. Manager, Field Enablement Americas, <strong>this program is yours to evolve and scale for the Americas region</strong>. Get a full debrief from Bobbie Jo, Paul Golding, and Carolyn Birsky on what worked and what the next cohort needs.
+  </div>
+</section>
+
+
+<!-- ══════════════ TOOLS & ACCESS ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Tools &amp; Access</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="two-col" style="margin-bottom:24px">
+    <div>
+      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Core Enablement Stack</div>
+
+      <div class="tool-row">
+        <div class="tool-icon red">SF</div>
+        <div><div class="tool-name">Salesforce</div><div class="tool-desc">CRM — understand how the field uses Sales Play tagging, activity logging. Essential context for measuring enablement impact.</div></div>
+        <div class="tool-status">Week 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon">SC</div>
+        <div><div class="tool-name">Seismic</div><div class="tool-desc">All sales content — playbooks, slide decks, customer stories, battlecards. The content layer your enablement sessions build on. Learn this inside out.</div></div>
+        <div class="tool-status">Week 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon blue">DM</div>
+        <div><div class="tool-name">Deal Mate</div><div class="tool-desc">AI-powered deal prep, Sales Play suggestions. Now live with BFS play integration. Understand how reps use this so you can build enablement around the workflow. <a href="https://apps.outsystems.app/DealMate" class="event-link">Deal Mate →</a></div></div>
+        <div class="tool-status">Week 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon gold">NB</div>
+        <div><div class="tool-name">NotebookLM</div><div class="tool-desc">AI-powered learning tool. Great for getting reps up to speed on ASE, sales plays, and competitive intel. Links to notebooks are shared in #one-revenue-team posts.</div></div>
+        <div class="tool-status">Week 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon">GN</div>
+        <div><div class="tool-name">Gong</div><div class="tool-desc">Call recording &amp; intelligence. Invaluable for identifying coaching opportunities and measuring how reps are applying enablement in live conversations. Request access Day 1.</div></div>
+        <div class="tool-status">Week 1</div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Collaboration &amp; Delivery</div>
+
+      <div class="tool-row">
+        <div class="tool-icon blue">ZM</div>
+        <div><div class="tool-name">Zoom</div><div class="tool-desc">All enablement session delivery. Sales Play Tuesday, Agentic Thursdays, Regional Seller Sessions — you'll be on Zoom running or co-running these for Americas.</div></div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon" style="background:#4A154B">SL</div>
+        <div><div class="tool-name">Slack</div><div class="tool-desc">Primary communication. All critical intel — plays, announcements, field feedback — flows through Slack. #one-revenue-team is your north star channel.</div></div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon">GD</div>
+        <div><div class="tool-name">Google Drive / Slides</div><div class="tool-desc">Where enablement content is built and stored. Access session recordings, curriculum decks, and the onboarding agent technical spec from the shared Drive.</div></div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon gold">CP</div>
+        <div><div class="tool-name">Compass</div><div class="tool-desc">Customer health via the new Customer Score (April 8) — Expertise, Adoption, Outcomes. Use to inform which enablement programs will drive the most customer impact. <a href="https://intranet.outsystems.net/Compass/" class="event-link">Compass →</a></div></div>
+        <div class="tool-status">Week 2</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon">ADA</div>
+        <div><div class="tool-name">Ada (AI SDR — Qualified)</div><div class="tool-desc">Qualified-powered AI SDR on outsystems.com. SDR team now under RevOps — understand Ada's role in top-of-funnel for context on the reps you're enabling.</div></div>
+        <div class="tool-status">FYI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ TEAM ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Your Team — Key Introductions</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Field Enablement &amp; Americas Revenue Leadership</div>
+
+  <table class="team-table">
+    <thead><tr><th>Name</th><th>Role</th><th>Why they matter to you</th><th>Slack</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="name-cell">Bobbie Jo Frazier</td>
+        <td class="role-cell">Head of Revenue Enablement<br>Your direct manager</td>
+        <td>Founded and runs Revenue Launchpad, Sales Play Tuesday, and the Field Enablement Roadmap. High energy, moves fast. Book recurring 1:1s from week 1.</td>
+        <td class="slack-cell">@Bobbie Jo Frazier</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Carolyn Birsky</td>
+        <td class="role-cell">Enablement — Launchpad Co-Facilitator</td>
+        <td>Co-facilitates Revenue Launchpad with Bobbie Jo and Paul. Get a full debrief on the Lisbon cohort from her — she was on the ground and has the inside view.</td>
+        <td class="slack-cell">@Carolyn Birsky</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Paul Golding</td>
+        <td class="role-cell">Enablement — Launchpad &amp; Roadmap</td>
+        <td>Co-facilitates Launchpad and owns the Field Enablement Roadmap canvas. Your closest peer on the enablement team. Meet in week 1.</td>
+        <td class="slack-cell">@Paul Golding</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Sarah Cropp</td>
+        <td class="role-cell">Enablement — Revenue Pulse</td>
+        <td>Produces the weekly Revenue Pulse Headlines &amp; Preview (Mon/Thu). Your enablement sessions should reinforce what she's pushing each week — align closely.</td>
+        <td class="slack-cell">@Sarah Cropp</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Kim Seabrook</td>
+        <td class="role-cell">CRO</td>
+        <td>Sets the revenue vision and tone. Read her #one-revenue-team posts carefully — her priorities drive the enablement agenda.</td>
+        <td class="slack-cell">@Kim Seabrook</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Josh Cranfill</td>
+        <td class="role-cell">RVP, West (eff. May 1)</td>
+        <td>One of your primary Americas field customers. His team is being built — get him onside early on what enablement the West region needs most.</td>
+        <td class="slack-cell">@Josh Cranfill</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Dan Morrison</td>
+        <td class="role-cell">RVP, East</td>
+        <td>New RVP for the East Coast — he joined for the leadership team and vision. Meet him early to understand his East region enablement asks.</td>
+        <td class="slack-cell">@Dan Morrison</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Adam Wooderson</td>
+        <td class="role-cell">RVP, Central</td>
+        <td>Recently promoted, strong internal champion. Already welcomed you in Slack. Build the relationship — he's a good barometer for the Americas field.</td>
+        <td class="slack-cell">@Adam Wooderson</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Elliot Staley</td>
+        <td class="role-cell">RVP, Public Sector</td>
+        <td>Newly promoted, drove FedRAMP authorization. Public Sector has unique enablement needs — meet him to understand them. He also welcomed you in Slack.</td>
+        <td class="slack-cell">@Elliot Staley</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Mike Corr</td>
+        <td class="role-cell">VP Americas Sales</td>
+        <td>Americas sales leader and key stakeholder for everything you build. Your programs will be felt by his entire team — understand his priorities early.</td>
+        <td class="slack-cell">@Mike Corr</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- ══════════════ SLACK CHANNELS ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Slack Channels — Join These Now</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="channel-grid">
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">one-revenue-team</div><div class="channel-desc">All-hands for Sales, RevOps, CS, SA, Partners. Revenue Pulse, leadership announcements, company wins. Read this daily — it's the field intelligence layer for your enablement programs.</div></div></div>
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">americas-revenue-allhands</div><div class="channel-desc">Americas-wide channel where Bobbie Jo announced your hire. Your welcome post is already live here. Introduce yourself and stay active — this is your primary Americas field channel.</div></div></div>
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">ase-internal</div><div class="channel-desc">Agentic Systems Engineering — questions, updates, field feedback. You need deep fluency in ASE to deliver great enablement on it. Follow this closely.</div></div></div>
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">bfs-mastermind</div><div class="channel-desc">Banking &amp; Financial Services play community. Listen here to understand how the BFS play is landing in the field — essential signal for improving play delivery.</div></div></div>
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">solutions_ama</div><div class="channel-desc">Ask Me Anything to the SA and Solutions team. Great for building your technical understanding of OutSystems when you need it for enablement content.</div></div></div>
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">agent-workbench-pricing</div><div class="channel-desc">Pricing and packaging FAQs for Agent Workbench. Follow to stay current on what the field is being asked to position — informs your enablement content.</div></div></div>
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">one-conference</div><div class="channel-desc">ONE Conference 2026 (June 2–3). Apply by April 24. As a field enablement leader, you should be there. Also a major event to build enablement content around.</div></div></div>
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">digital-spot</div><div class="channel-desc">IT &amp; systems access support. You've already used this! Keep it bookmarked for any ongoing access requests — Gong, Seismic, Deal Mate, etc.</div></div></div>
+  </div>
+
+  <div class="aside-box" style="margin-top:16px">
+    <strong>Revenue Hub Canvas</strong>
+    Pinned in #one-revenue-team — the living index of every Revenue Pulse edition, the Field Enablement Roadmap, and all active resources. This canvas is the field-facing index of your enablement programs. Understand it completely and ensure your new programs are reflected here as they launch.
+  </div>
+</section>
+
+
+<!-- ══════════════ OFFICE LOGISTICS ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Office &amp; Logistics</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="logistics-grid">
+    <div class="logistics-cell"><div class="lc-label">IT &amp; Access Issues</div><div class="lc-value">Digital Spot</div><div class="lc-sub">Post in #digital-spot. You've already got a ticket history — use the same channel for any ongoing needs.</div></div>
+    <div class="logistics-cell"><div class="lc-label">Systems &amp; Provisioning</div><div class="lc-value">Day 1 checklist</div><div class="lc-sub">Seismic · Deal Mate · Gong · Zoom · Salesforce · Slack workspaces · Google Drive</div></div>
+    <div class="logistics-cell"><div class="lc-label">Sales Content</div><div class="lc-value">Seismic</div><div class="lc-sub">Source of truth for all plays, decks, and battlecards. Your enablement content should always reference and drive reps to Seismic.</div></div>
+    <div class="logistics-cell"><div class="lc-label">SPIFF / Comp Questions</div><div class="lc-value">Sales Operations</div><div class="lc-sub"><a href="mailto:sales.operations.team@outsystems.com" style="color:var(--accent);text-decoration:none">sales.operations.team@outsystems.com</a> or DM Sónia Parreira. Understand the SPIFF structure — it shapes what the field is focused on.</div></div>
+    <div class="logistics-cell"><div class="lc-label">Enablement Programs</div><div class="lc-value">Bobbie Jo Frazier</div><div class="lc-sub">All Revenue Launchpad scheduling, Sales Play Tuesday logistics, and Field Enablement Roadmap. Your primary operational escalation path.</div></div>
+    <div class="logistics-cell"><div class="lc-label">Company Intranet</div><div class="lc-value">Compass</div><div class="lc-sub">Account health, customer data, org charts. New Customer Score since April 8 — Expertise, Adoption, Outcomes. Informs enablement program design.</div></div>
+  </div>
+</section>
+
+
+<!-- ══════════════ Q2 SPIFF ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Q2 SPIFF — Know What the Field is Chasing</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="spiff-banner">
+    <div>
+      <div class="spiff-label">Create &amp; Close SPIFF · Active Now</div>
+      <div class="spiff-title">New ARR created Mar 1 – Jun 30 and<br>closed between April 1 – June 30, 2026</div>
+    </div>
+    <div style="text-align:right">
+      <div class="spiff-mult">1.5×</div>
+      <div class="spiff-sub">Quota + Commission<br>Uplift</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="info-card">
+      <div class="card-label">Why This Matters for Enablement</div>
+      <p>The 1.5× SPIFF is the field's <strong>primary financial motivator in Q2</strong>. Your enablement programs — especially the Sales Play series — need to be directly tied to helping reps qualify, advance, and close deals faster. If your sessions feel academic, reps won't show up. If they feel like SPIFF acceleration, they will.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-label">Additional Q2 Incentives</div>
+      <p><strong>Agent Execution Growth SPIFF</strong> — for CSM/TSM: €250–€1,000 per customer milestone. Relevant when enabling CS reps on the platform.</p>
+      <p><strong>Multi-Year Scaling + Mid-Term Upgrade SPIFFs</strong> — H1 2026. Understand the full incentive landscape so your programs reinforce the right behaviors.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ RESOURCES ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Essential Resources — Bookmark These</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="resource-row"><div class="res-type">Roadmap</div><a href="https://outsystems.enterprise.slack.com/docs/T041063TZ/F0AQC5LF15Y">Field Enablement Roadmap Canvas</a><div class="res-note">Your Q2 program plan — pinned in #one-revenue-team</div></div>
+  <div class="resource-row"><div class="res-type">Talk Track</div><a href="https://docs.google.com/document/d/10l_5bjlMmdPUXanJ79c4hGg29Nc65UEPvuBUZZfrJPc/edit">Kim Seabrook / Woodson Martin — Company Narrative</a><div class="res-note">Master this to build great enablement content</div></div>
+  <div class="resource-row"><div class="res-type">Slides</div><a href="https://docs.google.com/presentation/d/1IAtTEYJUrQ92Gyna_YoR1pSbIkQ-xEr349uuARh9GiQ/edit">Customer-Facing ASE Slides</a><div class="res-note">Agentic Systems Engineering — the new category</div></div>
+  <div class="resource-row"><div class="res-type">Video</div><a href="http://youtube.com/watch?v=QwSJnd-NSQU">Product Sizzle Demo — YouTube</a><div class="res-note">Watch first — understand what you're enabling reps to sell</div></div>
+  <div class="resource-row"><div class="res-type">FAQ</div><a href="https://docs.google.com/document/d/1u8t5rJ1N7iFvYEpmM6rkR0BYzK9vzMRHQg_7RO3-hxA/edit">Agentic Systems Engineering FAQ</a><div class="res-note">Internal only — deep product &amp; positioning detail</div></div>
+  <div class="resource-row"><div class="res-type">Playbook</div><a href="https://outsystems.seismic.com/Link/Content/DCHFgCcGMVPHD8HPBhp6gqQqFqFV">BFS Sales Play — Seismic Hub</a><div class="res-note">Banking &amp; Financial Services — the flagship Q2 play</div></div>
+  <div class="resource-row"><div class="res-type">Compete</div><a href="https://outsystems.seismic.com/apps/doccenter/1d265838-3b45-4228-a925-d8af6847942b/doc/%252Fdd031c7148-da5e-359f-6101-766b4eba5e90%252FdfODE4YTc4MDQtNDk5MS00MmU2LTllZmMtZWNlNDlmYmQ1NmY3%252CPT0%253D%252CSW50ZXJuYWw%253D%252Flffac43ed5-ba83-4823-8395-c212871fb392/grid/">Competitive Playbook: Pro-Code &amp; AI-Native</a><div class="res-note">The April 21 play — handle "we'll just use AI"</div></div>
+  <div class="resource-row"><div class="res-type">Canvas</div><a href="https://outsystems.enterprise.slack.com/docs/T041063TZ/F0AS4RLQE5Q">Revenue Hub Canvas (Slack)</a><div class="res-note">Living index of all enablement assets &amp; replays</div></div>
+  <div class="resource-row"><div class="res-type">Research</div><a href="https://docs.google.com/presentation/d/1kpu3VDo7Nc3ciKtJnQauZac6FSZffCCDg1Ubm7chvbA/edit">State of AI Development 2026 — Campaign Kit</a><div class="res-note">94% worry about AI sprawl — great enablement anchor stat</div></div>
+  <div class="resource-row"><div class="res-type">Conference</div><a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE '26 Internal App — Apply by April 24</a><div class="res-note">June 2–3 — apply now, deadline tomorrow</div></div>
+</section>
+
+
+<!-- ══════════════ FAQ ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Common First-Week Questions</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What does "Field Enablement — Americas" mean at OutSystems right now?</div>
+    <div class="faq-a">You're the first dedicated Americas field enablement manager. Bobbie Jo described your job as building programs that "move the needle" — which means Sales Play delivery, Revenue Launchpad facilitation, coaching cadences, and regional content localization for Americas reps. The infrastructure exists (Launchpad, Sales Play Tuesday, Agentic Thursdays); your job is to make sure the Americas field is getting the most out of it and to identify gaps that need new programs.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is Agentic Systems Engineering and why do I need to understand it deeply?</div>
+    <div class="faq-a">ASE is OutSystems' new platform category announced March 31, 2026. The company now positions as the platform that governs, secures, orchestrates, and scales enterprise AI — not just low-code app dev. Every enablement session you design or facilitate should help reps be fluent in this new narrative. Read the <a href="https://docs.google.com/document/d/1u8t5rJ1N7iFvYEpmM6rkR0BYzK9vzMRHQg_7RO3-hxA/edit">ASE FAQ</a> and watch the <a href="http://youtube.com/watch?v=QwSJnd-NSQU">product sizzle video</a> in week 1. You can't enable on it until you know it.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is Revenue Launchpad and what's my role in it?</div>
+    <div class="faq-a">Revenue Launchpad is OutSystems' field-specific onboarding bootcamp, held in Lisbon. The April 2026 cohort (April 14–16) was the first-ever run — graduates left Day One ready with a POV and account entry package. As Sr. Manager, Field Enablement Americas, <strong>you own the Americas component</strong> of this program and are expected to evolve and potentially extend it. Get a full debrief from Bobbie Jo, Carolyn Birsky, and Paul Golding on what worked and what needs improving for the next cohort.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How does Sales Play Tuesday work and what's my role?</div>
+    <div class="faq-a">Every Tuesday through May, a new vertical or competitive sales play is launched to the entire field. Plays launched so far: BFS (April 8), Insurance (April 14), Compete vs. Pro-Code/AI-Native (April 21). Sessions run for each GEO — EMEA, AMER, APAC. You'll be co-delivering the AMER sessions or owning Americas-specific follow-on sessions. Get the upcoming play schedule from Bobbie Jo and understand what prep and content you need to contribute for each one.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the Agentic Confidence Thursdays series?</div>
+    <div class="faq-a">A weekly Thursday enablement series running through Q2 focused on building field fluency for AI-related conversations. Topics include Agent Workbench, Agentic Systems Engineering, competitive positioning, and value selling. You'll be delivering or co-delivering these for the AMER/EMEA sessions (11 AM ET). The APAC sessions run separately. Join this week's session to understand the format before you start owning delivery.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What are the Americas RVPs currently most focused on?</div>
+    <div class="faq-a">Based on Slack signals: Dan Morrison (East) is new and building his team. Josh Cranfill (West) is being promoted to RVP eff. May 1. Adam Wooderson (Central) is a proven internal champion. Elliot Staley (Public Sector) just drove FedRAMP authorization. Grace Robinson (Partner Alliances) is new. All of them are running the BFS and Insurance Sales Plays this quarter. Meet each of them in week 1–2 to understand their specific enablement needs before building your 30-day plan.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the ONE Conference and what's my role in it?</div>
+    <div class="faq-a">ONE '26 is the company's flagship customer and prospect conference, June 2–3, 2026. As a field enablement leader, you should be there — it's a major learning and intel gathering opportunity for your programs. Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE Internal App</a> by <strong>April 24</strong>. Review the <a href="https://drive.google.com/file/d/1nay32GhcxKYEeiviDXKQAkdpWiE2YzXd/view">Revenue Team Attendance Guidelines</a> first. The deadline is literally tomorrow — do this today.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Where do I find the most current sales content and replays?</div>
+    <div class="faq-a"><strong>Seismic</strong> is the source of truth for all plays, slide decks, and battlecards. The <strong>Revenue Hub Canvas</strong> pinned in #one-revenue-team indexes every Revenue Pulse edition, all session replays, and the Field Enablement Roadmap. For AI-powered Q&amp;A on sales content, use <strong>NotebookLM</strong> — links are shared in the weekly Revenue Pulse posts by Sarah Cropp.</div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <p>OUTSYSTEMS FIELD ENABLEMENT · AMERICAS<br>
+     Malorie Weber — Sr. Manager, Field Enablement<br>
+     Generated April 23, 2026</p>
+  <p style="text-align:right">Prepared by Sales Enablement<br>Questions → Bobbie Jo Frazier or Paul Golding</p>
+</footer>
+
+<div class="sources-list">
+  Sources: [1] <a href="https://outsystems.slack.com/archives/C08BH32TZ7D" style="color:var(--muted)">Slack #one-revenue-team</a> (Apr 2026) · [2] <a href="https://outsystems.slack.com/archives/C0AFBLWLNDN" style="color:var(--muted)">Slack #americas-revenue-allhands</a> — Bobbie Jo Frazier welcome announcement (Apr 20, 2026) · [3] Slack profile — Malorie Weber, User ID U0APC1NC2DQ · [4] #digital-spot onboarding ticket thread (Apr 20–22, 2026)
+</div>
+
+</body>
+</html>
