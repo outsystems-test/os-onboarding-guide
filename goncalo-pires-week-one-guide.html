@@ -1,1 +1,1505 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Gonçalo Pires — Week One at OutSystems · Engineering</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,40,360;0,40,540;0,40,720;1,40,360&display=swap" rel="stylesheet"><style>  :root {    --ink: #171717;    --paper: #FFFFFF;    --rule: #C7C7C7;    --accent: #E62028;    --accent-soft: #F9D0D2;    --green: #171717;    --green-soft: #F5F5F5;    --gold: #A51018;    --gold-soft: #F9D0D2;    --blue: #454545;    --blue-soft: #F5F5F5;    --muted: #666666;    --mono: 'DM Sans', Calibri, sans-serif;    --serif: 'DM Sans', Calibri, sans-serif;    --sans: 'DM Sans', Calibri, sans-serif;  }  * { box-sizing: border-box; margin: 0; padding: 0; }  body {    background: var(--paper);    color: var(--ink);    font-family: var(--sans);    font-weight: 360;    line-height: 1.6;    max-width: 900px;    margin: 0 auto;    padding: 48px 32px 80px;  }  /* ── MASTHEAD ── */  .masthead {    border-top: 4px solid var(--ink);    border-bottom: 1px solid var(--ink);    padding: 28px 0 20px;    margin-bottom: 0;    display: grid;    grid-template-columns: 1fr 120px auto;    align-items: center;    gap: 24px;  }  .masthead-logo {    display: flex;    align-items: center;    justify-content: center;  }  .masthead-label {    font-family: var(--mono);    font-size: 9px;    letter-spacing: 0.05em;    text-transform: uppercase;    color: var(--muted);    margin-bottom: 8px;  }  .masthead h1 {    font-family: var(--serif);    font-size: clamp(34px, 6vw, 56px);    font-weight: 720;    line-height: 1.0;    letter-spacing: -1px;  }  .masthead h1 em {    font-style: italic;    color: var(--accent);  }  .masthead-meta {    text-align: right;  }  .masthead-meta .badge {    font-family: var(--mono);    font-size: 8px;    letter-spacing: 0.03em;    text-transform: uppercase;    background: var(--ink);    color: var(--paper);    padding: 5px 10px;    display: inline-block;    margin-bottom: 8px;  }  .masthead-meta p {    font-size: 11px;    color: var(--muted);    font-family: var(--mono);    line-height: 1.7;  }  /* ── BYLINE STRIP ── */  .byline-strip {    border-bottom: 1px solid var(--rule);    padding: 10px 0;    display: flex;    gap: 32px;    flex-wrap: wrap;    margin-bottom: 40px;  }  .byline-item {    display: flex;    flex-direction: column;  }  .byline-item .label {    font-family: var(--mono);    font-size: 8.5px;    letter-spacing: 0.03em;    text-transform: uppercase;    color: var(--muted);  }  .byline-item .value {    font-size: 13px;    font-weight: 540;    color: var(--ink);  }  /* ── WELCOME PULL-QUOTE ── */  .welcome-block {    display: grid;    grid-template-columns: 1fr 280px;    gap: 40px;    margin-bottom: 48px;    padding-bottom: 40px;    border-bottom: 1px solid var(--rule);  }  .welcome-block .lead {    font-family: var(--serif);    font-size: 18px;    line-height: 1.55;    font-weight: 400;  }  .welcome-block .lead strong {    font-weight: 720;  }  .welcome-block .lead em {    font-style: italic;    color: var(--accent);  }  .context-card {    background: var(--ink);    color: var(--paper);    padding: 24px;    display: flex;    flex-direction: column;    gap: 16px;  }  .context-card .context-title {    font-family: var(--mono);    font-size: 8.5px;    letter-spacing: 0.04em;    text-transform: uppercase;    opacity: 0.6;  }  .context-card .context-stat {    border-top: 1px solid rgba(255,255,255,.15);    padding-top: 14px;  }  .context-card .stat-label {    font-family: var(--mono);    font-size: 9px;    letter-spacing: .1em;    text-transform: uppercase;    opacity: 0.55;    margin-bottom: 3px;  }  .context-card .stat-value {    font-family: var(--serif);    font-size: 15px;    font-weight: 720;    line-height: 1.3;  }  .context-card .stat-sub {    font-size: 11px;    opacity: 0.65;    margin-top: 2px;  }  /* ── SECTION TITLES ── */  .section {    margin-bottom: 48px;  }  .section-header {    display: flex;    align-items: center;    gap: 12px;    margin-bottom: 20px;  }  .section-num {    font-family: var(--mono);    font-size: 10px;    color: var(--muted);    letter-spacing: .1em;    min-width: 24px;  }  .section-title {    font-family: var(--serif);    font-size: 22px;    font-weight: 720;    letter-spacing: -0.3px;  }  .section-rule {    flex: 1;    height: 1px;    background: var(--rule);  }  /* ── SCHEDULE ── */  .schedule-grid {    display: flex;    flex-direction: column;    gap: 1px;    background: var(--rule);    border: 1px solid var(--rule);  }  .schedule-day {    background: var(--paper);    display: grid;    grid-template-columns: 100px 1fr;  }  .schedule-day.highlight {    background: var(--accent-soft);  }  .day-label {    padding: 16px;    border-right: 1px solid var(--rule);    display: flex;    flex-direction: column;    justify-content: flex-start;  }  .day-name {    font-family: var(--serif);    font-size: 16px;    font-weight: 720;    line-height: 1;    margin-bottom: 3px;  }  .day-tag {    font-family: var(--mono);    font-size: 8px;    letter-spacing: 0.03em;    text-transform: uppercase;    color: var(--muted);  }  .day-events {    padding: 14px 16px;    display: flex;    flex-direction: column;    gap: 8px;  }  .event {    display: flex;    gap: 10px;    align-items: flex-start;  }  .event-time {    font-family: var(--mono);    font-size: 10px;    color: var(--muted);    min-width: 60px;    padding-top: 2px;    letter-spacing: .04em;  }  .event-body {}  .event-title {    font-size: 13px;    font-weight: 540;    line-height: 1.3;  }  .event-note {    font-size: 11px;    color: var(--muted);    margin-top: 2px;  }  .event-link {    color: var(--accent);    text-decoration: none;    font-family: var(--mono);    font-size: 10px;  }  .event-link:hover { text-decoration: underline; }  .pill {    display: inline-block;    font-family: var(--mono);    font-size: 8px;    letter-spacing: .1em;    text-transform: uppercase;    padding: 2px 7px;    border-radius: 2px;    margin-left: 6px;    vertical-align: middle;  }  .pill-red { background: var(--accent); color: white; }  .pill-green { background: var(--green); color: white; }  .pill-gold { background: var(--gold); color: white; }  .pill-blue { background: var(--blue); color: white; }  .pill-outline { border: 1px solid var(--rule); color: var(--muted); }  /* ── 2-COL ── */  .two-col {    display: grid;    grid-template-columns: 1fr 1fr;    gap: 24px;  }  /* ── INFO CARDS ── */  .info-card {    border: 1px solid var(--rule);    padding: 20px;  }  .info-card .card-label {    font-family: var(--mono);    font-size: 8.5px;    letter-spacing: 0.03em;    text-transform: uppercase;    color: var(--muted);    margin-bottom: 10px;  }  .info-card .card-title {    font-family: var(--serif);    font-size: 16px;    font-weight: 720;    margin-bottom: 12px;  }  .info-card p {    font-size: 13px;    color: var(--ink);    margin-bottom: 6px;    line-height: 1.5;  }  .info-card p strong {    font-weight: 540;  }  /* ── TOOL LIST ── */  .tool-row {    display: grid;    grid-template-columns: 28px 1fr auto;    align-items: start;    gap: 10px;    padding: 11px 0;    border-bottom: 1px solid var(--rule);  }  .tool-row:last-child { border-bottom: none; }  .tool-icon {    width: 28px;    height: 28px;    background: var(--ink);    color: var(--paper);    display: flex;    align-items: center;    justify-content: center;    font-family: var(--mono);    font-size: 9px;    font-weight: 540;    letter-spacing: .05em;    flex-shrink: 0;    margin-top: 2px;  }  .tool-icon.green { background: var(--green); }  .tool-icon.gold { background: var(--gold); }  .tool-icon.blue { background: var(--blue); }  .tool-icon.red { background: var(--accent); }  .tool-name {    font-size: 13.5px;    font-weight: 540;    line-height: 1.2;    margin-bottom: 2px;  }  .tool-desc {    font-size: 11.5px;    color: var(--muted);  }  .tool-status {    font-family: var(--mono);    font-size: 9px;    letter-spacing: .08em;    text-transform: uppercase;    color: var(--green);    padding-top: 3px;  }  /* ── TEAM TABLE ── */  .team-table {    width: 100%;    border-collapse: collapse;    font-size: 13px;  }  .team-table th {    font-family: var(--mono);    font-size: 8.5px;    letter-spacing: 0.03em;    text-transform: uppercase;    color: var(--muted);    text-align: left;    padding: 0 12px 8px 0;    border-bottom: 1px solid var(--rule);    font-weight: 400;  }  .team-table td {    padding: 10px 12px 10px 0;    border-bottom: 1px solid var(--rule);    vertical-align: top;    line-height: 1.45;  }  .team-table td:last-child { border-right: none; }  .team-table tr:last-child td { border-bottom: none; }  .name-cell {    font-weight: 540;    white-space: nowrap;  }  .role-cell {    color: var(--muted);    font-size: 12px;  }  .slack-cell {    font-family: var(--mono);    font-size: 10px;    color: var(--blue);  }  /* ── CHANNEL LIST ── */  .channel-grid {    display: grid;    grid-template-columns: 1fr 1fr;    gap: 8px;  }  .channel-item {    display: flex;    align-items: flex-start;    gap: 8px;    padding: 10px;    background: white;    border: 1px solid var(--rule);  }  .channel-hash {    font-family: var(--mono);    font-size: 14px;    color: var(--muted);    line-height: 1;    margin-top: 2px;    flex-shrink: 0;  }  .channel-body {}  .channel-name {    font-family: var(--mono);    font-size: 11px;    font-weight: 540;    color: var(--blue);    margin-bottom: 2px;  }  .channel-desc {    font-size: 11px;    color: var(--muted);    line-height: 1.35;  }  /* ── FAQ ── */  .faq-item {    border-bottom: 1px solid var(--rule);    padding: 16px 0;  }  .faq-item:first-child { padding-top: 0; }  .faq-q {    font-family: var(--serif);    font-size: 15px;    font-weight: 720;    margin-bottom: 8px;    display: flex;    gap: 10px;    align-items: baseline;  }  .faq-q::before {    content: 'Q';    font-family: var(--mono);    font-size: 9px;    color: var(--accent);    letter-spacing: .1em;    padding-top: 2px;    flex-shrink: 0;  }  .faq-a {    font-size: 13px;    line-height: 1.6;    color: var(--ink);    padding-left: 20px;  }  .faq-a a {    color: var(--accent);    text-decoration: none;    font-weight: 540;  }  .faq-a a:hover { text-decoration: underline; }  /* ── SPIFF BANNER ── */  .spiff-banner {    background: var(--green);    color: white;    padding: 20px 24px;    margin-bottom: 24px;    display: grid;    grid-template-columns: 1fr auto;    gap: 16px;    align-items: center;  }  .spiff-banner .spiff-label {    font-family: var(--mono);    font-size: 8px;    letter-spacing: 0.05em;    text-transform: uppercase;    opacity: 0.7;    margin-bottom: 5px;  }  .spiff-banner .spiff-title {    font-family: var(--serif);    font-size: 17px;    font-weight: 720;    line-height: 1.3;  }  .spiff-banner .spiff-mult {    font-family: var(--serif);    font-size: 36px;    font-weight: 720;    line-height: 1;    opacity: 0.9;  }  .spiff-sub {    font-family: var(--mono);    font-size: 9px;    opacity: 0.65;    text-align: right;    letter-spacing: .06em;  }  /* ── OFFICE ── */  .logistics-grid {    display: grid;    grid-template-columns: repeat(3, 1fr);    gap: 1px;    background: var(--rule);    border: 1px solid var(--rule);    margin-bottom: 20px;  }  .logistics-cell {    background: var(--paper);    padding: 16px;  }  .logistics-cell .lc-label {    font-family: var(--mono);    font-size: 8.5px;    letter-spacing: 0.03em;    text-transform: uppercase;    color: var(--muted);    margin-bottom: 6px;  }  .logistics-cell .lc-value {    font-size: 13px;    font-weight: 540;    line-height: 1.4;  }  .logistics-cell .lc-sub {    font-size: 11px;    color: var(--muted);    margin-top: 3px;  }  /* ── RESOURCES ── */  .resource-row {    display: flex;    gap: 10px;    align-items: center;    padding: 9px 0;    border-bottom: 1px solid var(--rule);    font-size: 12.5px;  }  .resource-row:last-child { border-bottom: none; }  .resource-row .res-type {    font-family: var(--mono);    font-size: 8px;    letter-spacing: .1em;    text-transform: uppercase;    padding: 3px 7px;    background: var(--gold-soft);    color: var(--gold);    white-space: nowrap;    flex-shrink: 0;    min-width: 58px;    text-align: center;  }  .resource-row a {    color: var(--accent);    text-decoration: none;    font-weight: 540;  }  .resource-row a:hover { text-decoration: underline; }  .resource-row .res-note {    color: var(--muted);    font-size: 11px;    margin-left: auto;    flex-shrink: 0;  }  /* ── FOOTER ── */  .footer {    border-top: 1px solid var(--rule);    margin-top: 60px;    padding-top: 20px;    display: flex;    justify-content: space-between;    align-items: center;    flex-wrap: wrap;    gap: 12px;  }  .footer p {    font-family: var(--mono);    font-size: 10px;    color: var(--muted);    letter-spacing: .06em;  }  .sources-list {    font-family: var(--mono);    font-size: 9px;    color: var(--muted);    line-height: 1.8;    letter-spacing: .03em;    margin-top: 8px;  }  /* ── SIDEBAR ASIDE ── */  .aside-box {    border-left: 3px solid var(--accent);    padding: 14px 16px;    background: var(--accent-soft);    margin-top: 16px;    font-size: 12px;    line-height: 1.5;  }  .aside-box strong {    display: block;    font-family: var(--mono);    font-size: 8.5px;    letter-spacing: 0.03em;    text-transform: uppercase;    color: var(--accent);    margin-bottom: 6px;  }  /* responsiveness */  @media (max-width: 680px) {    .welcome-block, .two-col { grid-template-columns: 1fr; }    .logistics-grid { grid-template-columns: 1fr 1fr; }    .channel-grid { grid-template-columns: 1fr; }    .masthead { grid-template-columns: 1fr auto; }    .masthead-logo { display: none; }    .masthead-meta { text-align: left; }    body { padding: 28px 18px 60px; }  }  @media print {    body { background: white; padding: 20px; }    .spiff-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }    .context-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }  }</style></head><body><!-- ══════════════ MASTHEAD ══════════════ --><header class="masthead">  <div>    <div class="masthead-label">OutSystems · Engineering</div>    <h1>Welcome,<br><em>Gonçalo.</em></h1>  </div>  <div class="masthead-logo">    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">      <defs>        <mask id="donut-ring">          <circle cx="50" cy="50" r="48" fill="white"/>          <circle cx="50" cy="50" r="22" fill="black"/>        </mask>      </defs>      <circle cx="50" cy="50" r="48" fill="#E62028" mask="url(#donut-ring)"/>    </svg>  </div>  <div class="masthead-meta">    <div class="badge">Day One Guide</div>    <p>Role: Software Engineer<br>       Team: Engineering — Portugal / EMEA<br>       Manager: Sérgio Oliveira<br>       Start: April 28, 2026</p>  </div></header><div class="byline-strip">  <div class="byline-item">    <span class="label">Region</span>    <span class="value">Portugal / EMEA</span>  </div>  <div class="byline-item">    <span class="label">Eng Lead / Manager</span>    <span class="value">Sérgio Oliveira</span>  </div>  <div class="byline-item">    <span class="label">Org Leader</span>    <span class="value">Sérgio Oliveira, Team Lead, Software Engineering</span>  </div>  <div class="byline-item">    <span class="label">Company Mission</span>    <span class="value">Give every developer the power of the best developer — from citizen to pro — while governing and scaling AI development across the enterprise.</span>  </div>  <div class="byline-item">    <span class="label">Onboarding Program</span>    <span class="value">OutSystems Engineering Onboarding</span>  </div></div><!-- ══════════════ WELCOME ══════════════ --><section class="section">  <div class="welcome-block">    <div>      <div class="masthead-label" style="margin-bottom:12px">§ Welcome</div>      <p class="lead">        You're joining OutSystems at <strong>one of the most pivotal moments in our history</strong>. In March 2026 we launched a new category — <em>Agentic Systems Engineering</em> — repositioning OutSystems as the platform that brings order, governance, and scale to enterprise AI. Every feature you ship, every system you improve, every review you contribute to — you're building the platform at the centre of that transformation.      </p>      <p class="lead" style="margin-top:16px">        Your first week is structured, fast-paced, and purposeful. By Friday, you should have your dev environment running, your first codebase explored, your key relationships started, and a clear picture of your team's current sprint. The Engineering org has invested seriously in getting you <strong>Day One ready</strong> — lean into it.      </p>      <div class="aside-box">        <strong>Your Manager's Context</strong>        Sérgio Oliveira is Sérgio is an experienced Team Lead, Software Engineering, who leads the engineering team working on ODC platform capabilities and release engineering processes.. [1–2 sentences on their current priorities and what they'll want to align on with you in week 1.]      </div>    </div>    <div class="context-card">      <div class="context-title">Company Snapshot · Q2 2026</div>      <div class="context-stat">        <div class="stat-label">Category</div>        <div class="stat-value">Agentic Systems Engineering</div>        <div class="stat-sub">Launched March 31, 2026 — the new category for governed enterprise AI</div>      </div>      <div class="context-stat">        <div class="stat-label">ARR Target</div>        <div class="stat-value">€550.1M in 2026</div>        <div class="stat-sub">Path to €1B by 2029</div>      </div>      <div class="context-stat">        <div class="stat-label">Current Engineering Focus</div>        <div class="stat-value">BFS · Insurance · Compete (Pro Code/AI-Native)</div>        <div class="stat-sub">New play every Tuesday through May</div>      </div>      <div class="context-stat">        <div class="stat-label">Hackathon / OKR Cycle</div>        <div class="stat-value">Agentic Systems Engineering — build governed agents on ODC</div>        <div class="stat-sub">Digital Workforce / Agentic Systems Engineering</div>      </div>      <div class="context-stat">        <div class="stat-label">ONE Conference</div>        <div class="stat-value">ONE '26 — June 2–3, 2026</div>        <div class="stat-sub">Applications closed April 24 — contact your manager</div>      </div>    </div>  </div></section><!-- ══════════════ WEEK SCHEDULE ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">01</span>    <h2 class="section-title">Your First Week — Day by Day</h2>    <div class="section-rule"></div>  </div>  <div class="schedule-grid">    <div class="schedule-day">      <div class="day-label">        <div class="day-name">Mon</div>        <div class="day-tag">Day One</div>      </div>      <div class="day-events">        <div class="event">          <div class="event-time">9 AM</div>          <div class="event-body">            <div class="event-title">IT Setup & System Access <span class="pill pill-red">Priority</span></div>            <div class="event-note">Laptop, Okta/SSO, email, corporate VPN. Contact Digital Spot via <strong>#digital-spot</strong> Slack channel for any access requests.</div>          </div>        </div>        <div class="event">          <div class="event-time">10 AM</div>          <div class="event-body">            <div class="event-title">1:1 with Sérgio Oliveira</div>            <div class="event-note">Align on team structure, Q2 OKRs, and Sérgio leads the Software Engineering team working on ODC platform capabilities. He focuses on deployment quality, release engineering processes, and feature toggle management. Reach out directly on Slack anytime.. Ask about the current sprint, your first assigned tickets, and any on-call rotations.</div>          </div>        </div>        <div class="event">          <div class="event-time">Afternoon</div>          <div class="event-body">            <div class="event-title">Dev environment setup & repo access</div>            <div class="event-note">Clone the main repositories, get your local build running, and verify CI/CD pipeline access. See <em>Tools & Access</em> section below.</div>          </div>        </div>        <div class="event">          <div class="event-time">EOD</div>          <div class="event-body">            <div class="event-title">Join all Slack channels listed in this guide</div>            <div class="event-note">Introduce yourself in <strong>#engineering</strong> and <strong>##rd-release-engineering-support</strong>.</div>          </div>        </div>      </div>    </div>    <div class="schedule-day">      <div class="day-label">        <div class="day-name">Tue</div>        <div class="day-tag">Codebase Day</div>      </div>      <div class="day-events">        <div class="event">          <div class="event-time">Morning</div>          <div class="event-body">            <div class="event-title">Architecture / Tech Debt Review <span class="pill pill-gold">Weekly</span></div>            <div class="event-note">Weekly engineering sync covering architecture decisions, tech debt priorities, and in-flight initiatives. Ask Sérgio Oliveira for the recurring calendar invite.</div>          </div>        </div>        <div class="event">          <div class="event-time">All day</div>          <div class="event-body">            <div class="event-title">Codebase walkthrough with Sérgio Oliveira</div>            <div class="event-note">Guided tour of the main repos, key services, and system boundaries. Understand where your team's work fits in the broader architecture. Take notes — this is a lot to absorb.</div>          </div>        </div>        <div class="event">          <div class="event-time">Afternoon</div>          <div class="event-body">            <div class="event-title">First ticket: read, understand, and comment</div>            <div class="event-note">Don't ship code yet — read an in-progress ticket top to bottom, understand the acceptance criteria, and leave a comment or question. This is how you learn the team's standards.</div>          </div>        </div>      </div>    </div>    <div class="schedule-day highlight">      <div class="day-label">        <div class="day-name">Wed</div>        <div class="day-tag">Build Day</div>      </div>      <div class="day-events">        <div class="event">          <div class="event-time">All day</div>          <div class="event-body">            <div class="event-title">First pull request <span class="pill pill-blue">Ship it</span></div>            <div class="event-note">Open a small PR — a bug fix, a doc update, a minor refactor. The goal is to go through the full cycle: branch, commit, PR, review, merge. Learn the team's conventions by doing.</div>          </div>        </div>        <div class="event">          <div class="event-time">Afternoon</div>          <div class="event-body">            <div class="event-title">Read the Engineering Handbook</div>            <div class="event-note">Coding standards, branching strategy, deployment process, incident response runbook, and on-call expectations. Available in <a href="[TBD — ask Sérgio for internal engineering handbook link]" class="event-link">Confluence →</a></div>          </div>        </div>        <div class="event">          <div class="event-time">EOD</div>          <div class="event-body">            <div class="event-title">Set up monitoring & observability access</div>            <div class="event-note">Get access to <a href="https://outsystemsrd.atlassian.net" class="event-link">Jira + internal Pegasus dashboards →</a> and explore dashboards for your team's services. Know where alerts come from before you're on-call.</div>          </div>        </div>      </div>    </div>    <div class="schedule-day">      <div class="day-label">        <div class="day-name">Thu</div>        <div class="day-tag">People Day</div>      </div>      <div class="day-events">        <div class="event">          <div class="event-time">Live session</div>          <div class="event-body">            <div class="event-title">Sprint Standup <span class="pill pill-red">Attend</span></div>            <div class="event-note">Join your team's daily standup. Introduce yourself, listen more than you talk this week. Ask Sérgio Oliveira for the recurring calendar invite if it's not already in your calendcurring weekly session with Sérgio Oliveira for the recurring calendar invite if it's not already in your calendsscode: [TBD])</div>          </div>        </div>        <div class="event">          <div class="event-time">Agentic Thursdays</div>          <div class="event-body">            <div class="event-title">Engineering All-Hands <span class="pill pill-gold">Monthly</span></div>            <div class="event-note">Company-wide engineering update: roadmap priorities, infrastructure decisions, platform direction. Check <strong>#engineering</strong> for the calendar invite link.</div>          </div>        </div>        <div class="event">          <div class="event-time">Afternoon</div>          <div class="event-body">            <div class="event-title">1:1s with key cross-functional partners</div>            <div class="event-note">Book short intro calls with [TBD — ask Sérgio] (Product) and [TBD — ask Sérgio] (QA/Testing). Understanding how your team interfaces with them saves weeks of confusion later.</div>          </div>        </div>      </div>    </div>    <div class="schedule-day">      <div class="day-label">        <div class="day-name">Fri</div>        <div class="day-tag">Reflection Day</div>      </div>      <div class="day-events">        <div class="event">          <div class="event-time">Morning</div>          <div class="event-body">            <div class="event-title">Write your week 1 retrospective</div>            <div class="event-note">Write a short doc: what did you learn, what surprised you, what's still unclear. Share it with Sérgio Oliveira. This builds the habit of structured reflection that characterises strong engineers.</div>          </div>        </div>        <div class="event">          <div class="event-time">Midday</div>          <div class="event-body">            <div class="event-title">End-of-week check-in with Sérgio Oliveira</div>            <div class="event-note">Share your retro doc, any blockers on environment or access, and surface your top questions. They'll want to know you're oriented and already thinking about your first real contribution.</div>          </div>        </div>        <div class="event">          <div class="event-time">EOD</div>          <div class="event-body">            <div class="event-title">Apply for ONE Conference <span class="pill pill-outline">Deadline [TBD]</span></div>            <div class="event-note">Engineering attends ONE to demo, support customer sessions, and connect with product. Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation" class="event-link">ONE Internal App →</a>. Review attendance guidelines: <a href="https://drive.google.com/file/d/1nay32GhcxKYEeiviDXKQAkdpWiE2YzXd/view" class="event-link">Guidelines →</a></div>          </div>        </div>      </div>    </div>  </div>  <div class="aside-box" style="margin-top:16px">    <strong>Engineering Onboarding Program</strong>    OutSystems runs a structured engineering onboarding program — ask Sérgio Oliveira for the full schedule. Typical milestones: first PR merged by end of week 1, first independent ticket shipped by end of week 2, first on-call rotation by end of month 1. Ask Sérgio Oliveira how these apply to your specific role and team.  </div></section><!-- ══════════════ TOOLS & ACCESS ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">02</span>    <h2 class="section-title">Tools & Access</h2>    <div class="section-rule"></div>  </div>  <div class="two-col" style="margin-bottom:24px">    <div>      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Core Engineering Stack</div>      <div class="tool-row">        <div class="tool-icon red">GH</div>        <div>          <div class="tool-name">GitHub</div>          <div class="tool-desc">Source control — all code lives here. Request access to the main org repos on Day 1. Learn the branching and PR conventions in the Engineering Handbook.</div>        </div>        <div class="tool-status">Day 1</div>      </div>      <div class="tool-row">        <div class="tool-icon blue">JR</div>        <div>          <div class="tool-name">Jira</div>          <div class="tool-desc">Issue tracking and sprint planning. Get added to your team's board Day 1. Your tickets are the single source of truth for what you're working on.</div>        </div>        <div class="tool-status">Day 1</div>      </div>      <div class="tool-row">        <div class="tool-icon green">CF</div>        <div>          <div class="tool-name">Confluence</div>          <div class="tool-desc">Internal wiki — architecture docs, runbooks, ADRs, team rituals, onboarding guides. Search here before asking Slack.</div>        </div>        <div class="tool-status">Day 1</div>      </div>      <div class="tool-row">        <div class="tool-icon gold">OS</div>        <div>          <div class="tool-name">OutSystems ODC</div>          <div class="tool-desc">The platform you're building on. Get your dev environment and personal space provisioned on Day 1. <a href="https://www.outsystems.com/low-code-platform/" class="event-link">ODC Portal →</a></div>        </div>        <div class="tool-status">Day 1</div>      </div>      <div class="tool-row">        <div class="tool-icon">MN</div>        <div>          <div class="tool-name">Jira + internal Pegasus dashboards</div>          <div class="tool-desc">Observability and alerting for production services. Request access Day 1 — you need to know where alerts come from before you're on-call.</div>        </div>        <div class="tool-status">Week 1</div>      </div>    </div>    <div>      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Collaboration & Intelligence</div>      <div class="tool-row">        <div class="tool-icon blue">ZM</div>        <div>          <div class="tool-name">Zoom</div>          <div class="tool-desc">All customer calls and internal sessions. Join the recurring enablement sessions via calendar.</div>        </div>        <div class="tool-status">Day 1</div>      </div>      <div class="tool-row">        <div class="tool-icon" style="background:#4A154B">SL</div>        <div>          <div class="tool-name">Slack</div>          <div class="tool-desc">Primary communication. All critical intel flows here. See channel list in Section 04.</div>        </div>        <div class="tool-status">Day 1</div>      </div>      <div class="tool-row">        <div class="tool-icon gold">NB</div>        <div>          <div class="tool-name">Confluence / Engineering Wiki</div>          <div class="tool-desc">AI-powered docs and search across the engineering knowledge base. Search here for ADRs, runbooks, and architecture diagrams before asking in Slack.</div>        </div>        <div class="tool-status">Week 1</div>      </div>      <div class="tool-row">        <div class="tool-icon green">PBI</div>        <div>          <div class="tool-name">GitHub Actions / Pegasus</div>          <div class="tool-desc">CI/CD pipeline — build, test, and deploy status for all repos. Watch your PRs here to understand test failures and deployment gates. <a href="https://github.com/OutSystems" class="event-link">GitHub Actions / Pegasus →</a></div>        </div>        <div class="tool-status">Week 2</div>      </div>      <div class="tool-row">        <div class="tool-icon">ADA</div>        <div>          <div class="tool-name">Mentor (AI Code Assistant)</div>          <div class="tool-desc">OutSystems' AI-powered code quality and governance tool. Reviews code, surfaces technical debt, and suggests improvements. Part of the Agentic Systems Engineering platform you're building.</div>        </div>        <div class="tool-status">FYI</div>      </div>    </div>  </div></section><!-- ══════════════ TEAM ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">03</span>    <h2 class="section-title">Your Team — Key Introductions</h2>    <div class="section-rule"></div>  </div>  <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Engineering Leadership & Engineering Team</div>  <table class="team-table">    <thead>      <tr>        <th>Name</th>        <th>Role</th>        <th>Why they matter to you</th>        <th>Slack / Contact</th>      </tr>    </thead>    <tbody>      <tr>        <td class="name-cell">Sérgio Oliveira</td>        <td class="role-cell">Team Lead, Software Engineering<br>Your direct manager</td>        <td>Gonçalo is a new Software Engineer joining the Engineering team. Focus on getting him set up with all tools and access, introduce him to the team rituals, and ensure he has a buddy/peer for his first sprint.</td>        <td class="slack-cell">@sergio.oliveira</td>      </tr>      <tr>        <td class="name-cell">Kim Seabrook</td>        <td class="role-cell">CTO</td>        <td>Sets the technical vision and engineering culture. Read their posts in #engineering and #announcements. Their priorities directly shape what your team builds.</td>        <td class="slack-cell">@goncalo.moura</td>      </tr>      <tr>        <td class="name-cell">Sérgio Oliveira</td>        <td class="role-cell">VP Engineering</td>        <td>Engineering org leader. Sets hiring direction, cross-team architecture priorities, and engineering culture. Follow their Slack posts for org-wide decisions.</td>        <td class="slack-cell">@sergio.oliveira</td>      </tr>      <tr>        <td class="name-cell">[TBD — ask Sérgio]</td>        <td class="role-cell">Software Engineer — Engineering</td>        <td>Team peer. Ask them to walk you through the codebase in week 1. Good model for how work gets done on this team.</td>        <td class="slack-cell">@[TBD]</td>      </tr>      <tr>        <td class="name-cell">[TBD — ask Sérgio]</td>        <td class="role-cell">Software Engineer — Engineering</td>        <td>Team peer. [1 sentence on their area of expertise and why they're a good person to learn from in week 1.]</td>        <td class="slack-cell">@[TBD]</td>      </tr>      <tr>        <td class="name-cell">[TBD — ask Sérgio]</td>        <td class="role-cell">Product Manager — Engineering</td>        <td>Your primary product counterpart. They own the roadmap and write the specs your team builds against. Get a 1:1 this week to understand their current priorities.</td>        <td class="slack-cell">@[TBD]</td>      </tr>      <tr>        <td class="name-cell">[TBD — ask Sérgio]</td>        <td class="role-cell">QA / Testing Engineer — Engineering</td>        <td>Quality partner for your team's releases. Understand their test coverage expectations before you push your first feature to production.</td>        <td class="slack-cell">@[TBD]</td>      </tr>      <tr>        <td class="name-cell">Sérgio Oliveira</td>        <td class="role-cell">Platform / Infrastructure Lead</td>        <td>Owns the shared infrastructure your services run on. Contact for deployment, environment, and infra access issues.</td>        <td class="slack-cell">@sergio.oliveira</td>      </tr>      <tr>        <td class="name-cell">Madeline Dibble</td>        <td class="role-cell">SVP Revenue Operations</td>        <td>Runs the Enablement, Coaching & Onboarding Thursday sessions. Also your compensation and HR questions go to their org.</td>        <td class="slack-cell">@madeline.dibble</td>      </tr>      <tr>        <td class="name-cell">[TBD]</td>        <td class="role-cell">Security Engineering</td>        <td>Owns secure coding standards, vulnerability reviews, and security sign-off for releases. Know who they are before you need them on a deadline.</td>        <td class="slack-cell">@[TBD]</td>      </tr>    </tbody>  </table></section><!-- ══════════════ SLACK CHANNELS ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">04</span>    <h2 class="section-title">Slack Channels — Join These Now</h2>    <div class="section-rule"></div>  </div>  <div class="channel-grid">    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">engineering</div>        <div class="channel-desc">All-hands for all engineers. Architecture decisions, platform updates, org announcements, and engineering culture posts. Read daily.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">#rd-release-engineering-support</div>        <div class="channel-desc">Your primary team channel. Introduce yourself here Day 1. Sprint updates, PR reviews, and team-specific discussions all live here.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">digital-spot</div>        <div class="channel-desc">IT support for access requests. Post here for Slack workspace access, Jira provisioning, ODC environments, and app permissions on Day 1.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">agent-workbench-dev</div>        <div class="channel-desc">Agent Workbench development discussions. Updates on the platform you're building on top of. Follow for breaking changes and new capabilities.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">engineering-ama</div>        <div class="channel-desc">Ask Me Anything to the broader engineering org. Great for cross-team technical questions, architecture queries, and anything where you're not sure who to ask.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">incidents</div>        <div class="channel-desc">Production incident coordination. Read the last 3 months of posts to understand the team's failure modes and how incidents are handled before you're on-call.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">one-conference</div>        <div class="channel-desc">ONE '26 2026 planning (June 2–3, 2026). Apply by April 24 (applications closed). Also monitor for customer invite opportunities.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">releases</div>        <div class="channel-desc">Production deployment announcements. Follow to understand release cadence and what goes to prod when. Critical context for understanding your team's pace.</div>      </div>    </div>  </div>  <div class="aside-box" style="margin-top:16px">    <strong>Engineering Handbook</strong>    Pinned in #engineering — this is the living index of coding standards, architecture decision records (ADRs), runbooks, and team rituals. Bookmark it. When you have a question about how something is done here, check the handbook first.  </div></section><!-- ══════════════ OFFICE LOGISTICS ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">05</span>    <h2 class="section-title">Office & Logistics</h2>    <div class="section-rule"></div>  </div>  <div class="logistics-grid">    <div class="logistics-cell">      <div class="lc-label">IT & Access Issues</div>      <div class="lc-value">Digital Spot</div>      <div class="lc-sub">Message @Digital Spot or post in #digital-spot. They handle Slack access, Jira, and app permissions.</div>    </div>    <div class="logistics-cell">      <div class="lc-label">Systems & Provisioning</div>      <div class="lc-value">Day 1 checklist</div>      <div class="lc-sub">GitHub · Jira · Confluence · ODC · Jira + internal Pegasus dashboards · Zoom · Slack workspaces</div>    </div>    <div class="logistics-cell">      <div class="lc-label">Pay / Compensation Qs</div>      <div class="lc-value">HR / People Team</div>      <div class="lc-sub"><a href="mailto:people@outsystems.com" style="color:var(--accent);text-decoration:none">people@outsystems.com</a> or DM [TBD — check People team] in Slack.</div>    </div>    <div class="logistics-cell">      <div class="lc-label">Technical Docs</div>      <div class="lc-value">Confluence</div>      <div class="lc-sub">Source of truth for architecture docs, ADRs, runbooks, and engineering standards. Search here before Slack.</div>    </div>    <div class="logistics-cell">      <div class="lc-label">Onboarding Questions</div>      <div class="lc-value">Sérgio Oliveira</div>      <div class="lc-sub">Engineering onboarding programme, first-week checklist, missing access, and tool provisioning.</div>    </div>    <div class="logistics-cell">      <div class="lc-label">Company Intranet</div>      <div class="lc-value">Compass</div>      <div class="lc-sub">Org charts, V2MOM goals, and company-wide strategic context. Understand how your team's work connects to the company OKRs.</div>    </div>  </div></section><!-- ══════════════ ENGINEERING RITUALS ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">06</span>    <h2 class="section-title">Q2 Engineering Rituals — How We Work</h2>    <div class="section-rule"></div>  </div>  <div class="spiff-banner">    <div>      <div class="spiff-label">Sprint Cadence · 2 weeks weeks</div>      <div class="spiff-title">Plan · Build · Review · Retro<br>Your team's heartbeat — learn this rhythm first</div>    </div>    <div style="text-align:right">      <div class="spiff-mult">2 weeksw</div>      <div class="spiff-sub">Sprint Length<br>Cycle</div>    </div>  </div>  <div class="two-col">    <div class="info-card">      <div class="card-label">Core Weekly Rituals</div>      <p><strong>Daily standup</strong> — async or sync, 9:00 AM Lisbon</p>      <p><strong>Sprint planning</strong> — every 5 weeks, Monday</p>      <p><strong>Sprint retro</strong> — every 5 weeks, Monday</p>      <p><strong>Architecture review</strong> — Weekly — Tuesdays (Sales Play) and Thursdays (Agentic Confidence), Monday</p>      <p style="margin-top:8px"><a href="[TBD — ask Sérgio]" style="color:var(--accent);font-size:12px;text-decoration:none;font-weight:500">Full team rituals doc →</a></p>    </div>    <div class="info-card">      <div class="card-label">Performance & Growth</div>      <p><strong>Performance review cycle</strong> — Weekly — Tuesdays (Sales Play) and Thursdays (Agentic Confidence)</p>      <p><strong>Promotion criteria</strong> — <a href="[TBD — check People team portal]" style="color:var(--accent)">Engineering Career Ladder →</a></p>      <p style="margin-top:8px;font-size:12px;color:var(--muted)">Ask Sérgio Oliveira how the review cycle works and what 'great' looks like at your level in the first month.</p>    </div>  </div></section><!-- ══════════════ RESOURCES ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">07</span>    <h2 class="section-title">Essential Resources — Bookmark These</h2>    <div class="section-rule"></div>  </div>  <div class="resource-row">    <div class="res-type">Handbook</div>    <a href="[TBD — ask Sérgio for internal engineering handbook link]">Engineering Handbook — Confluence</a>    <div class="res-note">Coding standards & process</div>  </div>  <div class="resource-row">    <div class="res-type">Roadmap</div>    <a href="https://outsystems.enterprise.slack.com/docs/T041063TZ/F0ASM9HMVPC">Product Roadmap — Q2</a>    <div class="res-note">What your team is building toward</div>  </div>  <div class="resource-row">    <div class="res-type">Video</div>    <a href="https://www.youtube.com/watch?v=QwSJnd-NSQU">Product Sizzle Demo — YouTube</a>    <div class="res-note">Watch to understand what you're building</div>  </div>  <div class="resource-row">    <div class="res-type">ADRs</div>    <a href="[TBD — ask Sérgio]">Architecture Decision Records</a>    <div class="res-note">Why things are built the way they are</div>  </div>  <div class="resource-row">    <div class="res-type">Runbook</div>    <a href="[TBD — ask Sérgio]">On-Call Runbook</a>    <div class="res-note">Read before your first rotation</div>  </div>  <div class="resource-row">    <div class="res-type">Dashboard</div>    <a href="https://outsystemsrd.atlassian.net">Jira + internal Pegasus dashboards — Team Dashboard</a>    <div class="res-note">Production health & alerts</div>  </div>  <div class="resource-row">    <div class="res-type">Context</div>    <a href="https://docs.google.com/document/d/10l_5bjlMmdPUXanJ79c4hGg29Nc65UEPvuBUZZfrJPc/edit">Gonçalo Moura / Paulo Rosado — Engineering Vision</a>    <div class="res-note">Understand the technical direction</div>  </div>  <div class="resource-row">    <div class="res-type">Compete</div>    <a href="https://outsystems.seismic.com/apps/doccenter/1d265838-3b45-4228-a925-d8af6847942b/doc/%252Fdd031c7148-da5e-359f-6101-766b4eba5e90%252FdfODE4YTc4MDQtNDk5MS00MmU2LTllZmMtZWNlNDlmYmQ1NmY3%252CPT0%253D%252CSW50ZXJuYWw%253D%252Flffac43ed5-ba83-4823-8395-c212871fb392/grid/">Competitive Playbook: Pro-Code & AI-Native</a>    <div class="res-note">Handle "we'll just use AI"</div>  </div>  <div class="resource-row">    <div class="res-type">CI/CD</div>    <a href="https://github.com/OutSystems">GitHub Actions / Pegasus — Build & Deploy Pipelines</a>    <div class="res-note">Monitor your PR build status</div>  </div>  <div class="resource-row">    <div class="res-type">Career</div>    <a href="[TBD — check People team portal]">Engineering Career Ladder</a>    <div class="res-note">Levels, expectations & growth</div>  </div></section><!-- ══════════════ FAQ ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">08</span>    <h2 class="section-title">Common First-Week Questions</h2>    <div class="section-rule"></div>  </div>  <div class="faq-item">    <div class="faq-q">What is Agentic Systems Engineering and how does it affect what I build?</div>    <div class="faq-a">ASE is the platform category OutSystems announced on March 31, 2026 — repositioning from low-code to the platform that governs, orchestrates, and scales enterprise AI agents. As an engineer, this means you're building the infrastructure that powers agent creation, execution, and governance at enterprise scale. Read the <a href="https://docs.google.com/document/d/1u8t5rJ1N7iFvYEpmM6rkR0BYzK9vzMRHQg_7RO3-hxA/edit">ASE FAQ</a> and watch the <a href="https://www.youtube.com/watch?v=QwSJnd-NSQU">product sizzle demo</a> to understand what you're building toward.</div>  </div>  <div class="faq-item">    <div class="faq-q">What's the engineering team's current sprint focus?</div>    <div class="faq-a">Ask Sérgio Oliveira for the current sprint board link and the Q2 OKRs on Day 1 — these tell you what the team is optimising for right now. The broader roadmap lives in <a href="https://outsystems.enterprise.slack.com/docs/T041063TZ/F0ASM9HMVPC">the Product Roadmap doc</a>. If something isn't in the current sprint, it's either backlogged or deprioritised — don't assume it's being worked on.</div>  </div>  <div class="faq-item">    <div class="faq-q">What does the engineering onboarding program look like?</div>    <div class="faq-a">Engineering onboarding at OutSystems is structured around milestones: first PR merged by end of week 1, first independent ticket shipped by end of week 2, first on-call rotation by end of month 1. Ask <a href="#">Sérgio Oliveira</a> for the full onboarding checklist and timeline. The programme is self-paced but your manager will check in on progress weekly.</div>  </div>  <div class="faq-item">    <div class="faq-q">How does the performance review and promotion cycle work?</div>    <div class="faq-a">Reviews happen Twice a year. The <a href="[TBD — check People team portal]">Engineering Career Ladder</a> defines expectations at each level. Ask Sérgio Oliveira how your current level is defined and what 'exceeds expectations' looks like in your first 1:1 — don't wait until review season. Promotions are driven by demonstrated impact, not tenure.</div>  </div>  <div class="faq-item">    <div class="faq-q">How do I get a PR reviewed? What's the expected turnaround?</div>    <div class="faq-a">This is now one of our most common objections. The answer: AI tools create a "hidden stack" of architecture and security debt. Challenge their low-upfront-cost assumption — ask how many specialist engineers it takes to get a prototype to secure production. Use the <a href="https://outsystems.seismic.com/apps/doccenter/1d265838-3b45-4228-a925-d8af6847942b/doc/%252Fdd031c7148-da5e-359f-6101-766b4eba5e90%252FdfODE4YTc4MDQtNDk5MS00MmU2LTllZmMtZWNlNDlmYmQ1NmY3%252CPT0%253D%252CSW50ZXJuYWw%253D%252Flffac43ed5-ba83-4823-8395-c212871fb392/grid/">Competitive Playbook</a> to go deeper. Proof points: Axos Bank (60% faster, 85% less rework), Petrobras (48 solutions in 8 months, 15× ROI).</div>  </div>  <div class="faq-item">    <div class="faq-q">Where do I get help when I'm stuck on a technical problem?</div>    <div class="faq-a">Three paths: (1) <strong>##rd-release-engineering-support</strong> — ask your immediate team first. (2) <strong>#engineering-ama</strong> — the broader engineering org. (3) <strong>#ase-internal</strong> — for platform-specific questions about Agent Workbench or ASE. Before posting, search Confluence for existing ADRs or runbooks — the answer is often already documented.</div>  </div>  <div class="faq-item">    <div class="faq-q">What is the ONE Conference and why does Engineering attend?</div>    <div class="faq-a">ONE '26 is OutSystems' annual flagship customer conference, June 2–3, 2026. Engineers attend to demo new platform features, support customer technical sessions, and hear directly from the users of what you build. Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE '26 Internal App</a> by <strong>April 24 (applications closed)</strong>. Ask Sérgio Oliveira whether your team has dedicated slots and how attendance is decided.</div>  </div>  <div class="faq-item">    <div class="faq-q">Where do I find the most current technical documentation?</div>    <div class="faq-a"><strong>Confluence</strong> is the source of truth for architecture docs, runbooks, and engineering standards. Never rely on a doc you found in a random Google Drive folder — it may be stale. The <strong>Engineering Handbook</strong> pinned in #engineering indexes all active resources. For AI-powered Q&amp;A on internal docs, use <strong>NotebookLM</strong> or the internal Claude-powered search tool — links in <strong>#engineering</strong>.</div>  </div></section>. Never use a slide deck you found in a random Google Drive folder — it may be outdated. The <strong>Revenue Hub Canvas</strong> pinned in #one-revenue-team indexes all active resources with direct links. For AI-powered Q&A on sales content, use <strong>NotebookLM</strong> — links in <strong>#engineering</strong>.</div>  </div></section><!-- ══════════════ FOOTER ══════════════ --><footer class="footer">  <p>OUTSYSTEMS ENGINEERING · EMEA · Engineering<br>     Gonçalo Pires — Software Engineer<br>     Generated April 27, 2026</p>  <p style="text-align:right">Prepared by Diogo Sampaio / Digital Workforce<br>Questions → Bobbie Jo Frazier or Sarah Cropp</p></footer><div class="sources-list">  Sources: [1] <span style="color:var(--muted)">Slack #engineering (April 2026)</span> · [2] <span style="color:var(--muted)">Google Calendar — Google Calendar (April 28, 2026)</span> · [3] <span style="color:var(--muted)">Google Drive — Google Drive (April 28, 2026)</span> · [2] <a href="https://www.google.com/calendar/event?eid=MmU3bmY3cThza3BzbGJodWJpNDE3OGsxYXUgY2F0YXJpbmEuc291c2FAb3V0c3lzdGVtcy5jb20" style="color:var(--muted)">Google Calendar — Enablement, Coaching & Onboarding</a> (Apr 23, 2026) · [3] Google Calendar — Sync about Onboarding, Enablement Sales Reps (Apr 21, 2026) · [4] <a href="https://docs.google.com/document/d/12mdVJb3eL1-UzEBZIQL-Jv8RLCbGO7rYD9FMl5NPcfU/edit" style="color:var(--muted)">Google Drive — Onboarding Agent Technical Spec</a> (Apr 2026)</div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gonçalo Pires — Week One at OutSystems · Engineering</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,40,360;0,40,540;0,40,720;1,40,360&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #171717;
+    --paper: #FFFFFF;
+    --rule: #C7C7C7;
+    --accent: #E62028;
+    --accent-soft: #F9D0D2;
+    --green: #171717;
+    --green-soft: #F5F5F5;
+    --gold: #A51018;
+    --gold-soft: #F9D0D2;
+    --blue: #454545;
+    --blue-soft: #F5F5F5;
+    --muted: #666666;
+    --mono: 'DM Sans', Calibri, sans-serif;
+    --serif: 'DM Sans', Calibri, sans-serif;
+    --sans: 'DM Sans', Calibri, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 360;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-top: 4px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 28px 0 20px;
+    margin-bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr 120px auto;
+    align-items: center;
+    gap: 24px;
+  }
+  .masthead-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .masthead-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(34px, 6vw, 56px);
+    font-weight: 720;
+    line-height: 1.0;
+    letter-spacing: -1px;
+  }
+
+  .masthead h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .masthead-meta {
+    text-align: right;
+  }
+
+  .masthead-meta .badge {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 5px 10px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .masthead-meta p {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--mono);
+    line-height: 1.7;
+  }
+
+  /* ── BYLINE STRIP ── */
+  .byline-strip {
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 0;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .byline-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .byline-item .label {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .byline-item .value {
+    font-size: 13px;
+    font-weight: 540;
+    color: var(--ink);
+  }
+
+  /* ── WELCOME PULL-QUOTE ── */
+  .welcome-block {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 40px;
+    margin-bottom: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .welcome-block .lead {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  .welcome-block .lead strong {
+    font-weight: 720;
+  }
+
+  .welcome-block .lead em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .context-card {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .context-card .context-title {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  .context-card .context-stat {
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding-top: 14px;
+  }
+
+  .context-card .stat-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 3px;
+  }
+
+  .context-card .stat-value {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 720;
+    line-height: 1.3;
+  }
+
+  .context-card .stat-sub {
+    font-size: 11px;
+    opacity: 0.65;
+    margin-top: 2px;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: .1em;
+    min-width: 24px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 720;
+    letter-spacing: -0.3px;
+  }
+
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── SCHEDULE ── */
+  .schedule-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .schedule-day {
+    background: var(--paper);
+    display: grid;
+    grid-template-columns: 100px 1fr;
+  }
+
+  .schedule-day.highlight {
+    background: var(--accent-soft);
+  }
+
+  .day-label {
+    padding: 16px;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .day-name {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 720;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .day-tag {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .day-events {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .event {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .event-time {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    min-width: 60px;
+    padding-top: 2px;
+    letter-spacing: .04em;
+  }
+
+  .event-body {}
+
+  .event-title {
+    font-size: 13px;
+    font-weight: 540;
+    line-height: 1.3;
+  }
+
+  .event-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .event-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 10px;
+  }
+
+  .event-link:hover { text-decoration: underline; }
+
+  .pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .pill-red { background: var(--accent); color: white; }
+  .pill-green { background: var(--green); color: white; }
+  .pill-gold { background: var(--gold); color: white; }
+  .pill-blue { background: var(--blue); color: white; }
+  .pill-outline { border: 1px solid var(--rule); color: var(--muted); }
+
+  /* ── 2-COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* ── INFO CARDS ── */
+  .info-card {
+    border: 1px solid var(--rule);
+    padding: 20px;
+  }
+
+  .info-card .card-label {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .info-card .card-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 720;
+    margin-bottom: 12px;
+  }
+
+  .info-card p {
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .info-card p strong {
+    font-weight: 540;
+  }
+
+  /* ── TOOL LIST ── */
+  .tool-row {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: start;
+    gap: 10px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tool-row:last-child { border-bottom: none; }
+
+  .tool-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 540;
+    letter-spacing: .05em;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .tool-icon.green { background: var(--green); }
+  .tool-icon.gold { background: var(--gold); }
+  .tool-icon.blue { background: var(--blue); }
+  .tool-icon.red { background: var(--accent); }
+
+  .tool-name {
+    font-size: 13.5px;
+    font-weight: 540;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+
+  .tool-desc {
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+
+  .tool-status {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--green);
+    padding-top: 3px;
+  }
+
+  /* ── TEAM TABLE ── */
+  .team-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .team-table th {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0 12px 8px 0;
+    border-bottom: 1px solid var(--rule);
+    font-weight: 400;
+  }
+
+  .team-table td {
+    padding: 10px 12px 10px 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+
+  .team-table td:last-child { border-right: none; }
+  .team-table tr:last-child td { border-bottom: none; }
+
+  .name-cell {
+    font-weight: 540;
+    white-space: nowrap;
+  }
+
+  .role-cell {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .slack-cell {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--blue);
+  }
+
+  /* ── CHANNEL LIST ── */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .channel-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px;
+    background: white;
+    border: 1px solid var(--rule);
+  }
+
+  .channel-hash {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .channel-body {}
+
+  .channel-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 540;
+    color: var(--blue);
+    margin-bottom: 2px;
+  }
+
+  .channel-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.35;
+  }
+
+  /* ── FAQ ── */
+  .faq-item {
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 0;
+  }
+
+  .faq-item:first-child { padding-top: 0; }
+
+  .faq-q {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 720;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+
+  .faq-q::before {
+    content: 'Q';
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--accent);
+    letter-spacing: .1em;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .faq-a {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink);
+    padding-left: 20px;
+  }
+
+  .faq-a a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 540;
+  }
+
+  .faq-a a:hover { text-decoration: underline; }
+
+  /* ── SPIFF BANNER ── */
+  .spiff-banner {
+    background: var(--green);
+    color: white;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .spiff-banner .spiff-label {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 5px;
+  }
+
+  .spiff-banner .spiff-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 720;
+    line-height: 1.3;
+  }
+
+  .spiff-banner .spiff-mult {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 720;
+    line-height: 1;
+    opacity: 0.9;
+  }
+
+  .spiff-sub {
+    font-family: var(--mono);
+    font-size: 9px;
+    opacity: 0.65;
+    text-align: right;
+    letter-spacing: .06em;
+  }
+
+  /* ── OFFICE ── */
+  .logistics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 20px;
+  }
+
+  .logistics-cell {
+    background: var(--paper);
+    padding: 16px;
+  }
+
+  .logistics-cell .lc-label {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .logistics-cell .lc-value {
+    font-size: 13px;
+    font-weight: 540;
+    line-height: 1.4;
+  }
+
+  .logistics-cell .lc-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  /* ── RESOURCES ── */
+  .resource-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 12.5px;
+  }
+
+  .resource-row:last-child { border-bottom: none; }
+
+  .resource-row .res-type {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    background: var(--gold-soft);
+    color: var(--gold);
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-width: 58px;
+    text-align: center;
+  }
+
+  .resource-row a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 540;
+  }
+
+  .resource-row a:hover { text-decoration: underline; }
+
+  .resource-row .res-note {
+    color: var(--muted);
+    font-size: 11px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 60px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer p {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: .06em;
+  }
+
+  .sources-list {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    line-height: 1.8;
+    letter-spacing: .03em;
+    margin-top: 8px;
+  }
+
+  /* ── SIDEBAR ASIDE ── */
+  .aside-box {
+    border-left: 3px solid var(--accent);
+    padding: 14px 16px;
+    background: var(--accent-soft);
+    margin-top: 16px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .aside-box strong {
+    display: block;
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  /* responsiveness */
+  @media (max-width: 680px) {
+    .welcome-block, .two-col { grid-template-columns: 1fr; }
+    .logistics-grid { grid-template-columns: 1fr 1fr; }
+    .channel-grid { grid-template-columns: 1fr; }
+    .masthead { grid-template-columns: 1fr auto; }
+    .masthead-logo { display: none; }
+    .masthead-meta { text-align: left; }
+    body { padding: 28px 18px 60px; }
+  }
+
+  @media print {
+    body { background: white; padding: 20px; }
+    .spiff-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .context-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ MASTHEAD ══════════════ -->
+<header class="masthead">
+  <div>
+    <div class="masthead-label">OutSystems · Engineering</div>
+    <h1>Welcome,<br><em>Gonçalo.</em></h1>
+  </div>
+  <div class="masthead-logo">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+      <defs>
+        <mask id="donut-ring">
+          <circle cx="50" cy="50" r="48" fill="white"/>
+          <circle cx="50" cy="50" r="22" fill="black"/>
+        </mask>
+      </defs>
+      <circle cx="50" cy="50" r="48" fill="#E62028" mask="url(#donut-ring)"/>
+    </svg>
+  </div>
+  <div class="masthead-meta">
+    <div class="badge">Day One Guide</div>
+    <p>Role: Software Engineer<br>
+       Team: Engineering — Portugal / EMEA<br>
+       Manager: Sérgio Oliveira<br>
+       Start: April 28, 2026</p>
+  </div>
+</header>
+
+<div class="byline-strip">
+  <div class="byline-item">
+    <span class="label">Region</span>
+    <span class="value">Portugal / EMEA</span>
+  </div>
+  <div class="byline-item">
+    <span class="label">Eng Lead / Manager</span>
+    <span class="value">Sérgio Oliveira</span>
+  </div>
+  <div class="byline-item">
+    <span class="label">Org Leader</span>
+    <span class="value">Sérgio Oliveira, Team Lead, Software Engineering</span>
+  </div>
+  <div class="byline-item">
+    <span class="label">Company Mission</span>
+    <span class="value">Give every developer the power of the best developer — from citizen to pro — while governing and scaling AI development across the enterprise.</span>
+  </div>
+  <div class="byline-item">
+    <span class="label">Onboarding Program</span>
+    <span class="value">OutSystems Engineering Onboarding</span>
+  </div>
+</div>
+
+
+<!-- ══════════════ WELCOME ══════════════ -->
+<section class="section">
+  <div class="welcome-block">
+    <div>
+      <div class="masthead-label" style="margin-bottom:12px">§ Welcome</div>
+      <p class="lead">
+        You're joining OutSystems at <strong>one of the most pivotal moments in our history</strong>. In March 2026 we launched a new category — <em>Agentic Systems Engineering</em> — repositioning OutSystems as the platform that brings order, governance, and scale to enterprise AI. Every feature you ship, every system you improve, every review you contribute to — you're building the platform at the centre of that transformation.
+      </p>
+      <p class="lead" style="margin-top:16px">
+        Your first week is structured, fast-paced, and purposeful. By Friday, you should have your dev environment running, your first codebase explored, your key relationships started, and a clear picture of your team's current sprint. The Engineering org has invested seriously in getting you <strong>Day One ready</strong> — lean into it.
+      </p>
+      <div class="aside-box">
+        <strong>Your Manager's Context</strong>
+        Sérgio Oliveira is Sérgio is an experienced Team Lead, Software Engineering.. [1–2 sentences on their current priorities and what they'll want to align on with you in week 1.]
+      </div>
+    </div>
+
+    <div class="context-card">
+      <div class="context-title">Company Snapshot · Q2 2026</div>
+      <div class="context-stat">
+        <div class="stat-label">Category</div>
+        <div class="stat-value">Agentic Systems Engineering</div>
+        <div class="stat-sub">Launched March 31, 2026 — the new category for governed enterprise AI</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">ARR Target</div>
+        <div class="stat-value">€550.1M in 2026</div>
+        <div class="stat-sub">Path to €1B by 2029</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">Current Engineering Focus</div>
+        <div class="stat-value">BFS · Insurance · Compete (Pro Code/AI-Native)</div>
+        <div class="stat-sub">New play every Tuesday through May</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">Hackathon / OKR Cycle</div>
+        <div class="stat-value">Agentic Systems Engineering — build governed agents on ODC</div>
+        <div class="stat-sub">Digital Workforce / Agentic Systems Engineering</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">ONE Conference</div>
+        <div class="stat-value">ONE '26 — June 2–3, 2026</div>
+        <div class="stat-sub">Applications closed April 24 — contact your manager</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ WEEK SCHEDULE ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Your First Week — Day by Day</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="schedule-grid">
+
+    <div class="schedule-day">
+      <div class="day-label">
+        <div class="day-name">Mon</div>
+        <div class="day-tag">Day One</div>
+      </div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">9 AM</div>
+          <div class="event-body">
+            <div class="event-title">IT Setup & System Access <span class="pill pill-red">Priority</span></div>
+            <div class="event-note">Laptop, Okta/SSO, email, corporate VPN. Contact Digital Spot via <strong>#digital-spot</strong> Slack channel for any access requests.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">10 AM</div>
+          <div class="event-body">
+            <div class="event-title">1:1 with Sérgio Oliveira</div>
+            <div class="event-note">Align on team structure, Q2 OKRs, and Sérgio leads the Software Engineering team working on ODC platform capabilities and release engineering processes. Reach out on Slack anytime.. Ask about the current sprint, your first assigned tickets, and any on-call rotations.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Afternoon</div>
+          <div class="event-body">
+            <div class="event-title">Dev environment setup & repo access</div>
+            <div class="event-note">Clone the main repositories, get your local build running, and verify CI/CD pipeline access. See <em>Tools & Access</em> section below.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">EOD</div>
+          <div class="event-body">
+            <div class="event-title">Join all Slack channels listed in this guide</div>
+            <div class="event-note">Introduce yourself in <strong>#engineering</strong> and <strong>##rd-release-engineering-support</strong>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="day-label">
+        <div class="day-name">Tue</div>
+        <div class="day-tag">Codebase Day</div>
+      </div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">Morning</div>
+          <div class="event-body">
+            <div class="event-title">Architecture / Tech Debt Review <span class="pill pill-gold">Weekly</span></div>
+            <div class="event-note">Weekly engineering sync covering architecture decisions, tech debt priorities, and in-flight initiatives. Ask Sérgio Oliveira for the recurring calendar invite.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">All day</div>
+          <div class="event-body">
+            <div class="event-title">Codebase walkthrough with Sérgio Oliveira</div>
+            <div class="event-note">Guided tour of the main repos, key services, and system boundaries. Understand where your team's work fits in the broader architecture. Take notes — this is a lot to absorb.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Afternoon</div>
+          <div class="event-body">
+            <div class="event-title">First ticket: read, understand, and comment</div>
+            <div class="event-note">Don't ship code yet — read an in-progress ticket top to bottom, understand the acceptance criteria, and leave a comment or question. This is how you learn the team's standards.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day highlight">
+      <div class="day-label">
+        <div class="day-name">Wed</div>
+        <div class="day-tag">Build Day</div>
+      </div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">All day</div>
+          <div class="event-body">
+            <div class="event-title">First pull request <span class="pill pill-blue">Ship it</span></div>
+            <div class="event-note">Open a small PR — a bug fix, a doc update, a minor refactor. The goal is to go through the full cycle: branch, commit, PR, review, merge. Learn the team's conventions by doing.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Afternoon</div>
+          <div class="event-body">
+            <div class="event-title">Read the Engineering Handbook</div>
+            <div class="event-note">Coding standards, branching strategy, deployment process, incident response runbook, and on-call expectations. Available in <a href="[TBD — ask Sérgio for internal engineering handbook link]" class="event-link">Confluence →</a></div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">EOD</div>
+          <div class="event-body">
+            <div class="event-title">Set up monitoring & observability access</div>
+            <div class="event-note">Get access to <a href="https://outsystemsrd.atlassian.net" class="event-link">Jira + internal Pegasus dashboards →</a> and explore dashboards for your team's services. Know where alerts come from before you're on-call.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="day-label">
+        <div class="day-name">Thu</div>
+        <div class="day-tag">People Day</div>
+      </div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">Live session</div>
+          <div class="event-body">
+            <div class="event-title">Sprint Standup <span class="pill pill-red">Attend</span></div>
+            <div class="event-note">Join your team's daily standup. Introduce yourself, listen more than you talk this week. Ask Sérgio Oliveira for the recurring calendar invite if it's not already in your calendcurring weekly session with Sérgio Oliveira for the recurring calendar invite if it's not already in your calendsscode: [TBD])</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Agentic Thursdays</div>
+          <div class="event-body">
+            <div class="event-title">Engineering All-Hands <span class="pill pill-gold">Monthly</span></div>
+            <div class="event-note">Company-wide engineering update: roadmap priorities, infrastructure decisions, platform direction. Check <strong>#engineering</strong> for the calendar invite link.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Afternoon</div>
+          <div class="event-body">
+            <div class="event-title">1:1s with key cross-functional partners</div>
+            <div class="event-note">Book short intro calls with [TBD — ask Sérgio] (Product) and [TBD — ask Sérgio] (QA/Testing). Understanding how your team interfaces with them saves weeks of confusion later.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="day-label">
+        <div class="day-name">Fri</div>
+        <div class="day-tag">Reflection Day</div>
+      </div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">Morning</div>
+          <div class="event-body">
+            <div class="event-title">Write your week 1 retrospective</div>
+            <div class="event-note">Write a short doc: what did you learn, what surprised you, what's still unclear. Share it with Sérgio Oliveira. This builds the habit of structured reflection that characterises strong engineers.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Midday</div>
+          <div class="event-body">
+            <div class="event-title">End-of-week check-in with Sérgio Oliveira</div>
+            <div class="event-note">Share your retro doc, any blockers on environment or access, and surface your top questions. They'll want to know you're oriented and already thinking about your first real contribution.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">EOD</div>
+          <div class="event-body">
+            <div class="event-title">Apply for ONE Conference <span class="pill pill-outline">Deadline [TBD]</span></div>
+            <div class="event-note">Engineering attends ONE to demo, support customer sessions, and connect with product. Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation" class="event-link">ONE Internal App →</a>. Review attendance guidelines: <a href="https://drive.google.com/file/d/1nay32GhcxKYEeiviDXKQAkdpWiE2YzXd/view" class="event-link">Guidelines →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="aside-box" style="margin-top:16px">
+    <strong>Engineering Onboarding Program</strong>
+    OutSystems runs a structured engineering onboarding program — ask Sérgio Oliveira for the full schedule. Typical milestones: first PR merged by end of week 1, first independent ticket shipped by end of week 2, first on-call rotation by end of month 1. Ask Sérgio Oliveira how these apply to your specific role and team.
+  </div>
+</section>
+
+
+<!-- ══════════════ TOOLS & ACCESS ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Tools & Access</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="two-col" style="margin-bottom:24px">
+    <div>
+      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Core Engineering Stack</div>
+
+      <div class="tool-row">
+        <div class="tool-icon red">GH</div>
+        <div>
+          <div class="tool-name">GitHub</div>
+          <div class="tool-desc">Source control — all code lives here. Request access to the main org repos on Day 1. Learn the branching and PR conventions in the Engineering Handbook.</div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon blue">JR</div>
+        <div>
+          <div class="tool-name">Jira</div>
+          <div class="tool-desc">Issue tracking and sprint planning. Get added to your team's board Day 1. Your tickets are the single source of truth for what you're working on.</div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon green">CF</div>
+        <div>
+          <div class="tool-name">Confluence</div>
+          <div class="tool-desc">Internal wiki — architecture docs, runbooks, ADRs, team rituals, onboarding guides. Search here before asking Slack.</div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon gold">OS</div>
+        <div>
+          <div class="tool-name">OutSystems ODC</div>
+          <div class="tool-desc">The platform you're building on. Get your dev environment and personal space provisioned on Day 1. <a href="https://www.outsystems.com/low-code-platform/" class="event-link">ODC Portal →</a></div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon">MN</div>
+        <div>
+          <div class="tool-name">Jira + internal Pegasus dashboards</div>
+          <div class="tool-desc">Observability and alerting for production services. Request access Day 1 — you need to know where alerts come from before you're on-call.</div>
+        </div>
+        <div class="tool-status">Week 1</div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Collaboration & Intelligence</div>
+
+      <div class="tool-row">
+        <div class="tool-icon blue">ZM</div>
+        <div>
+          <div class="tool-name">Zoom</div>
+          <div class="tool-desc">All customer calls and internal sessions. Join the recurring enablement sessions via calendar.</div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon" style="background:#4A154B">SL</div>
+        <div>
+          <div class="tool-name">Slack</div>
+          <div class="tool-desc">Primary communication. All critical intel flows here. See channel list in Section 04.</div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon gold">NB</div>
+        <div>
+          <div class="tool-name">Confluence / Engineering Wiki</div>
+          <div class="tool-desc">AI-powered docs and search across the engineering knowledge base. Search here for ADRs, runbooks, and architecture diagrams before asking in Slack.</div>
+        </div>
+        <div class="tool-status">Week 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon green">PBI</div>
+        <div>
+          <div class="tool-name">GitHub Actions / Pegasus</div>
+          <div class="tool-desc">CI/CD pipeline — build, test, and deploy status for all repos. Watch your PRs here to understand test failures and deployment gates. <a href="https://github.com/OutSystems" class="event-link">GitHub Actions / Pegasus →</a></div>
+        </div>
+        <div class="tool-status">Week 2</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon">ADA</div>
+        <div>
+          <div class="tool-name">Mentor (AI Code Assistant)</div>
+          <div class="tool-desc">OutSystems' AI-powered code quality and governance tool. Reviews code, surfaces technical debt, and suggests improvements. Part of the Agentic Systems Engineering platform you're building.</div>
+        </div>
+        <div class="tool-status">FYI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ TEAM ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Your Team — Key Introductions</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Engineering Leadership & Engineering Team</div>
+
+  <table class="team-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Why they matter to you</th>
+        <th>Slack / Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="name-cell">Sérgio Oliveira</td>
+        <td class="role-cell">Team Lead, Software Engineering<br>Your direct manager</td>
+        <td>[CONTEXT: e.g. recently promoted, new role — what they need from you in week 1]</td>
+        <td class="slack-cell">@sergio.oliveira</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Kim Seabrook</td>
+        <td class="role-cell">CTO</td>
+        <td>Sets the technical vision and engineering culture. Read their posts in #engineering and #announcements. Their priorities directly shape what your team builds.</td>
+        <td class="slack-cell">@goncalo.moura</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Sérgio Oliveira</td>
+        <td class="role-cell">VP Engineering</td>
+        <td>Engineering org leader. Sets hiring direction, cross-team architecture priorities, and engineering culture. Follow their Slack posts for org-wide decisions.</td>
+        <td class="slack-cell">@sergio.oliveira</td>
+      </tr>
+      <tr>
+        <td class="name-cell">[TBD — ask Sérgio]</td>
+        <td class="role-cell">Software Engineer — Engineering</td>
+        <td>Team peer. Ask them to walk you through the codebase in week 1. Good model for how work gets done on this team.</td>
+        <td class="slack-cell">@[TBD]</td>
+      </tr>
+      <tr>
+        <td class="name-cell">[TBD — ask Sérgio]</td>
+        <td class="role-cell">Software Engineer — Engineering</td>
+        <td>Team peer. [1 sentence on their area of expertise and why they're a good person to learn from in week 1.]</td>
+        <td class="slack-cell">@[TBD]</td>
+      </tr>
+      <tr>
+        <td class="name-cell">[TBD — ask Sérgio]</td>
+        <td class="role-cell">Product Manager — Engineering</td>
+        <td>Your primary product counterpart. They own the roadmap and write the specs your team builds against. Get a 1:1 this week to understand their current priorities.</td>
+        <td class="slack-cell">@[TBD]</td>
+      </tr>
+      <tr>
+        <td class="name-cell">[TBD — ask Sérgio]</td>
+        <td class="role-cell">QA / Testing Engineer — Engineering</td>
+        <td>Quality partner for your team's releases. Understand their test coverage expectations before you push your first feature to production.</td>
+        <td class="slack-cell">@[TBD]</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Sérgio Oliveira</td>
+        <td class="role-cell">Platform / Infrastructure Lead</td>
+        <td>Owns the shared infrastructure your services run on. Contact for deployment, environment, and infra access issues.</td>
+        <td class="slack-cell">@sergio.oliveira</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Madeline Dibble</td>
+        <td class="role-cell">SVP Revenue Operations</td>
+        <td>Runs the Enablement, Coaching & Onboarding Thursday sessions. Also your compensation and HR questions go to their org.</td>
+        <td class="slack-cell">@madeline.dibble</td>
+      </tr>
+      <tr>
+        <td class="name-cell">[TBD]</td>
+        <td class="role-cell">Security Engineering</td>
+        <td>Owns secure coding standards, vulnerability reviews, and security sign-off for releases. Know who they are before you need them on a deadline.</td>
+        <td class="slack-cell">@[TBD]</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- ══════════════ SLACK CHANNELS ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Slack Channels — Join These Now</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="channel-grid">
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">engineering</div>
+        <div class="channel-desc">All-hands for all engineers. Architecture decisions, platform updates, org announcements, and engineering culture posts. Read daily.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">#rd-release-engineering-support</div>
+        <div class="channel-desc">Your primary team channel. Introduce yourself here Day 1. Sprint updates, PR reviews, and team-specific discussions all live here.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">digital-spot</div>
+        <div class="channel-desc">IT support for access requests. Post here for Slack workspace access, Jira provisioning, ODC environments, and app permissions on Day 1.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">agent-workbench-dev</div>
+        <div class="channel-desc">Agent Workbench development discussions. Updates on the platform you're building on top of. Follow for breaking changes and new capabilities.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">engineering-ama</div>
+        <div class="channel-desc">Ask Me Anything to the broader engineering org. Great for cross-team technical questions, architecture queries, and anything where you're not sure who to ask.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">incidents</div>
+        <div class="channel-desc">Production incident coordination. Read the last 3 months of posts to understand the team's failure modes and how incidents are handled before you're on-call.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">one-conference</div>
+        <div class="channel-desc">ONE '26 2026 planning (June 2–3, 2026). Apply by April 24 (applications closed). Also monitor for customer invite opportunities.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">releases</div>
+        <div class="channel-desc">Production deployment announcements. Follow to understand release cadence and what goes to prod when. Critical context for understanding your team's pace.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="aside-box" style="margin-top:16px">
+    <strong>Engineering Handbook</strong>
+    Pinned in #engineering — this is the living index of coding standards, architecture decision records (ADRs), runbooks, and team rituals. Bookmark it. When you have a question about how something is done here, check the handbook first.
+  </div>
+</section>
+
+
+<!-- ══════════════ OFFICE LOGISTICS ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Office & Logistics</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="logistics-grid">
+    <div class="logistics-cell">
+      <div class="lc-label">IT & Access Issues</div>
+      <div class="lc-value">Digital Spot</div>
+      <div class="lc-sub">Message @Digital Spot or post in #digital-spot. They handle Slack access, Jira, and app permissions.</div>
+    </div>
+    <div class="logistics-cell">
+      <div class="lc-label">Systems & Provisioning</div>
+      <div class="lc-value">Day 1 checklist</div>
+      <div class="lc-sub">GitHub · Jira · Confluence · ODC · Jira + internal Pegasus dashboards · Zoom · Slack workspaces</div>
+    </div>
+    <div class="logistics-cell">
+      <div class="lc-label">Pay / Compensation Qs</div>
+      <div class="lc-value">HR / People Team</div>
+      <div class="lc-sub"><a href="mailto:people@outsystems.com" style="color:var(--accent);text-decoration:none">people@outsystems.com</a> or DM [TBD — check People team] in Slack.</div>
+    </div>
+    <div class="logistics-cell">
+      <div class="lc-label">Technical Docs</div>
+      <div class="lc-value">Confluence</div>
+      <div class="lc-sub">Source of truth for architecture docs, ADRs, runbooks, and engineering standards. Search here before Slack.</div>
+    </div>
+    <div class="logistics-cell">
+      <div class="lc-label">Onboarding Questions</div>
+      <div class="lc-value">Sérgio Oliveira</div>
+      <div class="lc-sub">Engineering onboarding programme, first-week checklist, missing access, and tool provisioning.</div>
+    </div>
+    <div class="logistics-cell">
+      <div class="lc-label">Company Intranet</div>
+      <div class="lc-value">Compass</div>
+      <div class="lc-sub">Org charts, V2MOM goals, and company-wide strategic context. Understand how your team's work connects to the company OKRs.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ ENGINEERING RITUALS ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Q2 Engineering Rituals — How We Work</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="spiff-banner">
+    <div>
+      <div class="spiff-label">Sprint Cadence · 2 weeks weeks</div>
+      <div class="spiff-title">Plan · Build · Review · Retro<br>Your team's heartbeat — learn this rhythm first</div>
+    </div>
+    <div style="text-align:right">
+      <div class="spiff-mult">2 weeksw</div>
+      <div class="spiff-sub">Sprint Length<br>Cycle</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="info-card">
+      <div class="card-label">Core Weekly Rituals</div>
+      <p><strong>Daily standup</strong> — async or sync, 9:00 AM Lisbon</p>
+      <p><strong>Sprint planning</strong> — every 5 weeks, Monday</p>
+      <p><strong>Sprint retro</strong> — every 5 weeks, Monday</p>
+      <p><strong>Architecture review</strong> — Weekly — Tuesdays (Sales Play) and Thursdays (Agentic Confidence), Monday</p>
+      <p style="margin-top:8px"><a href="[TBD — ask Sérgio]" style="color:var(--accent);font-size:12px;text-decoration:none;font-weight:500">Full team rituals doc →</a></p>
+    </div>
+    <div class="info-card">
+      <div class="card-label">Performance & Growth</div>
+      <p><strong>Performance review cycle</strong> — Weekly — Tuesdays (Sales Play) and Thursdays (Agentic Confidence)</p>
+      <p><strong>Promotion criteria</strong> — <a href="[TBD — check People team portal]" style="color:var(--accent)">Engineering Career Ladder →</a></p>
+      <p style="margin-top:8px;font-size:12px;color:var(--muted)">Ask Sérgio Oliveira how the review cycle works and what 'great' looks like at your level in the first month.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ RESOURCES ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Essential Resources — Bookmark These</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="resource-row">
+    <div class="res-type">Handbook</div>
+    <a href="[TBD — ask Sérgio for internal engineering handbook link]">Engineering Handbook — Confluence</a>
+    <div class="res-note">Coding standards & process</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Roadmap</div>
+    <a href="https://outsystems.enterprise.slack.com/docs/T041063TZ/F0ASM9HMVPC">Product Roadmap — Q2</a>
+    <div class="res-note">What your team is building toward</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Video</div>
+    <a href="https://www.youtube.com/watch?v=QwSJnd-NSQU">Product Sizzle Demo — YouTube</a>
+    <div class="res-note">Watch to understand what you're building</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">ADRs</div>
+    <a href="[TBD — ask Sérgio]">Architecture Decision Records</a>
+    <div class="res-note">Why things are built the way they are</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Runbook</div>
+    <a href="[TBD — ask Sérgio]">On-Call Runbook</a>
+    <div class="res-note">Read before your first rotation</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Dashboard</div>
+    <a href="https://outsystemsrd.atlassian.net">Jira + internal Pegasus dashboards — Team Dashboard</a>
+    <div class="res-note">Production health & alerts</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Context</div>
+    <a href="https://docs.google.com/document/d/10l_5bjlMmdPUXanJ79c4hGg29Nc65UEPvuBUZZfrJPc/edit">Gonçalo Moura / Paulo Rosado — Engineering Vision</a>
+    <div class="res-note">Understand the technical direction</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Compete</div>
+    <a href="https://outsystems.seismic.com/apps/doccenter/1d265838-3b45-4228-a925-d8af6847942b/doc/%252Fdd031c7148-da5e-359f-6101-766b4eba5e90%252FdfODE4YTc4MDQtNDk5MS00MmU2LTllZmMtZWNlNDlmYmQ1NmY3%252CPT0%253D%252CSW50ZXJuYWw%253D%252Flffac43ed5-ba83-4823-8395-c212871fb392/grid/">Competitive Playbook: Pro-Code & AI-Native</a>
+    <div class="res-note">Handle "we'll just use AI"</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">CI/CD</div>
+    <a href="https://github.com/OutSystems">GitHub Actions / Pegasus — Build & Deploy Pipelines</a>
+    <div class="res-note">Monitor your PR build status</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Career</div>
+    <a href="[TBD — check People team portal]">Engineering Career Ladder</a>
+    <div class="res-note">Levels, expectations & growth</div>
+  </div>
+</section>
+
+
+<!-- ══════════════ FAQ ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Common First-Week Questions</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is Agentic Systems Engineering and how does it affect what I build?</div>
+    <div class="faq-a">ASE is the platform category OutSystems announced on March 31, 2026 — repositioning from low-code to the platform that governs, orchestrates, and scales enterprise AI agents. As an engineer, this means you're building the infrastructure that powers agent creation, execution, and governance at enterprise scale. Read the <a href="https://docs.google.com/document/d/1u8t5rJ1N7iFvYEpmM6rkR0BYzK9vzMRHQg_7RO3-hxA/edit">ASE FAQ</a> and watch the <a href="https://www.youtube.com/watch?v=QwSJnd-NSQU">product sizzle demo</a> to understand what you're building toward.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What's the engineering team's current sprint focus?</div>
+    <div class="faq-a">Ask Sérgio Oliveira for the current sprint board link and the Q2 OKRs on Day 1 — these tell you what the team is optimising for right now. The broader roadmap lives in <a href="https://outsystems.enterprise.slack.com/docs/T041063TZ/F0ASM9HMVPC">the Product Roadmap doc</a>. If something isn't in the current sprint, it's either backlogged or deprioritised — don't assume it's being worked on.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What does the engineering onboarding program look like?</div>
+    <div class="faq-a">Engineering onboarding at OutSystems is structured around milestones: first PR merged by end of week 1, first independent ticket shipped by end of week 2, first on-call rotation by end of month 1. Ask <a href="#">Sérgio Oliveira</a> for the full onboarding checklist and timeline. The programme is self-paced but your manager will check in on progress weekly.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How does the performance review and promotion cycle work?</div>
+    <div class="faq-a">Reviews happen Twice a year. The <a href="[TBD — check People team portal]">Engineering Career Ladder</a> defines expectations at each level. Ask Sérgio Oliveira how your current level is defined and what 'exceeds expectations' looks like in your first 1:1 — don't wait until review season. Promotions are driven by demonstrated impact, not tenure.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I get a PR reviewed? What's the expected turnaround?</div>
+    <div class="faq-a">This is now one of our most common objections. The answer: AI tools create a "hidden stack" of architecture and security debt. Challenge their low-upfront-cost assumption — ask how many specialist engineers it takes to get a prototype to secure production. Use the <a href="https://outsystems.seismic.com/apps/doccenter/1d265838-3b45-4228-a925-d8af6847942b/doc/%252Fdd031c7148-da5e-359f-6101-766b4eba5e90%252FdfODE4YTc4MDQtNDk5MS00MmU2LTllZmMtZWNlNDlmYmQ1NmY3%252CPT0%253D%252CSW50ZXJuYWw%253D%252Flffac43ed5-ba83-4823-8395-c212871fb392/grid/">Competitive Playbook</a> to go deeper. Proof points: Axos Bank (60% faster, 85% less rework), Petrobras (48 solutions in 8 months, 15× ROI).</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Where do I get help when I'm stuck on a technical problem?</div>
+    <div class="faq-a">Three paths: (1) <strong>##rd-release-engineering-support</strong> — ask your immediate team first. (2) <strong>#engineering-ama</strong> — the broader engineering org. (3) <strong>#ase-internal</strong> — for platform-specific questions about Agent Workbench or ASE. Before posting, search Confluence for existing ADRs or runbooks — the answer is often already documented.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the ONE Conference and why does Engineering attend?</div>
+    <div class="faq-a">ONE '26 is OutSystems' annual flagship customer conference, June 2–3, 2026. Engineers attend to demo new platform features, support customer technical sessions, and hear directly from the users of what you build. Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE '26 Internal App</a> by <strong>April 24 (applications closed)</strong>. Ask Sérgio Oliveira whether your team has dedicated slots and how attendance is decided.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Where do I find the most current technical documentation?</div>
+    <div class="faq-a"><strong>Confluence</strong> is the source of truth for architecture docs, runbooks, and engineering standards. Never rely on a doc you found in a random Google Drive folder — it may be stale. The <strong>Engineering Handbook</strong> pinned in #engineering indexes all active resources. For AI-powered Q&amp;A on internal docs, use <strong>NotebookLM</strong> or the internal Claude-powered search tool — links in <strong>#engineering</strong>.</div>
+  </div>
+
+</section>. Never use a slide deck you found in a random Google Drive folder — it may be outdated. The <strong>Revenue Hub Canvas</strong> pinned in #one-revenue-team indexes all active resources with direct links. For AI-powered Q&A on sales content, use <strong>NotebookLM</strong> — links in <strong>#engineering</strong>.</div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <p>OUTSYSTEMS ENGINEERING · EMEA · Engineering<br>
+     Gonçalo Pires — Software Engineer<br>
+     Generated April 27, 2026</p>
+  <p style="text-align:right">Prepared by Diogo Sampaio / Digital Workforce<br>Questions → Bobbie Jo Frazier or Sarah Cropp</p>
+</footer>
+
+<div class="sources-list">
+  Sources: [1] <span style="color:var(--muted)">Slack #engineering (April 2026)</span> · [2] <span style="color:var(--muted)">Google Calendar — Google Calendar (April 28, 2026)</span> · [3] <span style="color:var(--muted)">Google Drive — Google Drive (April 28, 2026)</span> · [2] <a href="https://www.google.com/calendar/event?eid=MmU3bmY3cThza3BzbGJodWJpNDE3OGsxYXUgY2F0YXJpbmEuc291c2FAb3V0c3lzdGVtcy5jb20" style="color:var(--muted)">Google Calendar — Enablement, Coaching & Onboarding</a> (Apr 23, 2026) · [3] Google Calendar — Sync about Onboarding, Enablement Sales Reps (Apr 21, 2026) · [4] <a href="https://docs.google.com/document/d/12mdVJb3eL1-UzEBZIQL-Jv8RLCbGO7rYD9FMl5NPcfU/edit" style="color:var(--muted)">Google Drive — Onboarding Agent Technical Spec</a> (Apr 2026)
+</div>
+
+</body>
+</html>
