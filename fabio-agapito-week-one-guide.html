@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fábio Agapito — Week One at OutSystems · Digital</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,40,360;0,40,540;0,40,720;1,40,360&display=swap" rel="stylesheet">
+
+<style>
+
+  :root {
+
+    --ink: #171717;
+
+    --paper: #FFFFFF;
+
+    --rule: #C7C7C7;
+
+    --accent: #E62028;
+
+    --accent-soft: #F9D0D2;
+
+    --green: #171717;
+
+    --green-soft: #F5F5F5;
+
+    --gold: #A51018;
+
+    --gold-soft: #F9D0D2;
+
+    --blue: #454545;
+
+    --blue-soft: #F5F5F5;
+
+    --muted: #666666;
+
+    --mono: 'DM Sans', Calibri, sans-serif;
+
+    --serif: 'DM Sans', Calibri, sans-serif;
+
+    --sans: 'DM Sans', Calibri, sans-serif;
+
+  }
+
+</style>
+
+</head>
+
+<body>
+
+<header class="masthead">
+
+  <div>
+
+    <div class="masthead-label">OutSystems · Digital</div>
+
+    <h1>Welcome,<br><em>Fábio.</em></h1>
+
+  </div>
+
+  <div class="masthead-logo">
+
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+
+      <defs>
+
+        <mask id="donut-ring">
+
+          <circle cx="50" cy="50" r="48" fill="white"/>
+
+          <circle cx="50" cy="50" r="22" fill="black"/>
+
+        </mask>
+
+      </defs>
+
+      <circle cx="50" cy="50" r="48" fill="#E62028" mask="url(#donut-ring)"/>
+
+    </svg>
+
+  </div>
+
+  <div class="masthead-meta">
+
+    <div class="badge">Day One Guide</div>
+
+    <p>Role: Manager, Digital Transformation<br>
+
+       Team: Digital — Portugal / EMEA<br>
+
+       Manager: Gonçalo Fonseca<br>
+
+       Start: April 28, 2026</p>
+
+  </div>
+
+</header>
+
+<div class="byline-strip">
+
+  <div class="byline-item"><span class="label">Region</span><span class="value">Portugal / EMEA</span></div>
+
+  <div class="byline-item"><span class="label">Product Lead / Manager</span><span class="value">Gonçalo Fonseca</span></div>
+
+  <div class="byline-item"><span class="label">Org Leader</span><span class="value">Gonçalo Fonseca, Director, Digital Strategy, Architecture and AI</span></div>
+
+  <div class="byline-item"><span class="label">Company Mission</span><span class="value">Enable the world to build enterprise-grade agentic systems</span></div>
+
+  <div class="byline-item"><span class="label">Onboarding Program</span><span class="value">Digital Onboarding — Week One Guide</span></div>
+
+</div>
+
+<section class="section">
+
+  <div class="welcome-block">
+
+    <div>
+
+      <p class="lead">You're joining OutSystems at <strong>one of the most pivotal moments in our history</strong>. In March 2026 we launched a new category — <em>Agentic Systems Engineering</em> — repositioning OutSystems as the platform that brings order, governance, and scale to enterprise AI.</p>
+
+      <div class="aside-box">
+
+        <strong>Your Manager's Context</strong>
+
+        Gonçalo Fonseca is running multiple Scout missions across Digital Workforce, including the V2MOM app and agentic enablement experiments. Align with them in week 1 on Q2 2026 OKRs and Big Bet priorities and team rituals.
+
+      </div>
+
+    </div>
+
+    <div class="context-card">
+
+      <div class="context-title">Company Snapshot · Q2 2026</div>
+
+      <div class="context-stat">
+
+        <div class="stat-label">Category</div>
+
+        <div class="stat-value">Agentic Systems Engineering</div>
+
+        <div class="stat-sub">Launched March 31, 2026</div>
+
+      </div>
+
+      <div class="context-stat">
+
+        <div class="stat-label">ARR Target</div>
+
+        <div class="stat-value">€550.1M in 2026</div>
+
+        <div class="stat-sub">Path to €1B by 2029</div>
+
+      </div>
+
+      <div class="context-stat">
+
+        <div class="stat-label">Current Product Focus</div>
+
+        <div class="stat-value">BFS · Insurance · Compete</div>
+
+        <div class="stat-sub">New play every Tuesday through May</div>
+
+      </div>
+
+      <div class="context-stat">
+
+        <div class="stat-label">Current Big Bet / OKR</div>
+
+        <div class="stat-value">Digital Workforce</div>
+
+        <div class="stat-sub">Internal AI tooling empowering the revenue team — Deal Mate, V2MOM App, and agentic Scout experiments</div>
+
+      </div>
+
+      <div class="context-stat">
+
+        <div class="stat-label">ONE Conference</div>
+
+        <div class="stat-value">ONE '26 — June 2–3, 2026</div>
+
+        <div class="stat-sub">Applications closed April 24</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section">
+
+  <div class="section-header"><span class="section-num">01</span><h2 class="section-title">Your First Week — Day by Day</h2><div class="section-rule"></div></div>
+
+  <div class="schedule-grid">
+
+    <div class="schedule-day">
+
+      <div class="day-label"><div class="day-name">Mon</div><div class="day-tag">Day One</div></div>
+
+      <div class="day-events">
+
+        <div class="event"><div class="event-time">9 AM</div><div class="event-body"><div class="event-title">IT Setup & System Access <span class="pill pill-red">Priority</span></div><div class="event-note">Laptop, Okta/SSO, email, corporate VPN. Contact Digital Spot via <strong>#digital-spot</strong> for access requests.</div></div></div>
+
+        <div class="event"><div class="event-time">10 AM</div><div class="event-body"><div class="event-title">1:1 with Gonçalo Fonseca</div><div class="event-note">Align on Big Bet assignment, Q2 2026 OKRs, and Big Bet priorities and team rituals.</div></div></div>
+
+        <div class="event"><div class="event-time">Afternoon</div><div class="event-body"><div class="event-title">Dev environment setup & repo access</div><div class="event-note">Clone repos, get local build running, verify ODC access. Post in <strong>#digital-spot</strong> for provisioning issues.</div></div></div>
+
+        <div class="event"><div class="event-time">EOD</div><div class="event-body"><div class="event-title">Join all Slack channels listed in this guide</div><div class="event-note">Introduce yourself in <strong>#digital</strong> and <strong>#digital-workforce-team</strong>.</div></div></div>
+
+      </div>
+
+    </div>
+
+    <div class="schedule-day">
+
+      <div class="day-label"><div class="day-name">Tue</div><div class="day-tag">Context Day</div></div>
+
+      <div class="day-events">
+
+        <div class="event"><div class="event-time">Morning</div><div class="event-body"><div class="event-title">Digital Team Sync <span class="pill pill-gold">Weekly</span></div><div class="event-note">Ask Gonçalo Fonseca for the recurring calendar invite.</div></div></div>
+
+        <div class="event"><div class="event-time">All day</div><div class="event-body"><div class="event-title">Big Bet brief walkthrough with Gonçalo Fonseca</div><div class="event-note">Guided tour of your assigned Big Bet — problem statement, experiment history, Scout deliverable deadline.</div></div></div>
+
+      </div>
+
+    </div>
+
+    <div class="schedule-day highlight">
+
+      <div class="day-label"><div class="day-name">Wed</div><div class="day-tag">Build Day</div></div>
+
+      <div class="day-events">
+
+        <div class="event"><div class="event-time">All day</div><div class="event-body"><div class="event-title">First experiment or PR <span class="pill pill-blue">Ship it</span></div><div class="event-note">Run a small Scout experiment or open a first PR — hypothesis → build → test → document.</div></div></div>
+
+      </div>
+
+    </div>
+
+    <div class="schedule-day">
+
+      <div class="day-label"><div class="day-name">Thu</div><div class="day-tag">Company Day</div></div>
+
+      <div class="day-events">
+
+        <div class="event"><div class="event-time">Live session</div><div class="event-body"><div class="event-title">Sales Play Tuesday or Agentic Thursday <span class="pill pill-red">Attend</span></div><div class="event-note">Attend the current week's field enablement session. Check <strong>#one-revenue-team</strong> for the link.</div></div></div>
+
+        <div class="event"><div class="event-time">EOD</div><div class="event-body"><div class="event-title">1:1s with key cross-functional partners</div><div class="event-note">Book intro calls with your business sponsor (Madeline Dibble) and Revenue Enablement (Bobbie Jo Frazier).</div></div></div>
+
+      </div>
+
+    </div>
+
+    <div class="schedule-day">
+
+      <div class="day-label"><div class="day-name">Fri</div><div class="day-tag">Evidence Day</div></div>
+
+      <div class="day-events">
+
+        <div class="event"><div class="event-time">Morning</div><div class="event-body"><div class="event-title">Write your week 1 experiment summary</div><div class="event-note">Document what you learned: experiments run, assumptions tested, what worked and what failed. Share with Gonçalo Fonseca.</div></div></div>
+
+        <div class="event"><div class="event-time">EOD</div><div class="event-body"><div class="event-title">Apply for ONE Conference <span class="pill pill-outline">Deadline April 24</span></div><div class="event-note">Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE Internal App →</a>. Review <a href="https://drive.google.com/file/d/1nay32GhcxKYEeiviDXKQAkdpWiE2YzXd/view">guidelines</a>.</div></div></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section">
+
+  <div class="section-header"><span class="section-num">02</span><h2 class="section-title">Tools & Access</h2><div class="section-rule"></div></div>
+
+  <div class="two-col">
+
+    <div>
+
+      <div class="tool-row"><div class="tool-icon red">OS</div><div><div class="tool-name">OutSystems ODC</div><div class="tool-desc">The platform you build on. Get provisioned Day 1. <a href="https://www.outsystems.com/portal/">ODC Portal →</a></div></div><div class="tool-status">Day 1</div></div>
+
+      <div class="tool-row"><div class="tool-icon blue">JR</div><div><div class="tool-name">Jira</div><div class="tool-desc">Issue tracking and sprint planning. Get added to your team's board Day 1.</div></div><div class="tool-status">Day 1</div></div>
+
+      <div class="tool-row"><div class="tool-icon green">GH</div><div><div class="tool-name">GitHub</div><div class="tool-desc">Source control for Digital repos. Request access Day 1.</div></div><div class="tool-status">Day 1</div></div>
+
+      <div class="tool-row"><div class="tool-icon gold">GD</div><div><div class="tool-name">Google Drive</div><div class="tool-desc">All Big Bet briefs, Scout WIP docs, and POC presentations. Get access to the Digital shared folder Day 1.</div></div><div class="tool-status">Day 1</div></div>
+
+    </div>
+
+    <div>
+
+      <div class="tool-row"><div class="tool-icon gold">NB</div><div><div class="tool-name">Claude (Anthropic)</div><div class="tool-desc">AI assistant and API backbone for Digital's Big Bet experiments. Scout missions test Claude connectors to Drive, Slack, and Seismic.</div></div><div class="tool-status">Week 1</div></div>
+
+      <div class="tool-row"><div class="tool-icon green">DM</div><div><div class="tool-name">Deal Mate</div><div class="tool-desc">Internal AI tool built by Digital for the revenue team. Using and critiquing it is part of your research. <a href="https://apps.outsystems.app/DealMate">Deal Mate →</a></div></div><div class="tool-status">Week 1</div></div>
+
+      <div class="tool-row"><div class="tool-icon">ADA</div><div><div class="tool-name">V2MOM App</div><div class="tool-desc">Internal goal-alignment tool built and maintained by Digital. <a href="#">V2MOM App →</a></div></div><div class="tool-status">FYI</div></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section">
+
+  <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Your Team — Key Introductions</h2><div class="section-rule"></div></div>
+
+  <table class="team-table">
+
+    <thead><tr><th>Name</th><th>Role</th><th>Why they matter to you</th><th>Slack / Contact</th></tr></thead>
+
+    <tbody>
+
+      <tr><td class="name-cell">Gonçalo Fonseca</td><td class="role-cell">Director, Digital Strategy, Architecture and AI<br>Your direct manager</td><td>Your Big Bet sponsor. Sets Sprint priorities, owns your Scout timeline, and is your first escalation point.</td><td class="slack-cell">@goncalo.fonseca</td></tr>
+
+      <tr><td class="name-cell">Kim Seabrook</td><td class="role-cell">CRO / Revenue Org Leader</td><td>Sets the revenue direction your internal tools must serve. Digital's Big Bets are prioritised against their GTM strategy.</td><td class="slack-cell">@kim.seabrook</td></tr>
+
+      <tr><td class="name-cell">Gonçalo Fonseca</td><td class="role-cell">Head of Digital / Director of Strategy</td><td>Digital org leader. Sets Big Bet selection, Scout team assignments, and the Digital roadmap.</td><td class="slack-cell">@goncalo.fonseca</td></tr>
+
+      <tr><td class="name-cell">Luís Agostinho</td><td class="role-cell">Software Engineer — Digital</td><td>Team peer on adjacent Big Bet. Ask them to walk you through the codebase and experiment history in week 1.</td><td class="slack-cell">@luis.agostinho</td></tr>
+
+      <tr><td class="name-cell">Pedro Cardoso</td><td class="role-cell">Software Engineer — Digital</td><td>Team peer. Involved in infrastructure and tenant provisioning for Digital projects.</td><td class="slack-cell">@pedro.cardoso</td></tr>
+
+      <tr><td class="name-cell">Madeline Dibble</td><td class="role-cell">SVP Revenue Operations</td><td>Business owner of enablement and onboarding initiatives. Defines success criteria for Digital's Big Bet work.</td><td class="slack-cell">@madeline.dibble</td></tr>
+
+      <tr><td class="name-cell">Bobbie Jo Frazier</td><td class="role-cell">Revenue Enablement Lead</td><td>Owns the field enablement content corpus. Critical stakeholder for the Digital Workforce Scout.</td><td class="slack-cell">@bobbie.jo.frazier</td></tr>
+
+    </tbody>
+
+  </table>
+
+</section>
+
+<section class="section">
+
+  <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Slack Channels — Join These Now</h2><div class="section-rule"></div></div>
+
+  <div class="channel-grid">
+
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">digital</div><div class="channel-desc">All-hands for the Digital team. Big Bet updates, Sprint reviews, tool launches, and org announcements.</div></div></div>
+
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">digital-workforce-team</div><div class="channel-desc">Your primary sub-team channel. Introduce yourself here Day 1. Sprint updates, experiment notes, and PR reviews.</div></div></div>
+
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">digital-spot</div><div class="channel-desc">IT support for access requests — Jira, ODC environments, GitHub org access, app permissions.</div></div></div>
+
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">one-revenue-team</div><div class="channel-desc">All-hands for the revenue org. Revenue Pulse, product launches, leadership updates. Follow to understand your end users.</div></div></div>
+
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">ase-internal</div><div class="channel-desc">Agentic Systems Engineering updates and field feedback. Critical context for Digital's Big Bets.</div></div></div>
+
+    <div class="channel-item"><div class="channel-hash">#</div><div class="channel-body"><div class="channel-name">one-conference</div><div class="channel-desc">ONE '26 2026 planning (June 2–3, 2026). Apply by April 24, 2026.</div></div></div>
+
+  </div>
+
+</section>
+
+<section class="section">
+
+  <div class="section-header"><span class="section-num">05</span><h2 class="section-title">Office & Logistics</h2><div class="section-rule"></div></div>
+
+  <div class="logistics-grid">
+
+    <div class="logistics-cell"><div class="lc-label">IT & Access Issues</div><div class="lc-value">Digital Spot</div><div class="lc-sub">Post in #digital-spot or DM @Digital Spot.</div></div>
+
+    <div class="logistics-cell"><div class="lc-label">Pay / HR Questions</div><div class="lc-value">HR / People Team</div><div class="lc-sub"><a href="mailto:people@outsystems.com">people@outsystems.com</a> or DM People Team in Slack.</div></div>
+
+    <div class="logistics-cell"><div class="lc-label">Onboarding Questions</div><div class="lc-value">Gonçalo Fonseca</div><div class="lc-sub">Ask them for your Big Bet brief, Jira board access, and first-week checklist on Day 1.</div></div>
+
+  </div>
+
+</section>
+
+<section class="section">
+
+  <div class="section-header"><span class="section-num">06</span><h2 class="section-title">Q2 Big Bet Structure & Team Rituals</h2><div class="section-rule"></div></div>
+
+  <div class="spiff-banner">
+
+    <div>
+
+      <div class="spiff-label">Scout Mission · Digital Workforce</div>
+
+      <div class="spiff-title">Week 1: Understand · Week 2: Experiment<br>Week 3: Evidence & Recommendation</div>
+
+    </div>
+
+    <div style="text-align:right">
+
+      <div class="spiff-mult">3 wks</div>
+
+      <div class="spiff-sub">Scout Timeline<br>Kill · Continue · Convert</div>
+
+    </div>
+
+  </div>
+
+  <div class="two-col">
+
+    <div class="info-card">
+
+      <div class="card-label">Core Weekly Rituals</div>
+
+      <p><strong>Digital Team Sync</strong> — Tuesday, 10 AM Lisbon: Big Bet status, blockers, experiment results</p>
+
+      <p><strong>Sprint Planning</strong> — every 2 weeks: backlog grooming and ticket assignment</p>
+
+      <p><strong>Stakeholder Review</strong> — Bi-weekly: Scout evidence shared with business sponsors</p>
+
+      <p style="margin-top:8px"><a href="#" style="color:var(--accent)">Full team rituals doc →</a></p>
+
+    </div>
+
+    <div class="info-card">
+
+      <div class="card-label">Performance & Growth</div>
+
+      <p><strong>Performance review cycle</strong> — Bi-weekly</p>
+
+      <p><strong>Big Bet success metrics</strong> — evidence quality, experiment velocity, stakeholder confidence</p>
+
+      <p><strong>Digital Career Ladder</strong> — <a href="#" style="color:var(--accent)">Engineering Career Ladder →</a></p>
+
+      <p style="margin-top:8px;font-size:12px;color:var(--muted)">Ask Gonçalo Fonseca how contributions to Big Bets are evaluated at your level.</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section">
+
+  <div class="section-header"><span class="section-num">07</span><h2 class="section-title">Essential Resources — Bookmark These</h2><div class="section-rule"></div></div>
+
+  <div class="resource-row"><div class="res-type">Brief</div><a href="#">Big Bet Brief — Google Drive</a><div class="res-note">Your primary mandate document</div></div>
+
+  <div class="resource-row"><div class="res-type">WIP Doc</div><a href="#">Scout WIP Document — Google Drive</a><div class="res-note">Live experiment notes & findings</div></div>
+
+  <div class="resource-row"><div class="res-type">Video</div><a href="http://youtube.com/watch?v=QwSJnd-NSQU">Product Sizzle Demo — YouTube</a><div class="res-note">Understand what you're building tools for</div></div>
+
+  <div class="resource-row"><div class="res-type">Handbook</div><a href="#">Engineering Handbook — Confluence</a><div class="res-note">Coding standards & team process</div></div>
+
+  <div class="resource-row"><div class="res-type">Roadmap</div><a href="#">Digital Roadmap — Q2</a><div class="res-note">Active Big Bets & priorities</div></div>
+
+  <div class="resource-row"><div class="res-type">Context</div><a href="https://docs.google.com/document/d/10l_5bjlMmdPUXanJ79c4hGg29Nc65UEPvuBUZZfrJPc/edit">Gonçalo Gaiolas / Paulo Rosado — Company Narrative</a><div class="res-note">Understand the strategic context for your work</div></div>
+
+  <div class="resource-row"><div class="res-type">FAQ</div><a href="https://docs.google.com/document/d/1u8t5rJ1N7iFvYEpmM6rkR0BYzK9vzMRHQg_7RO3-hxA/edit">ASE FAQ — Internal</a><div class="res-note">Know the platform you're building on</div></div>
+
+  <div class="resource-row"><div class="res-type">ADRs</div><a href="#">Architecture Decision Records — Confluence</a><div class="res-note">Why things are built the way they are</div></div>
+
+  <div class="resource-row"><div class="res-type">Conference</div><a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE '26 Internal App — Apply by April 24</a><div class="res-note">Digital attends to demo and gather feedback</div></div>
+
+</section>
+
+<section class="section">
+
+  <div class="section-header"><span class="section-num">08</span><h2 class="section-title">Common First-Week Questions</h2><div class="section-rule"></div></div>
+
+  <div class="faq-item">
+
+    <div class="faq-q">What is Agentic Systems Engineering and how does it shape the Digital team's work?</div>
+
+    <div class="faq-a">ASE is OutSystems' new platform category announced March 31, 2026 — repositioning from low-code to the platform that governs, orchestrates, and scales enterprise AI agents. For Digital, your internal tools and Big Bet experiments prove the concept from the inside. Read the <a href="https://docs.google.com/document/d/1u8t5rJ1N7iFvYEpmM6rkR0BYzK9vzMRHQg_7RO3-hxA/edit">ASE FAQ</a> and watch the <a href="http://youtube.com/watch?v=QwSJnd-NSQU">product sizzle demo</a>.</div>
+
+  </div>
+
+  <div class="faq-item">
+
+    <div class="faq-q">What is the Big Bet I'm assigned to and where do I start?</div>
+
+    <div class="faq-a">Ask Gonçalo Fonseca for a Big Bet brief walkthrough on Day 1. Before the meeting, find the brief in Google Drive and read it top to bottom. Check the WIP experiment doc to understand what's already been tried.</div>
+
+  </div>
+
+  <div class="faq-item">
+
+    <div class="faq-q">When should I escalate a blocker vs. solve it myself?</div>
+
+    <div class="faq-a">Escalate to Gonçalo Fonseca when blocked for more than a day on something outside your control. For platform/API questions post in <strong>#ase-internal</strong> or <strong>#agent-workbench-dev</strong>. For infrastructure/access issues post in <strong>#digital-spot</strong>. Scout timelines are short — surface blockers early.</div>
+
+  </div>
+
+  <div class="faq-item">
+
+    <div class="faq-q">What's the most important thing to get right in the first 30 days?</div>
+
+    <div class="faq-a">Understand the problem before building the solution. Read every existing document about your Big Bet, interview at least 3 revenue team end users, and run experiments with clear pass/fail criteria before writing production code.</div>
+
+  </div>
+
+</section>
+
+<footer class="footer">
+
+  <p>OUTSYSTEMS DIGITAL · EMEA · Lisbon, Portugal<br>
+
+     Fábio Agapito — Manager, Digital Transformation<br>
+
+     Generated April 28, 2026</p>
+
+  <p style="text-align:right">Prepared by Digital Team<br>Questions → fabio.agapito or goncalo.fonseca</p>
+
+</footer>
+
+<div class="sources-list">
+
+  Sources: [1] <span style="color:var(--muted)">Slack #digital (April 2026)</span> · [2] <span style="color:var(--muted)">Google Calendar — Google Calendar (April 28, 2026)</span> · [3] <span style="color:var(--muted)">Google Drive — Workday / orgchart (April 28, 2026)</span>
+
+</div>
+
+</body>
+
+</html>
