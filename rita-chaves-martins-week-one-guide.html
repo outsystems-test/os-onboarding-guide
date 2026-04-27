@@ -1,0 +1,3009 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rita Chaves Martins — Week One at OutSystems · People</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,40,360;0,40,540;0,40,720;1,40,360\&display=swap" rel="stylesheet">
+
+<style>
+
+  :root {
+
+    --ink: \#171717;
+
+    --paper: \#FFFFFF;
+
+    --rule: \#C7C7C7;
+
+    --accent: \#E62028;
+
+    --accent-soft: \#F9D0D2;
+
+    --green: \#171717;
+
+    --green-soft: \#F5F5F5;
+
+    --gold: \#A51018;
+
+    --gold-soft: \#F9D0D2;
+
+    --blue: \#454545;
+
+    --blue-soft: \#F5F5F5;
+
+    --muted: \#666666;
+
+    --mono: 'DM Sans', Calibri, sans-serif;
+
+    --serif: 'DM Sans', Calibri, sans-serif;
+
+    --sans: 'DM Sans', Calibri, sans-serif;
+
+  }
+
+  
+
+  \* { box-sizing: border-box; margin: 0; padding: 0; }
+
+  
+
+  body {
+
+    background: var(--paper);
+
+    color: var(--ink);
+
+    font-family: var(--sans);
+
+    font-weight: 360;
+
+    line-height: 1.6;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 48px 32px 80px;
+
+  }
+
+  
+
+  /\* ── MASTHEAD ── \*/
+
+  .masthead {
+
+    border-top: 4px solid var(--ink);
+
+    border-bottom: 1px solid var(--ink);
+
+    padding: 28px 0 20px;
+
+    margin-bottom: 0;
+
+    display: grid;
+
+    grid-template-columns: 1fr 120px auto;
+
+    align-items: center;
+
+    gap: 24px;
+
+  }
+
+  .masthead-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+  }
+
+  
+
+  .masthead-label {
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    letter-spacing: 0.05em;
+
+    text-transform: uppercase;
+
+    color: var(--muted);
+
+    margin-bottom: 8px;
+
+  }
+
+  
+
+  .masthead h1 {
+
+    font-family: var(--serif);
+
+    font-size: clamp(34px, 6vw, 56px);
+
+    font-weight: 720;
+
+    line-height: 1.0;
+
+    letter-spacing: -1px;
+
+  }
+
+  
+
+  .masthead h1 em {
+
+    font-style: italic;
+
+    color: var(--accent);
+
+  }
+
+  
+
+  .masthead-meta {
+
+    text-align: right;
+
+  }
+
+  
+
+  .masthead-meta .badge {
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: 0.03em;
+
+    text-transform: uppercase;
+
+    background: var(--ink);
+
+    color: var(--paper);
+
+    padding: 5px 10px;
+
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+  }
+
+  
+
+  .masthead-meta p {
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    line-height: 1.7;
+
+  }
+
+  
+
+  /\* ── BYLINE STRIP ── \*/
+
+  .byline-strip {
+
+    border-bottom: 1px solid var(--rule);
+
+    padding: 10px 0;
+
+    display: flex;
+
+    gap: 32px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 40px;
+
+  }
+
+  
+
+  .byline-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+  
+
+  .byline-item .label {
+
+    font-family: var(--mono);
+
+    font-size: 8.5px;
+
+    letter-spacing: 0.03em;
+
+    text-transform: uppercase;
+
+    color: var(--muted);
+
+  }
+
+  
+
+  .byline-item .value {
+
+    font-size: 13px;
+
+    font-weight: 540;
+
+    color: var(--ink);
+
+  }
+
+  
+
+  /\* ── WELCOME PULL-QUOTE ── \*/
+
+  .welcome-block {
+
+    display: grid;
+
+    grid-template-columns: 1fr 280px;
+
+    gap: 40px;
+
+    margin-bottom: 48px;
+
+    padding-bottom: 40px;
+
+    border-bottom: 1px solid var(--rule);
+
+  }
+
+  
+
+  .welcome-block .lead {
+
+    font-family: var(--serif);
+
+    font-size: 18px;
+
+    line-height: 1.55;
+
+    font-weight: 400;
+
+  }
+
+  
+
+  .welcome-block .lead strong {
+
+    font-weight: 720;
+
+  }
+
+  
+
+  .welcome-block .lead em {
+
+    font-style: italic;
+
+    color: var(--accent);
+
+  }
+
+  
+
+  .context-card {
+
+    background: var(--ink);
+
+    color: var(--paper);
+
+    padding: 24px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+  }
+
+  
+
+  .context-card .context-title {
+
+    font-family: var(--mono);
+
+    font-size: 8.5px;
+
+    letter-spacing: 0.04em;
+
+    text-transform: uppercase;
+
+    opacity: 0.6;
+
+  }
+
+  
+
+  .context-card .context-stat {
+
+    border-top: 1px solid rgba(255,255,255,.15);
+
+    padding-top: 14px;
+
+  }
+
+  
+
+  .context-card .stat-label {
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    letter-spacing: .1em;
+
+    text-transform: uppercase;
+
+    opacity: 0.55;
+
+    margin-bottom: 3px;
+
+  }
+
+  
+
+  .context-card .stat-value {
+
+    font-family: var(--serif);
+
+    font-size: 15px;
+
+    font-weight: 720;
+
+    line-height: 1.3;
+
+  }
+
+  
+
+  .context-card .stat-sub {
+
+    font-size: 11px;
+
+    opacity: 0.65;
+
+    margin-top: 2px;
+
+  }
+
+  
+
+  /\* ── SECTION TITLES ── \*/
+
+  .section {
+
+    margin-bottom: 48px;
+
+  }
+
+  
+
+  .section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+
+  }
+
+  
+
+  .section-num {
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+    letter-spacing: .1em;
+
+    min-width: 24px;
+
+  }
+
+  
+
+  .section-title {
+
+    font-family: var(--serif);
+
+    font-size: 22px;
+
+    font-weight: 720;
+
+    letter-spacing: -0.3px;
+
+  }
+
+  
+
+  .section-rule {
+
+    flex: 1;
+
+    height: 1px;
+
+    background: var(--rule);
+
+  }
+
+  
+
+  /\* ── SCHEDULE ── \*/
+
+  .schedule-grid {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1px;
+
+    background: var(--rule);
+
+    border: 1px solid var(--rule);
+
+  }
+
+  
+
+  .schedule-day {
+
+    background: var(--paper);
+
+    display: grid;
+
+    grid-template-columns: 100px 1fr;
+
+  }
+
+  
+
+  .schedule-day.highlight {
+
+    background: var(--accent-soft);
+
+  }
+
+  
+
+  .day-label {
+
+    padding: 16px;
+
+    border-right: 1px solid var(--rule);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+  }
+
+  
+
+  .day-name {
+
+    font-family: var(--serif);
+
+    font-size: 16px;
+
+    font-weight: 720;
+
+    line-height: 1;
+
+    margin-bottom: 3px;
+
+  }
+
+  
+
+  .day-tag {
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: 0.03em;
+
+    text-transform: uppercase;
+
+    color: var(--muted);
+
+  }
+
+  
+
+  .day-events {
+
+    padding: 14px 16px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+  }
+
+  
+
+  .event {
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: flex-start;
+
+  }
+
+  
+
+  .event-time {
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+    min-width: 60px;
+
+    padding-top: 2px;
+
+    letter-spacing: .04em;
+
+  }
+
+  
+
+  .event-body {}
+
+  
+
+  .event-title {
+
+    font-size: 13px;
+
+    font-weight: 540;
+
+    line-height: 1.3;
+
+  }
+
+  
+
+  .event-note {
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+    margin-top: 2px;
+
+  }
+
+  
+
+  .event-link {
+
+    color: var(--accent);
+
+    text-decoration: none;
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+  }
+
+  
+
+  .event-link:hover { text-decoration: underline; }
+
+  
+
+  .pill {
+
+    display: inline-block;
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: .1em;
+
+    text-transform: uppercase;
+
+    padding: 2px 7px;
+
+    border-radius: 2px;
+
+    margin-left: 6px;
+
+    vertical-align: middle;
+
+  }
+
+  
+
+  .pill-red { background: var(--accent); color: white; }
+
+  .pill-green { background: var(--green); color: white; }
+
+  .pill-gold { background: var(--gold); color: white; }
+
+  .pill-blue { background: var(--blue); color: white; }
+
+  .pill-outline { border: 1px solid var(--rule); color: var(--muted); }
+
+  
+
+  /\* ── 2-COL ── \*/
+
+  .two-col {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 24px;
+
+  }
+
+  
+
+  /\* ── INFO CARDS ── \*/
+
+  .info-card {
+
+    border: 1px solid var(--rule);
+
+    padding: 20px;
+
+  }
+
+  
+
+  .info-card .card-label {
+
+    font-family: var(--mono);
+
+    font-size: 8.5px;
+
+    letter-spacing: 0.03em;
+
+    text-transform: uppercase;
+
+    color: var(--muted);
+
+    margin-bottom: 10px;
+
+  }
+
+  
+
+  .info-card .card-title {
+
+    font-family: var(--serif);
+
+    font-size: 16px;
+
+    font-weight: 720;
+
+    margin-bottom: 12px;
+
+  }
+
+  
+
+  .info-card p {
+
+    font-size: 13px;
+
+    color: var(--ink);
+
+    margin-bottom: 6px;
+
+    line-height: 1.5;
+
+  }
+
+  
+
+  .info-card p strong {
+
+    font-weight: 540;
+
+  }
+
+  
+
+  /\* ── TOOL LIST ── \*/
+
+  .tool-row {
+
+    display: grid;
+
+    grid-template-columns: 28px 1fr auto;
+
+    align-items: start;
+
+    gap: 10px;
+
+    padding: 11px 0;
+
+    border-bottom: 1px solid var(--rule);
+
+  }
+
+  
+
+  .tool-row:last-child { border-bottom: none; }
+
+  
+
+  .tool-icon {
+
+    width: 28px;
+
+    height: 28px;
+
+    background: var(--ink);
+
+    color: var(--paper);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    font-weight: 540;
+
+    letter-spacing: .05em;
+
+    flex-shrink: 0;
+
+    margin-top: 2px;
+
+  }
+
+  
+
+  .tool-icon.green { background: var(--green); }
+
+  .tool-icon.gold { background: var(--gold); }
+
+  .tool-icon.blue { background: var(--blue); }
+
+  .tool-icon.red { background: var(--accent); }
+
+  
+
+  .tool-name {
+
+    font-size: 13.5px;
+
+    font-weight: 540;
+
+    line-height: 1.2;
+
+    margin-bottom: 2px;
+
+  }
+
+  
+
+  .tool-desc {
+
+    font-size: 11.5px;
+
+    color: var(--muted);
+
+  }
+
+  
+
+  .tool-status {
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    letter-spacing: .08em;
+
+    text-transform: uppercase;
+
+    color: var(--green);
+
+    padding-top: 3px;
+
+  }
+
+  
+
+  /\* ── TEAM TABLE ── \*/
+
+  .team-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 13px;
+
+  }
+
+  
+
+  .team-table th {
+
+    font-family: var(--mono);
+
+    font-size: 8.5px;
+
+    letter-spacing: 0.03em;
+
+    text-transform: uppercase;
+
+    color: var(--muted);
+
+    text-align: left;
+
+    padding: 0 12px 8px 0;
+
+    border-bottom: 1px solid var(--rule);
+
+    font-weight: 400;
+
+  }
+
+  
+
+  .team-table td {
+
+    padding: 10px 12px 10px 0;
+
+    border-bottom: 1px solid var(--rule);
+
+    vertical-align: top;
+
+    line-height: 1.45;
+
+  }
+
+  
+
+  .team-table td:last-child { border-right: none; }
+
+  .team-table tr:last-child td { border-bottom: none; }
+
+  
+
+  .name-cell {
+
+    font-weight: 540;
+
+    white-space: nowrap;
+
+  }
+
+  
+
+  .role-cell {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+  }
+
+  
+
+  .slack-cell {
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    color: var(--blue);
+
+  }
+
+  
+
+  /\* ── CHANNEL LIST ── \*/
+
+  .channel-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+
+  }
+
+  
+
+  .channel-item {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    background: white;
+
+    border: 1px solid var(--rule);
+
+  }
+
+  
+
+  .channel-hash {
+
+    font-family: var(--mono);
+
+    font-size: 14px;
+
+    color: var(--muted);
+
+    line-height: 1;
+
+    margin-top: 2px;
+
+    flex-shrink: 0;
+
+  }
+
+  
+
+  .channel-body {}
+
+  
+
+  .channel-name {
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+
+    font-weight: 540;
+
+    color: var(--blue);
+
+    margin-bottom: 2px;
+
+  }
+
+  
+
+  .channel-desc {
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+    line-height: 1.35;
+
+  }
+
+  
+
+  /\* ── FAQ ── \*/
+
+  .faq-item {
+
+    border-bottom: 1px solid var(--rule);
+
+    padding: 16px 0;
+
+  }
+
+  
+
+  .faq-item:first-child { padding-top: 0; }
+
+  
+
+  .faq-q {
+
+    font-family: var(--serif);
+
+    font-size: 15px;
+
+    font-weight: 720;
+
+    margin-bottom: 8px;
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: baseline;
+
+  }
+
+  
+
+  .faq-q::before {
+
+    content: 'Q';
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    color: var(--accent);
+
+    letter-spacing: .1em;
+
+    padding-top: 2px;
+
+    flex-shrink: 0;
+
+  }
+
+  
+
+  .faq-a {
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    color: var(--ink);
+
+    padding-left: 20px;
+
+  }
+
+  
+
+  .faq-a a {
+
+    color: var(--accent);
+
+    text-decoration: none;
+
+    font-weight: 540;
+
+  }
+
+  
+
+  .faq-a a:hover { text-decoration: underline; }
+
+  
+
+  /\* ── SPIFF BANNER ── \*/
+
+  .spiff-banner {
+
+    background: var(--green);
+
+    color: white;
+
+    padding: 20px 24px;
+
+    margin-bottom: 24px;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+
+    gap: 16px;
+
+    align-items: center;
+
+  }
+
+  
+
+  .spiff-banner .spiff-label {
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: 0.05em;
+
+    text-transform: uppercase;
+
+    opacity: 0.7;
+
+    margin-bottom: 5px;
+
+  }
+
+  
+
+  .spiff-banner .spiff-title {
+
+    font-family: var(--serif);
+
+    font-size: 17px;
+
+    font-weight: 720;
+
+    line-height: 1.3;
+
+  }
+
+  
+
+  .spiff-banner .spiff-mult {
+
+    font-family: var(--serif);
+
+    font-size: 36px;
+
+    font-weight: 720;
+
+    line-height: 1;
+
+    opacity: 0.9;
+
+  }
+
+  
+
+  .spiff-sub {
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    opacity: 0.65;
+
+    text-align: right;
+
+    letter-spacing: .06em;
+
+  }
+
+  
+
+  /\* ── OFFICE ── \*/
+
+  .logistics-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 1px;
+
+    background: var(--rule);
+
+    border: 1px solid var(--rule);
+
+    margin-bottom: 20px;
+
+  }
+
+  
+
+  .logistics-cell {
+
+    background: var(--paper);
+
+    padding: 16px;
+
+  }
+
+  
+
+  .logistics-cell .lc-label {
+
+    font-family: var(--mono);
+
+    font-size: 8.5px;
+
+    letter-spacing: 0.03em;
+
+    text-transform: uppercase;
+
+    color: var(--muted);
+
+    margin-bottom: 6px;
+
+  }
+
+  
+
+  .logistics-cell .lc-value {
+
+    font-size: 13px;
+
+    font-weight: 540;
+
+    line-height: 1.4;
+
+  }
+
+  
+
+  .logistics-cell .lc-sub {
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+    margin-top: 3px;
+
+  }
+
+  
+
+  /\* ── RESOURCES ── \*/
+
+  .resource-row {
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+    padding: 9px 0;
+
+    border-bottom: 1px solid var(--rule);
+
+    font-size: 12.5px;
+
+  }
+
+  
+
+  .resource-row:last-child { border-bottom: none; }
+
+  
+
+  .resource-row .res-type {
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: .1em;
+
+    text-transform: uppercase;
+
+    padding: 3px 7px;
+
+    background: var(--gold-soft);
+
+    color: var(--gold);
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+
+    min-width: 58px;
+
+    text-align: center;
+
+  }
+
+  
+
+  .resource-row a {
+
+    color: var(--accent);
+
+    text-decoration: none;
+
+    font-weight: 540;
+
+  }
+
+  
+
+  .resource-row a:hover { text-decoration: underline; }
+
+  
+
+  .resource-row .res-note {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-left: auto;
+
+    flex-shrink: 0;
+
+  }
+
+  
+
+  /\* ── FOOTER ── \*/
+
+  .footer {
+
+    border-top: 1px solid var(--rule);
+
+    margin-top: 60px;
+
+    padding-top: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+  }
+
+  
+
+  .footer p {
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+    letter-spacing: .06em;
+
+  }
+
+  
+
+  .sources-list {
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    color: var(--muted);
+
+    line-height: 1.8;
+
+    letter-spacing: .03em;
+
+    margin-top: 8px;
+
+  }
+
+  
+
+  /\* ── SIDEBAR ASIDE ── \*/
+
+  .aside-box {
+
+    border-left: 3px solid var(--accent);
+
+    padding: 14px 16px;
+
+    background: var(--accent-soft);
+
+    margin-top: 16px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+  }
+
+  
+
+  .aside-box strong {
+
+    display: block;
+
+    font-family: var(--mono);
+
+    font-size: 8.5px;
+
+    letter-spacing: 0.03em;
+
+    text-transform: uppercase;
+
+    color: var(--accent);
+
+    margin-bottom: 6px;
+
+  }
+
+  
+
+  /\* responsiveness \*/
+
+  @media (max-width: 680px) {
+
+    .welcome-block, .two-col { grid-template-columns: 1fr; }
+
+    .logistics-grid { grid-template-columns: 1fr 1fr; }
+
+    .channel-grid { grid-template-columns: 1fr; }
+
+    .masthead { grid-template-columns: 1fr auto; }
+
+    .masthead-logo { display: none; }
+
+    .masthead-meta { text-align: left; }
+
+    body { padding: 28px 18px 60px; }
+
+  }
+
+  
+
+  @media print {
+
+    body { background: white; padding: 20px; }
+
+    .spiff-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    .context-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  }
+
+</style>
+
+</head>
+
+<body>
+
+  
+
+<!-- ══════════════ MASTHEAD ══════════════ -->
+
+<header class="masthead">
+
+  <div>
+
+    <div class="masthead-label">OutSystems · People</div>
+
+    <h1>Welcome,<br><em>Rita.</em></h1>
+
+  </div>
+
+  <div class="masthead-logo">
+
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+
+      <defs>
+
+        <mask id="donut-ring">
+
+          <circle cx="50" cy="50" r="48" fill="white"/>
+
+          <circle cx="50" cy="50" r="22" fill="black"/>
+
+        </mask>
+
+      </defs>
+
+      <circle cx="50" cy="50" r="48" fill="\#E62028" mask="url(\#donut-ring)"/>
+
+    </svg>
+
+  </div>
+
+  <div class="masthead-meta">
+
+    <div class="badge">Day One Guide</div>
+
+    <p>Role: Senior Talent Acquisition Specialist<br>
+
+       Team: People — Portugal / EMEA<br>
+
+       Manager: Sílvia Melo Gomes<br>
+
+       Start: April 28, 2026</p>
+
+  </div>
+
+</header>
+
+  
+
+<div class="byline-strip">
+
+  <div class="byline-item">
+
+    <span class="label">Region</span>
+
+    <span class="value">Portugal / EMEA</span>
+
+  </div>
+
+  <div class="byline-item">
+
+    <span class="label">People Lead / Manager</span>
+
+    <span class="value">Sílvia Melo Gomes</span>
+
+  </div>
+
+  <div class="byline-item">
+
+    <span class="label">Org Leader</span>
+
+    <span class="value">Kim Seabrook, Chief Revenue Officer</span>
+
+  </div>
+
+  <div class="byline-item">
+
+    <span class="label">Company Mission</span>
+
+    <span class="value">Enable the world to build enterprise-grade apps and agents</span>
+
+  </div>
+
+  <div class="byline-item">
+
+    <span class="label">People Function</span>
+
+    <span class="value">Talent Acquisition</span>
+
+  </div>
+
+</div>
+
+  
+
+  
+
+<!-- ══════════════ WELCOME ══════════════ -->
+
+<section class="section">
+
+  <div class="welcome-block">
+
+    <div>
+
+      <div class="masthead-label" style="margin-bottom:12px">§ Welcome</div>
+
+      <p class="lead">
+
+        You're joining OutSystems at <strong>one of the most pivotal moments in our history</strong>. In March 2026 we launched a new category — <em>Agentic Systems Engineering</em> — repositioning OutSystems as the platform that brings order, governance, and scale to enterprise AI. Every hire you make, every manager you coach, every programme you run — you're building the organisation that will take OutSystems to €1B ARR. At a company redefining its category, the quality and alignment of its people is the most important competitive advantage.
+
+      </p>
+
+      <p class="lead" style="margin-top:16px">
+
+        Your first week is structured, fast-paced, and purposeful. By Friday, you should have your system access live, your active People programmes understood, your key relationships with HRBPs and hiring managers started, and a clear picture of the People calendar you're stepping into. The People team has invested seriously in getting you <strong>Day One ready</strong> — lean into it.
+
+      </p>
+
+      <div class="aside-box">
+
+        <strong>Your Manager's Context</strong>
+
+        Sílvia Melo Gomes is Manager, Talent Acquisition — leading the TA team during a period of active hiring across the Revenue org, including Sales, CS, and RevOps functions. The team is currently supporting high-velocity hiring as OutSystems scales its go-to-market organisation in Q2. Sílvia will want to align quickly on your assigned requisitions, sourcing priorities, and interview pipeline ownership in your first week.
+
+      </div>
+
+    </div>
+
+  
+
+    <div class="context-card">
+
+      <div class="context-title">Company Snapshot · Q2 2026</div>
+
+      <div class="context-stat">
+
+        <div class="stat-label">Category</div>
+
+        <div class="stat-value">Agentic Systems Engineering</div>
+
+        <div class="stat-sub">Launched March 31, 2026</div>
+
+      </div>
+
+      <div class="context-stat">
+
+        <div class="stat-label">ARR Target</div>
+
+        <div class="stat-value">€1B ARR</div>
+
+        <div class="stat-sub">Path to €1B — company-wide priority</div>
+
+      </div>
+
+      <div class="context-stat">
+
+        <div class="stat-label">Current People Priority</div>
+
+        <div class="stat-value">Revenue Launchpad · Talent for ASE hiring wave</div>
+
+        <div class="stat-sub">Active hiring sprint across Sales, CS and RevOps in Q2</div>
+
+      </div>
+
+      <div class="context-stat">
+
+        <div class="stat-label">Active People Programme</div>
+
+        <div class="stat-value">Q2 Revenue hiring sprint + Revenue Launchpad intake</div>
+
+        <div class="stat-sub">ONE Conference June 2–3 · Apply by April 24</div>
+
+      </div>
+
+      <div class="context-stat">
+
+        <div class="stat-label">ONE Conference</div>
+
+        <div class="stat-value">ONE '26 — June 2–3, 2026</div>
+
+        <div class="stat-sub">Application deadline was April 24 — check with Sílvia if still open</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  
+
+  
+
+<!-- ══════════════ WEEK SCHEDULE ══════════════ -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <span class="section-num">01</span>
+
+    <h2 class="section-title">Your First Week — Day by Day</h2>
+
+    <div class="section-rule"></div>
+
+  </div>
+
+  
+
+  <div class="schedule-grid">
+
+  
+
+    <div class="schedule-day">
+
+      <div class="day-label">
+
+        <div class="day-name">Mon</div>
+
+        <div class="day-tag">Day One</div>
+
+      </div>
+
+      <div class="day-events">
+
+        <div class="event">
+
+          <div class="event-time">9 AM</div>
+
+          <div class="event-body">
+
+            <div class="event-title">IT Setup \& System Access <span class="pill pill-red">Priority</span></div>
+
+            <div class="event-note">Laptop, Okta/SSO, email, corporate VPN. Contact Digital Spot via <strong>#digital-spot</strong> Slack channel for any access requests.</div>
+
+          </div>
+
+        </div>
+
+        <div class="event">
+
+          <div class="event-time">10 AM</div>
+
+          <div class="event-body">
+
+            <div class="event-title">1:1 with Sílvia Melo Gomes</div>
+
+            <div class="event-note">Align on your function scope, active People programmes, and current Talent Acquisition priorities. Ask about the hiring plan for your assigned client groups, what performance or engagement programmes are in flight, and any people situations that need attention immediately.</div>
+
+          </div>
+
+        </div>
+
+        <div class="event">
+
+          <div class="event-time">Afternoon</div>
+
+          <div class="event-body">
+
+            <div class="event-title">HRIS, ATS &amp; People system access</div>
+
+            <div class="event-note">Get access to your core People systems — HRIS, applicant tracking system, and performance management platform. Post in <strong>#digital-spot</strong> for any provisioning issues. Verify access to employee data for your assigned client groups on Day 1. See <em>Tools &amp; Access</em> section below.</div>
+
+          </div>
+
+        </div>
+
+        <div class="event">
+
+          <div class="event-time">EOD</div>
+
+          <div class="event-body">
+
+            <div class="event-title">Join all Slack channels listed in this guide</div>
+
+            <div class="event-note">Introduce yourself in <strong>#people</strong> and <strong>#talent-acquisition</strong>. If you're an HRBP, also introduce yourself directly to the leadership team of your assigned client groups.</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  
+
+    <div class="schedule-day">
+
+      <div class="day-label">
+
+        <div class="day-name">Tue</div>
+
+        <div class="day-tag">People Day</div>
+
+      </div>
+
+      <div class="day-events">
+
+        <div class="event">
+
+          <div class="event-time">Morning</div>
+
+          <div class="event-body">
+
+            <div class="event-title">People Team Sync <span class="pill pill-gold">Weekly</span></div>
+
+            <div class="event-note">Weekly People team meeting covering hiring pipeline, People programmes status, employee relations matters, and cross-functional requests. Ask Sílvia Melo Gomes for the recurring calendar invite.</div>
+
+          </div>
+
+        </div>
+
+        <div class="event">
+
+          <div class="event-time">All day</div>
+
+          <div class="event-body">
+
+            <div class="event-title">Active People programmes &amp; hiring plan walkthrough with Sílvia Melo Gomes</div>
+
+            <div class="event-note">Guided tour of your function — open roles and hiring targets, performance cycle status, active L&amp;D programmes, engagement survey results, and any open employee relations matters. Ask for the People roadmap and the current hiring plan before this meeting.</div>
+
+          </div>
+
+        </div>
+
+        <div class="event">
+
+          <div class="event-time">Afternoon</div>
+
+          <div class="event-body">
+
+            <div class="event-title">Read the People strategy, org chart &amp; headcount plan</div>
+
+            <div class="event-note">Find the People strategy doc, the current org chart, and the headcount plan for your assigned client groups. Understanding who's in the organisation, where the gaps are, and what the team is trying to build is the foundation for everything you'll do.</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  
+
+    <div class="schedule-day highlight">
+
+      <div class="day-label">
+
+        <div class="day-name">Wed</div>
+
+        <div class="day-tag">Client Day</div>
+
+      </div>
+
+      <div class="day-events">
+
+        <div class="event">
+
+          <div class="event-time">All day</div>
+
+          <div class="event-body">
+
+            <div class="event-title">Meet your assigned client group leaders <span class="pill pill-blue">Priority</span></div>
+
+            <div class="event-note">If you're an HRBP, block 30-min intro calls with the VP or Director of each assigned function this week. Ask them: what people challenges are they facing, what hires are most critical, and what does a good People partner look like to them? Their answers define your first 90 days.</div>
+
+          </div>
+
+        </div>
+
+        <div class="event">
+
+          <div class="event-time">Afternoon</div>
+
+          <div class="event-body">
+
+            <div class="event-title">Read the People policies, handbook &amp; recent comms</div>
+
+            <div class="event-note">Employee handbook, leave policies, performance management framework, and any recent People communications to the company. You will be asked to interpret and apply these policies from Day 1 — know them before the first employee question arrives.</div>
+
+          </div>
+
+        </div>
+
+        <div class="event">
+
+          <div class="event-time">EOD</div>
+
+          <div class="event-body">
+
+            <div class="event-title">Shadow a hiring interview or performance conversation</div>
+
+            <div class="event-note">Ask Sílvia Melo Gomes to join a live recruiter screen, hiring manager debrief, or performance calibration call this week. Don't evaluate yet — understand how your team operates and what the quality bar looks and sounds like in practice.</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  
+
+    <div class="schedule-day">
+
+      <div class="day-label">
+
+        <div class="day-name">Thu</div>
+
+        <div class="day-tag">Programme Day</div>
+
+      </div>
+
+      <div class="day-events">
+
+        <div class="event">
+
+          <div class="event-time">Live session</div>
+
+          <div class="event-body">
+
+            <div class="event-title">Recruiting Pipeline Review <span class="pill pill-red">Attend</span></div>
+
+            <div class="event-note">Join your team's recurring recruiting pipeline review — open roles, candidate pipeline stage, time-to-fill metrics, and any hiring blockers. Ask Sílvia Melo Gomes for the invite. This is where you understand the hiring velocity and quality of the funnel you're joining.</div>
+
+          </div>
+
+        </div>
+
+        <div class="event">
+
+          <div class="event-time">Afternoon</div>
+
+          <div class="event-body">
+
+            <div class="event-title">People Programme Review <span class="pill pill-gold">Regular</span></div>
+
+            <div class="event-note">Review of active People programmes — performance cycle status, L&amp;D completion rates, engagement survey results, and upcoming milestones. Ask Sílvia Melo Gomes for the invite. This is where you understand the operational cadence your function runs on.</div>
+
+          </div>
+
+        </div>
+
+        <div class="event">
+
+          <div class="event-time">EOD</div>
+
+          <div class="event-body">
+
+            <div class="event-title">1:1s with Talent Acquisition &amp; HRBP peers</div>
+
+            <div class="event-note">Book short intro calls with your TA and HRBP peers. People is a highly collaborative function — understanding who owns what, how handoffs work between TA/HRBP/L&amp;D, and where the current bottlenecks are will make you more effective faster than almost anything else.</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  
+
+    <div class="schedule-day">
+
+      <div class="day-label">
+
+        <div class="day-name">Fri</div>
+
+        <div class="day-tag">Foundations Day</div>
+
+      </div>
+
+      <div class="day-events">
+
+        <div class="event">
+
+          <div class="event-time">Morning</div>
+
+          <div class="event-body">
+
+            <div class="event-title">Write your week 1 People assessment</div>
+
+            <div class="event-note">Write a short doc: what you've learned about the talent landscape, the most critical open roles, the biggest people risks, and your top 3 opportunities for impact in your first 90 days. Share with Sílvia Melo Gomes. Strong People professionals think in terms of people outcomes from day one.</div>
+
+          </div>
+
+        </div>
+
+        <div class="event">
+
+          <div class="event-time">Midday</div>
+
+          <div class="event-body">
+
+            <div class="event-title">End-of-week check-in with Sílvia Melo Gomes</div>
+
+            <div class="event-note">Share your People assessment, any system access gaps, and your top 3 questions about active programmes and client groups. They'll want to see you're already thinking about people outcomes — not just getting oriented.</div>
+
+          </div>
+
+        </div>
+
+        <div class="event">
+
+          <div class="event-time">EOD</div>
+
+          <div class="event-body">
+
+            <div class="event-title">Apply for ONE Conference <span class="pill pill-outline">Deadline April 24</span></div>
+
+            <div class="event-note">ONE is a major People moment — employee experience, talent visibility, and culture in action. People attends to support the employee programme, manage logistics for company participants, and observe culture at scale. Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation" class="event-link">ONE Internal App →</a>. Review guidelines: <a href="https://drive.google.com/file/d/1nay32GhcxKYEeiviDXKQAkdpWiE2YzXd/view?usp=sharing" class="event-link">Guidelines →</a></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  
+
+  </div>
+
+  
+
+  <div class="aside-box" style="margin-top:16px">
+
+    <strong>People as a Business Partner</strong>
+
+    People at OutSystems is a strategic business partner function — not a purely administrative one. Your job is to help the business grow by building great teams, developing great managers, and creating the conditions where people do their best work. That means being proactive: flagging talent risks before they become vacancies, coaching managers before they make expensive mistakes, and building programmes that scale. The most effective People professionals at OutSystems are the ones their client group leaders call first when they have a hard people problem — not last.
+
+  </div>
+
+</section>
+
+  
+
+  
+
+<!-- ══════════════ TOOLS & ACCESS ══════════════ -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <span class="section-num">02</span>
+
+    <h2 class="section-title">Tools & Access</h2>
+
+    <div class="section-rule"></div>
+
+  </div>
+
+  
+
+  <div class="two-col" style="margin-bottom:24px">
+
+    <div>
+
+      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Core People Stack</div>
+
+  
+
+      <div class="tool-row">
+
+        <div class="tool-icon red">HR</div>
+
+        <div>
+
+          <div class="tool-name">Workday</div>
+
+          <div class="tool-desc">HR information system — employee records, org structure, compensation data, leave management, and reporting. Your system of record for everything about the employee lifecycle. Request access Day 1. <a href="https://www.workday.com" class="event-link">Workday →</a></div>
+
+        </div>
+
+        <div class="tool-status">Day 1</div>
+
+      </div>
+
+  
+
+      <div class="tool-row">
+
+        <div class="tool-icon blue">ATS</div>
+
+        <div>
+
+          <div class="tool-name">Greenhouse (ATS)</div>
+
+          <div class="tool-desc">Applicant tracking system — where all candidates, job requisitions, interview scorecards, and offer letters are managed. Your primary TA system of record. Request access Day 1 and ask which roles are assigned to your ownership. <a href="https://app.greenhouse.io" class="event-link">Greenhouse →</a></div>
+
+        </div>
+
+        <div class="tool-status">Day 1</div>
+
+      </div>
+
+  
+
+      <div class="tool-row">
+
+        <div class="tool-icon green">PM</div>
+
+        <div>
+
+          <div class="tool-name">Culture Amp (or check with Sílvia)</div>
+
+          <div class="tool-desc">Performance management and engagement platform — where 1:1s, performance reviews, OKR check-ins, and engagement surveys are managed. Request access Day 1 to understand the current cycle status for your client groups. <a href="#" class="event-link">Culture Amp →</a></div>
+
+        </div>
+
+        <div class="tool-status">Day 1</div>
+
+      </div>
+
+  
+
+      <div class="tool-row">
+
+        <div class="tool-icon gold">GD</div>
+
+        <div>
+
+          <div class="tool-name">Google Drive — People Folder</div>
+
+          <div class="tool-desc">People strategy docs, compensation benchmarking data, job architecture, org design working documents, and L&amp;D materials live here. Get access to the People shared folder on Day 1. <a href="https://drive.google.com" class="event-link">People Drive →</a></div>
+
+        </div>
+
+        <div class="tool-status">Day 1</div>
+
+      </div>
+
+  
+
+      <div class="tool-row">
+
+        <div class="tool-icon">LM</div>
+
+        <div>
+
+          <div class="tool-name">Learning platform (ask Sílvia for access)</div>
+
+          <div class="tool-desc">Learning Management System — where L&amp;D courses, onboarding programmes, and compliance training live. Request access Week 1 to understand current programme completion rates and what's in the content library. <a href="#" class="event-link">LMS →</a></div>
+
+        </div>
+
+        <div class="tool-status">Week 1</div>
+
+      </div>
+
+    </div>
+
+  
+
+    <div>
+
+      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Collaboration & Intelligence</div>
+
+  
+
+      <div class="tool-row">
+
+        <div class="tool-icon blue">ZM</div>
+
+        <div>
+
+          <div class="tool-name">Zoom</div>
+
+          <div class="tool-desc">All internal sessions. Join the recurring People team sync, stakeholder reviews, and programme ceremonies via calendar.</div>
+
+        </div>
+
+        <div class="tool-status">Day 1</div>
+
+      </div>
+
+  
+
+      <div class="tool-row">
+
+        <div class="tool-icon" style="background:\#4A154B">SL</div>
+
+        <div>
+
+          <div class="tool-name">Slack</div>
+
+          <div class="tool-desc">Primary communication. All critical intel flows here. See channel list in Section 04.</div>
+
+        </div>
+
+        <div class="tool-status">Day 1</div>
+
+      </div>
+
+  
+
+      <div class="tool-row">
+
+        <div class="tool-icon gold">NB</div>
+
+        <div>
+
+          <div class="tool-name">NotebookLM / Claude</div>
+
+          <div class="tool-desc">AI-powered research and writing partner. Useful for synthesising engagement survey data, drafting People policies, researching comp benchmarks, and getting up to speed on the company context that shapes your talent strategy.</div>
+
+        </div>
+
+        <div class="tool-status">Week 1</div>
+
+      </div>
+
+  
+
+      <div class="tool-row">
+
+        <div class="tool-icon green">DM</div>
+
+        <div>
+
+          <div class="tool-name">Compass</div>
+
+          <div class="tool-desc">Company intranet and org chart — People uses Compass as the authoritative source of org structure, reporting lines, and headcount data. The Customer Score data also gives context on which teams are scaling fastest and may need People support. <a href="https://intranet.outsystems.net/Compass/" class="event-link">Compass →</a></div>
+
+        </div>
+
+        <div class="tool-status">Week 1</div>
+
+      </div>
+
+  
+
+      <div class="tool-row">
+
+        <div class="tool-icon">ADA</div>
+
+        <div>
+
+          <div class="tool-name">V2MOM App</div>
+
+          <div class="tool-desc">Company goal-alignment platform. People uses V2MOM to understand what each team is optimising for — this context is essential for talent planning, HRBP conversations, and designing L&amp;D programmes that align to actual business goals. <a href="https://outsystems.com" class="event-link">V2MOM App →</a></div>
+
+        </div>
+
+        <div class="tool-status">FYI</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  
+
+  
+
+<!-- ══════════════ TEAM ══════════════ -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <span class="section-num">03</span>
+
+    <h2 class="section-title">Your Team — Key Introductions</h2>
+
+    <div class="section-rule"></div>
+
+  </div>
+
+  
+
+  <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">People Leadership & Key Partners</div>
+
+  
+
+  <table class="team-table">
+
+    <thead>
+
+      <tr>
+
+        <th>Name</th>
+
+        <th>Role</th>
+
+        <th>Why they matter to you</th>
+
+        <th>Slack / Contact</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr>
+
+        <td class="name-cell">Sílvia Melo Gomes</td>
+
+        <td class="role-cell">Manager, Talent Acquisition<br>Your direct manager</td>
+
+        <td>Leading the TA team during Q2 hiring sprint — will need you to own requisitions quickly and integrate into active pipelines from Day 1</td>
+
+        <td class="slack-cell">@silvia.melo.gomes</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="name-cell">Kim Seabrook</td>
+
+        <td class="role-cell">CPO / SVP People / CHRO</td>
+
+        <td>Sets the People strategy, culture agenda, and talent priorities for the company. Read their posts in #people and #announcements. Their vision defines what the team is optimising for and how People is measured by the business.</td>
+
+        <td class="slack-cell">@kim.seabrook</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="name-cell">Sílvia Melo Gomes</td>
+
+        <td class="role-cell">Head of Talent Acquisition</td>
+
+        <td>Your direct function leader. Sets hiring priorities, People programme strategy, and the team's operating model. Get a 1:1 this week to understand their current focus and what they need from you in month 1.</td>
+
+        <td class="slack-cell">@silvia.melo.gomes</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="name-cell">Ask Sílvia for peer introductions</td>
+
+        <td class="role-cell">HRBP / Recruiter / L&amp;D — Talent Acquisition</td>
+
+        <td>Team peer. Ask them to walk you through the current programme status, active roles, and tooling in week 1. Good model for how the People function operates day-to-day at OutSystems.</td>
+
+        <td class="slack-cell">@TBD</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="name-cell">Ask Sílvia for peer introductions</td>
+
+        <td class="role-cell">HRBP / Recruiter / L&amp;D — Talent Acquisition</td>
+
+        <td>Team peer. [1 sentence on their area of expertise — e.g. owns the Sales hiring pipeline, leads the L&amp;D programme, is the HRBP for the Engineering org.]</td>
+
+        <td class="slack-cell">@TBD</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="name-cell">Ask Sílvia — assigned client groups TBD</td>
+
+        <td class="role-cell">VP / Director — Assigned Client Group</td>
+
+        <td>The leader of your primary assigned client group. Your most important external relationship. Get a 1:1 this week and ask what people challenges keep them up at night — their answer shapes your 90-day plan.</td>
+
+        <td class="slack-cell">@TBD</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="name-cell">Ask Sílvia — assigned client groups TBD</td>
+
+        <td class="role-cell">VP / Director — Assigned Client Group</td>
+
+        <td>The leader of your secondary assigned client group. Ask Sílvia to identify your secondary client group and their current People priorities.</td>
+
+        <td class="slack-cell">@TBD</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="name-cell">Ask Sílvia for Finance/Comp contact</td>
+
+        <td class="role-cell">Finance / Compensation Partner</td>
+
+        <td>Your primary financial partner for headcount planning, comp benchmarking, and offer approvals. Every hire and every salary change touches Finance — know them before you have a time-sensitive offer to close.</td>
+
+        <td class="slack-cell">@TBD</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="name-cell">Ask Sílvia for Legal contact</td>
+
+        <td class="role-cell">Legal / Employment Counsel</td>
+
+        <td>Your employment law partner. People and Legal overlap on terminations, performance improvement plans, policy compliance, and any employee relations matter with legal risk. Know them before you need them — escalate early on anything with legal exposure.</td>
+
+        <td class="slack-cell">@TBD</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="name-cell">Ask Sílvia for HR Ops contact</td>
+
+        <td class="role-cell">Payroll / HR Operations</td>
+
+        <td>Owns payroll processing, benefits administration, and HR system operations. Know them before your first compensation change, new hire start, or benefits question — HR Ops is the engine that makes every People decision operationally real.</td>
+
+        <td class="slack-cell">@TBD</td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</section>
+
+  
+
+  
+
+<!-- ══════════════ SLACK CHANNELS ══════════════ -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <span class="section-num">04</span>
+
+    <h2 class="section-title">Slack Channels — Join These Now</h2>
+
+    <div class="section-rule"></div>
+
+  </div>
+
+  
+
+  <div class="channel-grid">
+
+    <div class="channel-item">
+
+      <div class="channel-hash">#</div>
+
+      <div class="channel-body">
+
+        <div class="channel-name">people</div>
+
+        <div class="channel-desc">All-hands for the People team. Hiring updates, programme launches, policy changes, and org announcements. Read daily — this is your team's primary coordination channel.</div>
+
+      </div>
+
+    </div>
+
+    <div class="channel-item">
+
+      <div class="channel-hash">#</div>
+
+      <div class="channel-body">
+
+        <div class="channel-name">talent-acquisition</div>
+
+        <div class="channel-desc">Your primary sub-team channel (e.g. #talent-acquisition, #hrbp, #learning-development). Introduce yourself here Day 1. Active roles, programme updates, and function-specific discussions live here.</div>
+
+      </div>
+
+    </div>
+
+    <div class="channel-item">
+
+      <div class="channel-hash">#</div>
+
+      <div class="channel-body">
+
+        <div class="channel-name">digital-spot</div>
+
+        <div class="channel-desc">IT support for access requests. Post here for HRIS access, ATS provisioning, performance management platform permissions, and any system access issues on Day 1.</div>
+
+      </div>
+
+    </div>
+
+    <div class="channel-item">
+
+      <div class="channel-hash">#</div>
+
+      <div class="channel-body">
+
+        <div class="channel-name">one-revenue-team</div>
+
+        <div class="channel-desc">All-hands for Sales, CS, and RevOps. People follows this for hiring announcements, leadership changes, and signals about which teams are scaling — all of which drive your recruiting and HRBP priorities.</div>
+
+      </div>
+
+    </div>
+
+    <div class="channel-item">
+
+      <div class="channel-hash">#</div>
+
+      <div class="channel-body">
+
+        <div class="channel-name">ase-internal</div>
+
+        <div class="channel-desc">Agentic Systems Engineering updates. People follows this to understand the technical direction the company is hiring toward — the skills, roles, and team structures ASE requires shape the talent plan.</div>
+
+      </div>
+
+    </div>
+
+    <div class="channel-item">
+
+      <div class="channel-hash">#</div>
+
+      <div class="channel-body">
+
+        <div class="channel-name">one-conference</div>
+
+        <div class="channel-desc">ONE Conference planning. People supports ONE by managing the employee experience programme, coordinating internal nominations, and ensuring the company shows up as a great employer at its most public moment.</div>
+
+      </div>
+
+    </div>
+
+    <div class="channel-item">
+
+      <div class="channel-hash">#</div>
+
+      <div class="channel-body">
+
+        <div class="channel-name">one-conference</div>
+
+        <div class="channel-desc">ONE '26 2026 planning (June 2–3, 2026). Apply by April 24. Also monitor for customer invite opportunities.</div>
+
+      </div>
+
+    </div>
+
+    <div class="channel-item">
+
+      <div class="channel-hash">#</div>
+
+      <div class="channel-body">
+
+        <div class="channel-name">announcements</div>
+
+        <div class="channel-desc">Company-wide announcements. People often authors or reviews announcements about hires, promotions, org changes, and policy updates. Follow to understand the communication cadence before you need to contribute to it.</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  
+
+  <div class="aside-box" style="margin-top:16px">
+
+    <strong>People Hub Canvas</strong>
+
+    Pinned in #people — this is the living index of active hiring plans, open roles, People programme calendars, policy documents, and key resources for the People team. Bookmark it. Before you answer a manager question or launch a new programme, check here — the framework is likely already documented.
+
+  </div>
+
+</section>
+
+  
+
+  
+
+<!-- ══════════════ OFFICE LOGISTICS ══════════════ -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <span class="section-num">05</span>
+
+    <h2 class="section-title">Office & Logistics</h2>
+
+    <div class="section-rule"></div>
+
+  </div>
+
+  
+
+  <div class="logistics-grid">
+
+    <div class="logistics-cell">
+
+      <div class="lc-label">IT & Access Issues</div>
+
+      <div class="lc-value">Digital Spot</div>
+
+      <div class="lc-sub">Message @Digital Spot or post in #digital-spot. They handle Slack access, tool provisioning, and app permissions.</div>
+
+    </div>
+
+    <div class="logistics-cell">
+
+      <div class="lc-label">Systems & Provisioning</div>
+
+      <div class="lc-value">Day 1 checklist</div>
+
+      <div class="lc-sub">Jira · Jira · Confluence · Figma · Power BI · Zoom · Slack workspaces</div>
+
+    </div>
+
+    <div class="logistics-cell">
+
+      <div class="lc-label">Pay / HR Questions</div>
+
+      <div class="lc-value">HR / People Team</div>
+
+      <div class="lc-sub"><a href="mailto:people@outsystems.com" style="color:var(--accent);text-decoration:none">people@outsystems.com</a> or DM Sílvia Melo Gomes in Slack.</div>
+
+    </div>
+
+    <div class="logistics-cell">
+
+      <div class="lc-label">People Docs &amp; Policies</div>
+
+      <div class="lc-value">Confluence / Google Drive</div>
+
+      <div class="lc-sub">Source of truth for People policies, employee handbook, job architecture, comp frameworks, and programme documentation. Read before your first manager or employee question arrives.</div>
+
+    </div>
+
+    <div class="logistics-cell">
+
+      <div class="lc-label">Onboarding Questions</div>
+
+      <div class="lc-value">Sílvia Melo Gomes</div>
+
+      <div class="lc-sub">People onboarding is run directly by your manager. Ask them for the People strategy doc, HRIS access, active programme status, and your first assigned client groups or roles on Day 1.</div>
+
+    </div>
+
+    <div class="logistics-cell">
+
+      <div class="lc-label">Company Goals &amp; Context</div>
+
+      <div class="lc-value">V2MOM App / Compass</div>
+
+      <div class="lc-sub">V2MOM and OKRs are the strategic context that makes People decisions meaningful. When you understand what each team is trying to achieve, you can hire, develop, and advise them much more effectively.</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  
+
+  
+
+<!-- ══════════════ ENGINEERING RITUALS ══════════════ -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <span class="section-num">06</span>
+
+    <h2 class="section-title">Q2 Q2 Q2 Q2 People Programmes &amp; Calendar</h2>
+
+    <div class="section-rule"></div>
+
+  </div>
+
+  
+
+  <div class="spiff-banner">
+
+    <div>
+
+      <div class="spiff-label">People Programme Calendar · Q2</div>
+
+      <div class="spiff-title">Hiring targets · Performance cycle · L&amp;D programme<br>Engagement survey · Benefits enrolment · OKR check-ins</div>
+
+    </div>
+
+    <div style="text-align:right">
+
+      <div class="spiff-mult">TBD</div>
+
+      <div class="spiff-sub">Open roles<br>This quarter</div>
+
+    </div>
+
+  </div>
+
+  
+
+  <div class="two-col">
+
+    <div class="info-card">
+
+      <div class="card-label">Core People Rituals</div>
+
+      <p><strong>Recruiting pipeline review</strong> — Weekly: open roles, pipeline health, time-to-fill</p>
+
+      <p><strong>HRBP client group 1:1s</strong> — Weekly: people risks, team health, manager coaching</p>
+
+      <p><strong>Performance cycle checkpoints</strong> — Weekly: calibration, promotion decisions, PIPs</p>
+
+      <p><strong>People team sync</strong> — Weekly: cross-functional People programme coordination</p>
+
+      <p style="margin-top:8px"><a href="#" style="color:var(--accent);font-size:12px;text-decoration:none;font-weight:500">Full People calendar →</a></p>
+
+    </div>
+
+    <div class="info-card">
+
+      <div class="card-label">People Performance &amp; Growth</div>
+
+      <p><strong>Performance review cycle</strong> — Weekly</p>
+
+      <p><strong>Key People metrics</strong> — time-to-fill, offer acceptance rate, engagement score, retention, manager effectiveness</p>
+
+      <p><strong>People Career Ladder</strong> — <a href="#" style="color:var(--accent)">People Career Ladder →</a></p>
+
+      <p style="margin-top:8px;font-size:12px;color:var(--muted)">Ask Sílvia Melo Gomes how individual performance is measured and what 'great' looks like at your level and function.</p>
+
+      </div>
+
+  </div>
+
+</section>
+
+  
+
+  
+
+<!-- ══════════════ RESOURCES ══════════════ -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <span class="section-num">07</span>
+
+    <h2 class="section-title">Essential Resources — Bookmark These</h2>
+
+    <div class="section-rule"></div>
+
+  </div>
+
+  
+
+  <div class="resource-row">
+
+    <div class="res-type">Calendar</div>
+
+    <a href="#">People Programme Calendar — Q2</a>
+
+    <div class="res-note">All hiring targets, cycles, and programme deadlines</div>
+
+  </div>
+
+  <div class="resource-row">
+
+    <div class="res-type">Strategy</div>
+
+    <a href="#">People Strategy — 2026</a>
+
+    <div class="res-note">The foundation of every programme you'll run</div>
+
+  </div>
+
+  <div class="resource-row">
+
+    <div class="res-type">Handbook</div>
+
+    <a href="#">Employee Handbook</a>
+
+    <div class="res-note">Read before your first policy question</div>
+
+  </div>
+
+  <div class="resource-row">
+
+    <div class="res-type">Framework</div>
+
+    <a href="#">Performance Management Framework</a>
+
+    <div class="res-note">How reviews, ratings, and promotions work</div>
+
+  </div>
+
+  <!-- end --ews & insights</div>
+
+  </div>
+
+  <div class="resource-row">
+
+    <div class="res-type">Template</div>
+
+    <a href="#">Job Description Templates</a>
+
+    <div class="res-note">Standard format for all open roles</div>
+
+  </div>
+
+  <div class="resource-row">
+
+    <div class="res-type">Dashboard</div>
+
+    <a href="#">People Analytics Dashboard</a>
+
+    <div class="res-note">Headcount, attrition, time-to-fill &amp; engagement</div>
+
+  </div>
+
+  <div class="resource-row">
+
+    <div class="res-type">Comp</div>
+
+    <a href="#">Compensation &amp; Levelling Framework</a>
+
+    <div class="res-note">Job architecture, bands, and offer guidelines</div>
+
+  </div>
+
+  <div class="resource-row">
+
+    <div class="res-type">Slides</div>
+
+    <a href="https://www.youtube.com/watch?v=QwSJnd-NSQU">Product Sizzle Demo — YouTube</a>
+
+    <div class="res-note">Understand what you're hiring people to build</div>
+
+  </div>
+
+  <div class="resource-row">
+
+    <div class="res-type">Guide</div>
+
+    <a href="#">Manager Handbook — OutSystems</a>
+
+    <div class="res-note">What great management looks like here</div>
+
+  </div>
+
+  <div class="resource-row">
+
+    <div class="res-type">Conference</div>
+
+    <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE '26 Internal App — Apply by April 24</a>
+
+    <div class="res-note">People supports the employee experience at ONE</div>
+
+  </div>
+
+</section>
+
+  
+
+  
+
+<!-- ══════════════ FAQ ══════════════ -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <span class="section-num">08</span>
+
+    <h2 class="section-title">Common First-Week Questions</h2>
+
+    <div class="section-rule"></div>
+
+  </div>
+
+  
+
+  <div class="faq-item">
+
+    <div class="faq-q">What is Agentic Systems Engineering and what does it mean for People?</div>
+
+    <div class="faq-a">ASE is OutSystems' new platform category announced March 31, 2026 — repositioning from low-code to the platform that governs, orchestrates, and scales enterprise AI agents. For People, this means the talent profile the company needs is evolving: new engineering specialisms (AI/agents, LLM tooling, observability), new messaging for employer brand, and updated job architectures. Watch the <a href="https://www.youtube.com/watch?v=QwSJnd-NSQU">product sizzle demo</a> and read the <a href="https://docs.google.com/document/d/1u8t5rJ1N7iFvYEpmM6rkR0BYzK9vzMRHQg_7RO3-hxA/edit">ASE FAQ</a> to understand the technical direction — it directly shapes the talent strategy you'll be executing.</div>
+
+  </div>
+
+  
+
+  <div class="faq-item">
+
+    <div class="faq-q">What People programmes will I own, and where do I start?</div>
+
+    <div class="faq-a">Ask Sílvia Melo Gomes for a full handover on Day 1 — your assigned client groups, the open roles you own, the performance cycle status, and any active people situations. Before taking ownership of anything, read the People strategy doc and the headcount plan for your client groups. Your first job is to understand the current state: which roles are most critical, which people situations are most urgent, and which programmes are already in flight. Don't redesign anything in week 1 — understand what exists and why before making changes.</div>
+
+  </div>
+
+  
+
+  <div class="faq-item">
+
+    <div class="faq-q">What does People onboarding look like and what are the milestones?</div>
+
+    <div class="faq-a">People onboarding at OutSystems is structured around your function. Typical milestones: HRIS and ATS access live by end of Day 1, People policies and handbook read by end of week 1, first client group 1:1s completed by end of week 2, and first independent hire, programme, or HRBP decision by month 1. Ask Sílvia Melo Gomes for the full onboarding timeline and what 'ready to operate independently' looks like for your specific function.</div>
+
+  </div>
+
+  
+
+  <div class="faq-item">
+
+    <div class="faq-q">How is People performance measured?</div>
+
+    <div class="faq-a">People performance is measured on both operational metrics and business impact. Operational: time-to-fill, offer acceptance rate, engagement score, retention rate, and programme completion. Business impact: are the teams you support growing effectively, are managers improving, is the talent pipeline matching the company's strategic direction? Ask Sílvia Melo Gomes for your specific KPIs and targets this quarter. The <a href="#">People Career Ladder</a> defines expectations at each level.</div>
+
+  </div>
+
+  
+
+  <div class="faq-item">
+
+    <div class="faq-q">When should I escalate a People situation vs. handle it myself?</div>
+
+    <div class="faq-a">Escalate to Sílvia Melo Gomes immediately when: a situation involves potential legal risk (discrimination, harassment, wrongful termination), a senior leader is involved, an employee has expressed self-harm or serious distress, or a performance or disciplinary action could result in termination. Handle independently (with documentation): routine performance conversations, manager coaching, standard offer approvals within guidelines, and policy clarification questions. When in doubt, loop in your manager and Legal early — People situations that escalate unexpectedly are almost always the ones where someone waited too long to ask for help.</div>
+
+  </div>
+
+  
+
+  <div class="faq-item">
+
+    <div class="faq-q">Where do I find People policies, frameworks, and programme documentation?</div>
+
+    <div class="faq-a">Three places: (1) <strong>Confluence</strong> — all People policies, the employee handbook, performance management framework, job architecture, and programme playbooks. Search here first before answering any manager or employee question. (2) <strong>Google Drive — People Folder</strong> — comp benchmarking data, org design working documents, engagement survey results, and L&amp;D materials. (3) <strong>Workday</strong> — the authoritative source for employee records, compensation history, and org data. Never answer a comp or policy question from memory — always check the source.</div>
+
+  </div>
+
+  
+
+  <div class="faq-item">
+
+    <div class="faq-q">What is the ONE Conference and what is People's role?</div>
+
+    <div class="faq-a">ONE '26 is OutSystems' annual flagship customer conference, June 2–3, 2026. For People, ONE is one of the year's most important employer branding moments — the company showcases its culture, talent, and ambition to customers, partners, and the market simultaneously. People supports ONE by coordinating employee attendance, managing the internal nomination and application process, and ensuring the employee experience at the event reflects the company's culture values. Ask Sílvia Melo Gomes what People specifically owns. Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE '26 Internal App</a> by <strong>April 24</strong>.</div>
+
+  </div>
+
+  
+
+  <div class="faq-item">
+
+    <div class="faq-q">What's the most important thing to get right in the first 30 days?</div>
+
+    <div class="faq-a">Earn the trust of your client group leaders. In People, your effectiveness is entirely dependent on whether managers and business leaders believe you understand their context and can help them solve real problems. In your first 30 days: learn your client groups' business models, team structures, and talent gaps as well as they know them. Fill one open role, solve one manager problem, or run one programme that genuinely helps. The People professionals who have the most impact are the ones their client groups ask for by name — because they've shown they're on the team's side, not just enforcing process.</div>
+
+  </div>
+
+  
+
+</section>
+
+  
+
+  
+
+<!-- ══════════════ FOOTER ══════════════ -->
+
+<footer class="footer">
+
+  <p>OUTSYSTEMS PEOPLE · EMEA · Lisbon, Portugal<br>
+
+     Rita Chaves Martins — Senior Talent Acquisition Specialist<br>
+
+     Generated April 27, 2026</p>
+
+  <p style="text-align:right">Prepared by Digital Workforce · Diogo Sampaio<br>Questions → @diogo.sampaio or @silvia.melo.gomes</p>
+
+</footer>
+
+  
+
+<div class="sources-list">
+
+  Sources: [1] <span style="color:var(--muted)">Slack #people / #one-revenue-team (April 2026)</span> · [2] <span style="color:var(--muted)">Google Calendar — Google Calendar (April 27, 2026)</span> · [3] <span style="color:var(--muted)">Google Drive — Google Drive — People Templates (April 27, 2026)</span> · [2] <a href="https://www.google.com/calendar/event?eid=MmU3bmY3cThza3BzbGJodWJpNDE3OGsxYXUgY2F0YXJpbmEuc291c2FAb3V0c3lzdGVtcy5jb20" style="color:var(--muted)">Google Calendar — Enablement, Coaching & Onboarding</a> (Apr 23, 2026) · [3] Google Calendar — Sync about Onboarding, Enablement Sales Reps (Apr 21, 2026) · [4] <a href="https://docs.google.com/document/d/12mdVJb3eL1-UzEBZIQL-Jv8RLCbGO7rYD9FMl5NPcfU/edit" style="color:var(--muted)">Google Drive — Onboarding Agent Technical Spec</a> (Apr 2026)
+
+</div>
+
+  
+
+</body>
+
+</html>
