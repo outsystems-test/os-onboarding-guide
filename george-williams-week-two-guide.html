@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>George Williams — Week Two at OutSystems</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,40,360;0,40,540;0,40,720;1,40,360&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #171717;
+    --paper: #FFFFFF;
+    --rule: #C7C7C7;
+    --accent: #E62028;
+    --accent-soft: #F9D0D2;
+    --green: #171717;
+    --green-soft: #F5F5F5;
+    --gold: #A51018;
+    --gold-soft: #F9D0D2;
+    --blue: #454545;
+    --blue-soft: #F5F5F5;
+    --muted: #666666;
+    --mono: 'DM Sans', Calibri, sans-serif;
+    --serif: 'DM Sans', Calibri, sans-serif;
+    --sans: 'DM Sans', Calibri, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 360;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-top: 4px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 28px 0 20px;
+    margin-bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr 120px auto;
+    align-items: center;
+    gap: 24px;
+  }
+  .masthead-logo { display: flex; align-items: center; justify-content: center; }
+  .masthead-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .masthead h1 { font-family: var(--serif); font-size: clamp(34px, 6vw, 56px); font-weight: 720; line-height: 1.0; letter-spacing: -1px; }
+  .masthead h1 em { font-style: italic; color: var(--accent); }
+  .masthead-meta { text-align: right; }
+  .masthead-meta .badge { font-family: var(--mono); font-size: 8px; letter-spacing: 0.03em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 5px 10px; display: inline-block; margin-bottom: 8px; }
+  .masthead-meta p { font-size: 11px; color: var(--muted); font-family: var(--mono); line-height: 1.7; }
+
+  /* ── BYLINE STRIP ── */
+  .byline-strip { border-bottom: 1px solid var(--rule); padding: 10px 0; display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; }
+  .byline-item { display: flex; flex-direction: column; }
+  .byline-item .label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); }
+  .byline-item .value { font-size: 13px; font-weight: 540; color: var(--ink); }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar { display: flex; gap: 4px; margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
+  .progress-step { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+  .progress-step-bar { height: 6px; background: var(--rule); }
+  .progress-step.done .progress-step-bar { background: var(--ink); }
+  .progress-step.active .progress-step-bar { background: var(--accent); }
+  .progress-label { font-family: var(--mono); font-size: 8px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .progress-step.active .progress-label { color: var(--accent); font-weight: 540; }
+  .progress-step.done .progress-label { color: var(--ink); }
+
+  /* ── WEEK INTRO ── */
+  .week-intro { display: grid; grid-template-columns: 1fr 280px; gap: 40px; margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--rule); }
+  .week-intro .lead { font-family: var(--serif); font-size: 18px; line-height: 1.55; font-weight: 400; }
+  .week-intro .lead strong { font-weight: 720; }
+  .week-intro .lead em { font-style: italic; color: var(--accent); }
+  .context-card { background: var(--ink); color: var(--paper); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+  .context-card .context-title { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.6; }
+  .context-card .context-stat { border-top: 1px solid rgba(255,255,255,.15); padding-top: 14px; }
+  .context-card .stat-label { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; opacity: 0.55; margin-bottom: 3px; }
+  .context-card .stat-value { font-family: var(--serif); font-size: 15px; font-weight: 720; line-height: 1.3; }
+  .context-card .stat-sub { font-size: 11px; opacity: 0.65; margin-top: 2px; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 48px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .section-num { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .1em; min-width: 24px; }
+  .section-title { font-family: var(--serif); font-size: 22px; font-weight: 720; letter-spacing: -0.3px; }
+  .section-rule { flex: 1; height: 1px; background: var(--rule); }
+
+  /* ── CHECKLIST ── */
+  .checklist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 24px; }
+  .checklist-col { background: var(--paper); padding: 0; }
+  .checklist-col-header { font-family: var(--mono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 8px; border-bottom: 1px solid var(--rule); }
+  .checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 14px; border-bottom: 1px solid var(--rule); font-size: 12.5px; }
+  .checklist-item:last-child { border-bottom: none; }
+  .checklist-box { width: 14px; height: 14px; border: 1.5px solid var(--rule); flex-shrink: 0; margin-top: 2px; }
+  .checklist-text { line-height: 1.4; }
+  .checklist-text .sub { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+
+  /* ── CATEGORY BLOCK ── */
+  .category-block { margin-bottom: 32px; }
+  .category-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; border-bottom: 1px solid var(--rule); padding-bottom: 6px; }
+
+  /* ── SCHEDULE ── */
+  .schedule-grid { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .schedule-day { background: var(--paper); display: grid; grid-template-columns: 100px 1fr; }
+  .schedule-day.highlight { background: var(--accent-soft); }
+  .day-label { padding: 16px; border-right: 1px solid var(--rule); display: flex; flex-direction: column; justify-content: flex-start; }
+  .day-name { font-family: var(--serif); font-size: 16px; font-weight: 720; line-height: 1; margin-bottom: 3px; }
+  .day-tag { font-family: var(--mono); font-size: 8px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); }
+  .day-events { padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .event { display: flex; gap: 10px; align-items: flex-start; }
+  .event-time { font-family: var(--mono); font-size: 10px; color: var(--muted); min-width: 60px; padding-top: 2px; letter-spacing: .04em; }
+  .event-body {}
+  .event-title { font-size: 13px; font-weight: 540; line-height: 1.3; }
+  .event-note { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .event-link { color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: 10px; }
+  .event-link:hover { text-decoration: underline; }
+
+  /* ── PILLS ── */
+  .pill { display: inline-block; font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; padding: 2px 7px; border-radius: 2px; margin-left: 6px; vertical-align: middle; }
+  .pill-red { background: var(--accent); color: white; }
+  .pill-green { background: var(--green); color: white; }
+  .pill-gold { background: var(--gold); color: white; }
+  .pill-blue { background: var(--blue); color: white; }
+  .pill-outline { border: 1px solid var(--rule); color: var(--muted); }
+
+  /* ── TWO COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  /* ── INFO CARDS ── */
+  .info-card { border: 1px solid var(--rule); padding: 20px; }
+  .info-card .card-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .info-card .card-title { font-family: var(--serif); font-size: 16px; font-weight: 720; margin-bottom: 12px; }
+  .info-card p { font-size: 13px; color: var(--ink); margin-bottom: 6px; line-height: 1.5; }
+  .info-card p strong { font-weight: 540; }
+
+  /* ── SPIFF BANNER ── */
+  .spiff-banner { background: var(--green); color: white; padding: 20px 24px; margin-bottom: 24px; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
+  .spiff-banner .spiff-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.7; margin-bottom: 5px; }
+  .spiff-banner .spiff-title { font-family: var(--serif); font-size: 17px; font-weight: 720; line-height: 1.3; }
+  .spiff-banner .spiff-mult { font-family: var(--serif); font-size: 36px; font-weight: 720; line-height: 1; opacity: 0.9; }
+  .spiff-sub { font-family: var(--mono); font-size: 9px; opacity: 0.65; text-align: right; letter-spacing: .06em; }
+
+  /* ── MILESTONE ── */
+  .milestone-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 24px; }
+  .milestone-cell { background: var(--paper); padding: 16px; }
+  .milestone-cell.done { background: var(--green); color: white; }
+  .milestone-cell.done .ms-label { opacity: 0.6; }
+  .ms-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .ms-value { font-size: 13px; font-weight: 540; line-height: 1.4; }
+  .ms-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  /* ── RESOURCE ── */
+  .resource-row { display: flex; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--rule); font-size: 12.5px; }
+  .resource-row:last-child { border-bottom: none; }
+  .resource-row .res-type { font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 7px; background: var(--gold-soft); color: var(--gold); white-space: nowrap; flex-shrink: 0; min-width: 58px; text-align: center; }
+  .resource-row a { color: var(--accent); text-decoration: none; font-weight: 540; }
+  .resource-row a:hover { text-decoration: underline; }
+  .resource-row .res-note { color: var(--muted); font-size: 11px; margin-left: auto; flex-shrink: 0; }
+
+  /* ── FAQ ── */
+  .faq-item { border-bottom: 1px solid var(--rule); padding: 16px 0; }
+  .faq-item:first-child { padding-top: 0; }
+  .faq-q { font-family: var(--serif); font-size: 15px; font-weight: 720; margin-bottom: 8px; display: flex; gap: 10px; align-items: baseline; }
+  .faq-q::before { content: 'Q'; font-family: var(--mono); font-size: 9px; color: var(--accent); letter-spacing: .1em; padding-top: 2px; flex-shrink: 0; }
+  .faq-a { font-size: 13px; line-height: 1.6; color: var(--ink); padding-left: 20px; }
+  .faq-a a { color: var(--accent); text-decoration: none; font-weight: 540; }
+
+  /* ── ASIDE ── */
+  .aside-box { border-left: 3px solid var(--accent); padding: 14px 16px; background: var(--accent-soft); margin-top: 16px; font-size: 12px; line-height: 1.5; }
+  .aside-box strong { display: block; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+
+  /* ── FOOTER ── */
+  .footer { border-top: 1px solid var(--rule); margin-top: 60px; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer p { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .06em; }
+  .sources-list { font-family: var(--mono); font-size: 9px; color: var(--muted); line-height: 1.8; letter-spacing: .03em; margin-top: 8px; }
+
+  @media (max-width: 680px) {
+    .week-intro, .two-col, .checklist-grid { grid-template-columns: 1fr; }
+    .masthead { grid-template-columns: 1fr auto; }
+    .masthead-logo { display: none; }
+    body { padding: 28px 18px 60px; }
+  }
+  @media print {
+    body { background: white; padding: 20px; }
+    .spiff-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .context-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .milestone-cell.done { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<!-- ══════════════ MASTHEAD ══════════════ -->
+<header class="masthead">
+  <div>
+    <div class="masthead-label">OutSystems · Business Development</div>
+    <h1>Week Two,<br><em>George.</em></h1>
+  </div>
+  <div class="masthead-logo"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+  <defs><mask id="donut-ring"><circle cx="50" cy="50" r="48" fill="white"/><circle cx="50" cy="50" r="22" fill="black"/></mask></defs>
+  <circle cx="50" cy="50" r="48" fill="#E62028" mask="url(#donut-ring)"/>
+</svg></div>
+  <div class="masthead-meta">
+    <div class="badge">Week Two Guide</div>
+    <p>Role: Senior Business Development Representative<br>
+       Team: Business Development — EMEA<br>
+       Manager: Josh Dixson<br>
+       Start: [TBD — confirm with Josh Dixson]</p>
+  </div>
+</header>
+
+<div class="byline-strip">
+  <div class="byline-item"><span class="label">Region</span><span class="value">EMEA</span></div>
+  <div class="byline-item"><span class="label">Manager</span><span class="value">Josh Dixson</span></div>
+  <div class="byline-item"><span class="label">Department Leader</span><span class="value">Kim Seabrook, Chief Revenue Officer</span></div>
+  <div class="byline-item"><span class="label">Company Mission</span><span class="value">We provide the AI development platform that enterprise leaders trust to build and secure their applications, agents, and mission critical systems.</span></div>
+</div>
+
+<!-- ══ PROGRESS ══ -->
+<div>
+  <div class="progress-bar">
+    <div class="progress-step done"><div class="progress-step-bar"></div><span class="progress-label">Week 1 · Onboard</span></div>
+    <div class="progress-step active"><div class="progress-step-bar"></div><span class="progress-label">Week 2 · Learn</span></div>
+    <div class="progress-step "><div class="progress-step-bar"></div><span class="progress-label">Week 3 · Apply</span></div>
+    <div class="progress-step "><div class="progress-step-bar"></div><span class="progress-label">Week 4 · Execute</span></div>
+  </div>
+</div>
+
+<!-- ══════════════ INTRO ══════════════ -->
+<section class="section">
+  <div class="week-intro">
+    <div>
+      <div class="masthead-label" style="margin-bottom:12px">§ Week Two</div>
+      <p class="lead">
+        Tools are live. Channels are joined. Now it's time to <strong>go deep on the product, the playbook, and your accounts</strong>. Week Two is about building conviction — in the platform story, in your territory, and in your own ability to open conversations that stick.
+      </p>
+      <p class="lead" style="margin-top:16px">
+        By Friday you should have reviewed the digital Sales Playbook, run your first accounts through Deal Mate, and had your first working conversation with your SA and SDR partners. The Seismic Learning path continues — complete Sales Week 2.
+      </p>
+      <div class="aside-box">
+        <strong>This week's focus</strong>
+        Process & Skills · Systems Fluency · Account & Pipeline Foundations
+      </div>
+    </div>
+    <div class="context-card">
+      <div class="context-title">Ramp Snapshot · Q2 2026</div>
+      <div class="context-stat">
+        <div class="stat-label">Training Track</div>
+        <div class="stat-value">Sales Week 2</div>
+        <div class="stat-sub"><a href="https://outsystems.seismic.com/app#/learning/v2/learn" style="color:rgba(255,255,255,.7);text-decoration:none">Seismic Learning →</a></div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">Active Sales Plays</div>
+        <div class="stat-value">BFS · Insurance · Compete</div>
+        <div class="stat-sub">New play every Tuesday through May</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">Pipeline Goal</div>
+        <div class="stat-value">First accounts tiered</div>
+        <div class="stat-sub">Territory review + Compass scores</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">Mentor</div>
+        <div class="stat-value">Josh Dixson</div>
+        <div class="stat-sub">First 1:1 this week — how you explain OutSystems</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ LEARNING ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Onboarding &amp; Learning</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="spiff-banner">
+    <div>
+      <div class="spiff-label">Seismic Learning · Continue This Week</div>
+      <div class="spiff-title"><a href="https://outsystems.seismic.com/app#/learning/v2/learn" style="color:white;text-decoration:none;">Onboarding Week 2 Learning Path →</a></div>
+    </div>
+    <div style="text-align:right;">
+      <div class="spiff-mult" style="font-size:22px;opacity:0.85;">Week 2</div>
+      <div class="spiff-sub">Complete Sales Week 2<br>before end of week</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ WEEK SCHEDULE ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Your Week — Day by Day</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="schedule-grid">
+    <div class="schedule-day">
+      <div class="day-label"><div class="day-name">Mon</div><div class="day-tag">Playbook Day</div></div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">Morning</div>
+          <div class="event-body">
+            <div class="event-title">Review the Digital Sales Playbook <span class="pill pill-red">Priority</span></div>
+            <div class="event-note">Read the full playbook on Seismic — understand the discovery flow, qualification criteria (10%, 25%), and value proposition for BFS and Insurance plays.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Afternoon</div>
+          <div class="event-body">
+            <div class="event-title">Set up your email signature + LinkedIn profile</div>
+            <div class="event-note">Use <a href="https://outsystems.seismic.com" class="event-link">OutSystems branding assets →</a> and the OutSystems Media Kit. Add your OutSystems email to your LinkedIn account.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">EOD</div>
+          <div class="event-body">
+            <div class="event-title">Review MEDDPICC Guide and Cheat Sheet</div>
+            <div class="event-note">All opportunities are qualified using MEDDPICC. Find both docs in Seismic. Ask your manager which fields are most critical in your region for early-stage deals.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="day-label"><div class="day-name">Tue</div><div class="day-tag">Sales Play Day</div></div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">Morning</div>
+          <div class="event-body">
+            <div class="event-title">Sales Play Tuesday Session <span class="pill pill-gold">Weekly</span></div>
+            <div class="event-note">Attend the live session or catch the replay in #one-revenue-team. Focus on BFS or Insurance messaging you can use in prospecting this week.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Afternoon</div>
+          <div class="event-body">
+            <div class="event-title">Territory &amp; Account Review with Josh Dixson</div>
+            <div class="event-note">Review or confirm your territory and accounts. Run Compass on your top 5 accounts to understand their Customer Score. Identify initial tiering priorities.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">EOD</div>
+          <div class="event-body">
+            <div class="event-title">Explore Salesforce (SFDC)</div>
+            <div class="event-note">Navigate your account list, understand opportunity stages, and practice tagging the Primary Sales Play. Log any test activities to confirm permissions are correct.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day highlight">
+      <div class="day-label"><div class="day-name">Wed</div><div class="day-tag">Tools Day</div></div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">Morning</div>
+          <div class="event-body">
+            <div class="event-title">Explore Gong — Shadow peer calls <span class="pill pill-blue">Self-paced</span></div>
+            <div class="event-note">Find 2–3 recorded discovery or demo calls from top performers in your region. Listen for how they open, how they qualify, and how they handle the "we'll just use AI" objection.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Midday</div>
+          <div class="event-body">
+            <div class="event-title">Explore Clari + Pipeline Dashboard</div>
+            <div class="event-note">Understand how forecasting works at OutSystems. Ask Madeline Dibble to walk you through how your pipeline will be tracked and what good hygiene looks like.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Afternoon</div>
+          <div class="event-body">
+            <div class="event-title">Explore LinkedIn Sales Navigator + EveryoneSocial</div>
+            <div class="event-note">Set up your Sales Navigator searches for your territory accounts and decision-maker personas. Connect EveryoneSocial to begin social selling activities.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="day-label"><div class="day-name">Thu</div><div class="day-tag">Agentic Thursday</div></div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">Live session</div>
+          <div class="event-body">
+            <div class="event-title">Agentic Confidence Thursday <span class="pill pill-red">Attend</span></div>
+            <div class="event-note">Weekly deep dive on Agent Workbench, pricing, and competitive positioning. Check #one-revenue-team for this week's session link and topic.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Afternoon</div>
+          <div class="event-body">
+            <div class="event-title">First 1:1 with your Mentor</div>
+            <div class="event-note">Meet Josh Dixson. Share your background and discuss how you explain OutSystems. Your mentor will show you how they pitch the platform — take notes on framing and language.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">EOD</div>
+          <div class="event-body">
+            <div class="event-title">Meet your SDR and begin prospecting cadence planning</div>
+            <div class="event-note">Get acquainted with George. Align on your top target accounts, ICP for your territory, and agree on an initial outreach sequencing approach using Outreach.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="day-label"><div class="day-name">Fri</div><div class="day-tag">Synthesis Day</div></div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">Morning</div>
+          <div class="event-body">
+            <div class="event-title">Interlock with Field Marketing</div>
+            <div class="event-note">Understand upcoming demand gen events, campaigns, and regional activity in your territory. Identify 1–2 events where you could bring target accounts.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Midday</div>
+          <div class="event-body">
+            <div class="event-title">End-of-week 1:1 with Josh Dixson</div>
+            <div class="event-note">Review the key things from your Sales Playbook review. Share your initial account tiering. Surface any tool or access blockers. Confirm upcoming meetings to shadow.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">EOD</div>
+          <div class="event-body">
+            <div class="event-title">Review the Sales Deck of Decks + AI at OutSystems page</div>
+            <div class="event-note">Familiarise yourself with the full slide library. Bookmark the AI at OutSystems page. You'll need this for prospects who ask how OutSystems fits in their AI strategy.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="aside-box" style="margin-top:16px">
+    <strong>Mentor Programme</strong>
+    Your mentor is a senior peer who has completed their own ramp. This week: introduce yourselves and discuss how you each explain OutSystems. Discuss upcoming calls to shadow. Schedule at least 2 further sessions in weeks 3 and 4.
+  </div>
+</section>
+
+<!-- ══════════════ CHECKLIST ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Week 2 Checklist</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="category-block">
+    <div class="category-label">Process &amp; Skills</div>
+    <div class="checklist-grid">
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Review the digital Sales Playbook<div class="sub">Discovery flow, qualification criteria, 10%/25% stage thresholds</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Review MEDDPICC Guide and Cheat Sheet<div class="sub">Available in Seismic</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Set up email signature<div class="sub">Use OutSystems branding assets and Media Kit</div></div></div>
+      </div>
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Update LinkedIn profile<div class="sub">Explore social backgrounds; add OutSystems email to LinkedIn</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Review Getting Started tool guides<div class="sub">LinkedIn Sales Navigator, EveryoneSocial, ZoomInfo</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Establish your operating cadence<div class="sub">Block recurring time for prospecting, SFDC updates, pipeline reviews</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-block">
+    <div class="category-label">Systems &amp; Tools</div>
+    <div class="checklist-grid">
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Explore Salesforce (SFDC)<div class="sub">Account list, opportunity stages, Primary Sales Play tagging</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Explore Gong<div class="sub">Shadow 2–3 recorded discovery calls from top regional performers</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Explore Clari + Pipeline Dashboard<div class="sub">Understand forecasting cadence with RevOps</div></div></div>
+      </div>
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Explore LinkedIn Sales Navigator<div class="sub">Set up territory account and persona searches</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Explore EveryoneSocial<div class="sub">Social selling activation for your territory</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Explore Deal Mate<div class="sub">Run your first 2–3 target accounts through Deal Mate</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-block">
+    <div class="category-label">Account &amp; Pipeline</div>
+    <div class="checklist-grid">
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Review / confirm territory and accounts<div class="sub">Align with Josh Dixson on assignment and prioritisation</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Review installed base (if applicable)<div class="sub">Check Compass Customer Scores for existing customers in territory</div></div></div>
+      </div>
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Get acquainted with your SDR<div class="sub">Begin a prospecting cadence — align on ICP and outreach sequencing</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Interlock with Field Marketing<div class="sub">Understand demand gen events and campaigns in your region</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-block">
+    <div class="category-label">Activities with Manager</div>
+    <div class="checklist-grid">
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Review key processes and Sales Playbook with Josh Dixson</div></div>
+        <div class="checklist-item"><div class="checklist-text">Review company-wide policies<div class="sub">Travel and expense, tools, other policies</div></div></div>
+      </div>
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Watch Elevator Pitch video and provide feedback<div class="sub">Available via Seismic or Gong</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Discuss upcoming calls to shadow<div class="sub">Schedule at least 1 live call shadow for Week 3</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-block">
+    <div class="category-label">Activities with Mentor</div>
+    <div class="checklist-grid">
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Meet Josh Dixson — first 1:1<div class="sub">Share backgrounds; discuss how you each explain OutSystems</div></div></div>
+      </div>
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Discuss SFDC best practices (Opportunity level)<div class="sub">How your mentor logs activity and manages pipeline hygiene</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ KEY RESOURCES ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Key Resources This Week</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="resource-row"><div class="res-type">Playbook</div><a href="https://outsystems.seismic.com/Link/Content/DCHFgCcGMVPHD8HPBhp6gqQqFqFV">Digital Sales Playbook — Banking & Financial Services (BFS) + Insurance + Compete Play</a><div class="res-note">MEDDPICC · Discovery flow</div></div>
+  <div class="resource-row"><div class="res-type">Learning</div><a href="https://outsystems.seismic.com/app#/learning/v2/learn">Seismic — Sales Week 2 Learning Path</a><div class="res-note">Complete this week</div></div>
+  <div class="resource-row"><div class="res-type">MEDDPICC</div><a href="https://outsystems.seismic.com">MEDDPICC Guide + Cheat Sheet</a><div class="res-note">Seismic</div></div>
+  <div class="resource-row"><div class="res-type">Calls</div><a href="https://www.gong.io">Gong — Peer Call Recordings</a><div class="res-note">Shadow top regional performers</div></div>
+  <div class="resource-row"><div class="res-type">AI</div><a href="https://www.outsystems.com/ai-at-outsystems/">AI at OutSystems Page</a><div class="res-note">Customer-ready messaging</div></div>
+  <div class="resource-row"><div class="res-type">Slides</div><a href="https://docs.google.com/presentation/d/1IAtTEYJUrQ92Gyna_YoR1pSbIkQ-xEr349uuARh9GiQ/edit">Sales Deck of Decks</a><div class="res-note">Full slide library</div></div>
+  <div class="resource-row"><div class="res-type">Dashboard</div><a href="https://outsystems.lightning.force.com/lightning/o/Opportunity/list">SFDC Territory Dashboard</a><div class="res-note">Your account list</div></div>
+</section>
+
+<!-- ══════════════ FAQ ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Week 2 Questions</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How do I qualify a deal using MEDDPICC?</div>
+    <div class="faq-a">MEDDPICC stands for Metrics, Economic Buyer, Decision Criteria, Decision Process, Paper Process, Identify Pain, Champion, Competition. At OutSystems, moving an opportunity to 10% requires confirmed Identified Pain and an initial Champion. At 25% you need Metrics and Decision Criteria defined. Review the MEDDPICC Cheat Sheet on Seismic and ask Josh Dixson for a worked example from a recent deal in your territory.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What should I know before my first mentor session?</div>
+    <div class="faq-a">Come prepared with your 30-second answer to "what does OutSystems do?" Your mentor's job in Week 2 is to help you refine that answer and discuss upcoming calls to shadow. Also bring 2–3 questions about territory accounts you've identified — your mentor may have history with some of them in Gong.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How do I prioritise my territory accounts?</div>
+    <div class="faq-a">Start with Compass Customer Scores for any existing OutSystems customers in your territory — high score means expansion potential, low score means risk. For new logos, use Deal Mate to run account research and Sales Play matching. Layer in LinkedIn Sales Navigator to identify trigger events (new CIO, digital transformation announcements, hiring spikes). Bring your tiering to Josh Dixson this week for validation.</div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <p>OUTSYSTEMS Global Sales · EMEA · EMEA<br>
+     George Williams — Senior Business Development Representative<br>
+     Generated April 28, 2026</p>
+  <p style="text-align:right">Prepared by Revenue Enablement<br>Questions → Sarah Cropp or Bobbie Jo Frazier</p>
+</footer>
+<div class="sources-list">
+  Sources: [1] Slack #one-revenue-team (April 2026) · [2] Google Drive — Revenue Hub Canvas (April 28, 2026) · [3] AE 30-60-90 Onboarding Plan Template
+</div>
+</body>
+</html>
