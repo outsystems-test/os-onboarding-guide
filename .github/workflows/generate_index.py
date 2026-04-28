@@ -1,0 +1,184 @@
+"""
+generate_index.py
+Scans all *-guide.html files in the repo root and regenerates index.html.
+Filename convention: {first}-{last}-week-{n}-guide.html
+  e.g. lexie-porter-week-one-guide.html  ->  "Lexie Porter", Week 1
+Groups guides by person; clicking a person expands their available weeks.
+"""
+
+import glob
+import os
+import re
+import json
+from collections import defaultdict
+
+WEEK_MAP = {
+    "one": 1, "two": 2, "three": 3, "four": 4,
+    "1": 1,   "2": 2,   "3": 3,    "4": 4,
+}
+WEEK_LABEL = {1: "Week One", 2: "Week Two", 3: "Week Three", 4: "Week Four"}
+
+def parse_guide(filename):
+    base = os.path.basename(filename)
+    m = re.match(r'^(.+?)-week-(\w+)-guide\.html$', base)
+    if not m:
+        return None
+    slug, week_str = m.group(1), m.group(2).lower()
+    week = WEEK_MAP.get(week_str)
+    if week is None:
+        return None
+    name = " ".join(part.capitalize() for part in slug.split("-"))
+    return {"file": base, "name": name, "week": week}
+
+def build_guides():
+    files = sorted(glob.glob("*-guide.html"))
+    guides = [g for f in files if (g := parse_guide(f))]
+    people = defaultdict(list)
+    for g in guides:
+        people[g["name"]].append({"file": g["file"], "week": g["week"]})
+    for name in people:
+        people[name].sort(key=lambda x: x["week"])
+    result = [{"name": n, "guides": people[n]} for n in sorted(people)]
+    return result, len(guides)
+
+def render_index(people, total):
+    unique_people = len(people)
+    people_js = json.dumps(people, ensure_ascii=False)
+    week_label_js = json.dumps({1:"Week One",2:"Week Two",3:"Week Three",4:"Week Four"})
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OutSystems Onboarding Guides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {{
+      --red:      #D42B2B;
+      --red-soft: #FDEAEA;
+      --bg:       #F7F5F0;
+      --surface:  #FFFFFF;
+      --border:   #E4E0D8;
+      --text:     #1A1714;
+      --muted:    #8A8480;
+      --shadow:   0 2px 12px rgba(0,0,0,0.07);
+      --shadow-lg:0 8px 32px rgba(0,0,0,0.11);
+    }}
+    *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    body {{ background: var(--bg); color: var(--text); font-family: 'Instrument Sans', sans-serif; min-height: 100vh; }}
+    header {{ background: var(--surface); border-bottom: 1px solid var(--border); padding: 3rem 6vw 2.5rem; }}
+    .header-inner {{ max-width: 960px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }}
+    .brand {{ display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.4rem; }}
+    .brand-dot {{ width: 9px; height: 9px; border-radius: 50%; background: var(--red); }}
+    .brand-name {{ font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }}
+    h1 {{ font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; letter-spacing: -0.02em; }}
+    h1 em {{ font-style: italic; color: var(--red); }}
+    .stats {{ display: flex; gap: 2.4rem; padding-bottom: 0.2rem; }}
+    .stat-val {{ font-family: 'Fraunces', serif; font-weight: 600; font-size: 2rem; color: var(--text); line-height: 1; }}
+    .stat-lbl {{ font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }}
+    .search-bar {{ max-width: 960px; margin: 2rem auto 0; padding: 0 6vw; }}
+    .search-input {{ width: 100%; padding: 0.75rem 1rem 0.75rem 2.6rem; border: 1.5px solid var(--border); border-radius: 6px; background: var(--surface); font-family: 'Instrument Sans', sans-serif; font-size: 0.9rem; color: var(--text); outline: none; transition: border-color 0.18s; background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238A8480' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: 0.8rem center; }}
+    .search-input:focus {{ border-color: var(--red); }}
+    .search-input::placeholder {{ color: var(--muted); }}
+    .grid {{ max-width: 960px; margin: 2rem auto 4rem; padding: 0 6vw; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }}
+    .person-card {{ background: var(--surface); border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); transition: box-shadow 0.2s, border-color 0.2s; opacity: 0; transform: translateY(14px); animation: fadeUp 0.38s ease forwards; }}
+    .person-card:hover {{ box-shadow: var(--shadow-lg); border-color: #ccc; }}
+    @keyframes fadeUp {{ to {{ opacity: 1; transform: none; }} }}
+    .person-header {{ display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.3rem; cursor: pointer; user-select: none; }}
+    .avatar {{ width: 42px; height: 42px; border-radius: 50%; background: var(--red-soft); color: var(--red); font-family: 'Fraunces', serif; font-weight: 600; font-size: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }}
+    .person-info {{ flex: 1; min-width: 0; }}
+    .person-name {{ font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
+    .person-meta {{ font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }}
+    .chevron {{ color: var(--muted); transition: transform 0.22s ease; flex-shrink: 0; }}
+    .person-card.open .chevron {{ transform: rotate(180deg); }}
+    .week-list {{ border-top: 1px solid var(--border); display: none; }}
+    .person-card.open .week-list {{ display: block; }}
+    .week-link {{ display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.3rem; text-decoration: none; color: var(--text); font-size: 0.88rem; border-bottom: 1px solid var(--border); transition: background 0.15s; gap: 0.5rem; }}
+    .week-link:last-child {{ border-bottom: none; }}
+    .week-link:hover {{ background: var(--red-soft); color: var(--red); }}
+    .week-link:hover .week-arrow {{ color: var(--red); }}
+    .week-badge {{ font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--bg); border: 1px solid var(--border); border-radius: 3px; padding: 0.15rem 0.45rem; color: var(--muted); flex-shrink: 0; }}
+    .week-arrow {{ color: var(--border); font-size: 0.9rem; }}
+    .empty {{ grid-column: 1/-1; text-align: center; padding: 4rem 1rem; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }}
+    footer {{ border-top: 1px solid var(--border); padding: 1.6rem 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }}
+    .footer-text {{ font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }}
+    a.footer-link {{ color: var(--muted); text-decoration: none; transition: color 0.15s; }}
+    a.footer-link:hover {{ color: var(--red); }}
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="brand"><div class="brand-dot"></div><span class="brand-name">OutSystems — Revenue Onboarding</span></div>
+      <h1>New Hire<br><em>Guides</em></h1>
+    </div>
+    <div class="stats">
+      <div><div class="stat-val">{unique_people}</div><div class="stat-lbl">People</div></div>
+      <div><div class="stat-val">{total}</div><div class="stat-lbl">Guides</div></div>
+    </div>
+  </div>
+</header>
+<div class="search-bar">
+  <input class="search-input" type="text" id="search" placeholder="Search by name..." autocomplete="off"/>
+</div>
+<div class="grid" id="grid"></div>
+<footer>
+  <span class="footer-text">os-onboarding-guide · outsystems-test</span>
+  <a class="footer-text footer-link" href="https://github.com/outsystems-test/os-onboarding-guide" target="_blank">View on GitHub ↗</a>
+</footer>
+<script>
+  const people = {people_js};
+  const weekLabel = {week_label_js};
+  function initials(name) {{
+    const p = name.split(' ');
+    return p.length >= 2 ? (p[0][0] + p[p.length-1][0]).toUpperCase() : name.slice(0,2).toUpperCase();
+  }}
+  function render(list) {{
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    if (!list.length) {{ grid.innerHTML = '<div class="empty">No guides found</div>'; return; }}
+    list.forEach((person, i) => {{
+      const card = document.createElement('div');
+      card.className = 'person-card';
+      card.style.animationDelay = i * 45 + 'ms';
+      const weekRows = person.guides.map(g => `
+        <a class="week-link" href="${{g.file}}">
+          <span>${{weekLabel[g.week]}}</span>
+          <span style="display:flex;align-items:center;gap:0.5rem">
+            <span class="week-badge">W${{g.week}}</span>
+            <span class="week-arrow">→</span>
+          </span>
+        </a>`).join('');
+      card.innerHTML = `
+        <div class="person-header">
+          <div class="avatar">${{initials(person.name)}}</div>
+          <div class="person-info">
+            <div class="person-name">${{person.name}}</div>
+            <div class="person-meta">${{person.guides.length}} guide${{person.guides.length > 1 ? 's' : ''}}</div>
+          </div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+        <div class="week-list">${{weekRows}}</div>`;
+      card.querySelector('.person-header').addEventListener('click', () => card.classList.toggle('open'));
+      if (list.length === 1) card.classList.add('open');
+      grid.appendChild(card);
+    }});
+  }}
+  document.getElementById('search').addEventListener('input', e => {{
+    const q = e.target.value.toLowerCase();
+    render(q ? people.filter(p => p.name.toLowerCase().includes(q)) : people);
+  }});
+  render(people);
+</script>
+</body>
+</html>"""
+
+if __name__ == "__main__":
+    people, total = build_guides()
+    html = render_index(people, total)
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"Regenerated index.html — {len(people)} people, {total} guide(s).")
