@@ -746,6 +746,17 @@
     .spiff-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .context-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar { display: flex; gap: 4px; margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
+  .progress-step { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+  .progress-step-bar { height: 6px; background: var(--rule); }
+  .progress-step.done .progress-step-bar { background: var(--ink); }
+  .progress-step.active .progress-step-bar { background: var(--accent); }
+  .progress-label { font-family: var(--mono); font-size: 8px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .progress-step.active .progress-label { color: var(--accent); font-weight: 540; }
+  .progress-step.done .progress-label { color: var(--ink); }
+
 </style>
 </head>
 <body>
@@ -753,7 +764,7 @@
 <!-- ══════════════ MASTHEAD ══════════════ -->
 <header class="masthead">
   <div>
-    <div class="masthead-label">OutSystems · Global Sales — Business Development</div>
+    <div class="masthead-label">OutSystems · Global Sales</div>
     <h1>Welcome,<br><em>George.</em></h1>
   </div>
   <div class="masthead-logo">
@@ -770,7 +781,7 @@
   <div class="masthead-meta">
     <div class="badge">Day One Guide</div>
     <p>Role: Senior Business Development Representative<br>
-       Team: Global Sales — Global<br>
+       Team: Global Sales — Business Development — Global<br>
        Manager: Diogo Mendes<br>
        Start: April 28, 2026</p>
   </div>
@@ -796,6 +807,17 @@
 </div>
 
 
+
+<!-- ══ PROGRESS ══ -->
+<div>
+  <div class="progress-bar">
+    <div class="progress-step active"><div class="progress-step-bar"></div><span class="progress-label">Week 1 · Onboard</span></div>
+    <div class="progress-step "><div class="progress-step-bar"></div><span class="progress-label">Week 2 · Learn</span></div>
+    <div class="progress-step "><div class="progress-step-bar"></div><span class="progress-label">Week 3 · Apply</span></div>
+    <div class="progress-step "><div class="progress-step-bar"></div><span class="progress-label">Week 4 · Execute</span></div>
+  </div>
+</div>
+
 <!-- ══════════════ WELCOME ══════════════ -->
 <section class="section">
   <div class="welcome-block">
@@ -809,37 +831,58 @@
       </p>
       <div class="aside-box">
         <strong>Your Manager's Context</strong>
-        Diogo Mendes is scaling the global BDR team across multiple regions and driving pipeline generation through the BFS and Insurance sales plays. He&rsquo;ll want to align on your territory focus, outreach sequencing, and Q2 ramp targets in your first 1:1 this week.
+        Diogo Mendes is focused on building and scaling the BDR team across EMEA, aligning outbound pipeline generation with the BFS and Insurance sales plays, and onboarding new team members. He'll want to align on your territory, outreach approach, and first-week priorities in your first 1:1.
       </div>
     </div>
 
     <div class="context-card">
-      <div class="context-title">Company Snapshot · Q2 2026 2026</div>
+      <div class="context-title">Company Snapshot · Q2 2026</div>
       <div class="context-stat">
         <div class="stat-label">Category</div>
         <div class="stat-value">Agentic Systems Engineering</div>
-        <div class="stat-sub">Launched March 31, 2026 — the enterprise control plane for governed AI agents</div>
+        <div class="stat-sub">Launched March 31, 2026 — OutSystems pioneered Agentic Systems Engineering, giving enterprises the governance layer to build, operate, and scale AI agents safely.</div>
       </div>
       <div class="context-stat">
         <div class="stat-label">ARR Target</div>
-        <div class="stat-value">€550.1M in 2026</div>
+        <div class="stat-value">€550.1M in 2026, on a path to €1B by 2029</div>
         <div class="stat-sub">Path to €1B by 2029</div>
       </div>
       <div class="context-stat">
         <div class="stat-label">Active Sales Plays</div>
-        <div class="stat-value">BFS · Insurance · Compete (Pro Code / AI-Native)</div>
-        <div class="stat-sub">New play every Tuesday through May — BFS, Insurance, Compete now live</div>
+        <div class="stat-value">BFS (Banking & Financial Services) · Insurance · Compete — Winning vs Pro Code & AI-Native</div>
+        <div class="stat-sub">New sales play every Tuesday through May — join Sales Play Tuesday sessions to stay current.</div>
       </div>
       <div class="context-stat">
         <div class="stat-label">Q2 SPIFF</div>
-        <div class="stat-value">1.5x</div>
-        <div class="stat-sub">1.5x quota and commission uplift on new ARR deals created March 1 – June 30, 2026 and closed by June 30, 2026.</div>
+        <div class="stat-value">1.5×</div>
+        <div class="stat-sub">New ARR deals created between March 1 – June 30, 2026 and closed April 1 – June 30, 2026 earn 1.5x quota and commission uplift.</div>
       </div>
       <div class="context-stat">
         <div class="stat-label">ONE Conference</div>
         <div class="stat-value">ONE '26 — June 2–3, 2026</div>
-        <div class="stat-sub">Applications closed April 24 — check with manager if a spot is still available</div>
+        <div class="stat-sub">Applications closed April 24. Speak with Diogo Mendes to confirm internal attendance eligibility.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ ONBOARDING & LEARNING ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Onboarding &amp; Learning</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="spiff-banner">
+    <div>
+      <div class="spiff-label">Seismic Learning · Start on Day 1</div>
+      <div class="spiff-title"><a href="https://outsystems.seismic.com/app#/learning/v2/learn" style="color:white;text-decoration:none;">Onboarding Week 1 Learning Path →</a></div>
+    </div>
+    <div style="text-align:right;">
+      <div class="spiff-mult" style="font-size:22px;opacity:0.85;">Day 1</div>
+      <div class="spiff-sub">Complete before your<br>first customer call</div>
     </div>
   </div>
 </section>
@@ -848,7 +891,7 @@
 <!-- ══════════════ WEEK SCHEDULE ══════════════ -->
 <section class="section">
   <div class="section-header">
-    <span class="section-num">01</span>
+    <span class="section-num">02</span>
     <h2 class="section-title">Your First Week — Day by Day</h2>
     <div class="section-rule"></div>
   </div>
@@ -872,7 +915,7 @@
           <div class="event-time">10 AM</div>
           <div class="event-body">
             <div class="event-title">1:1 with Diogo Mendes</div>
-            <div class="event-note">Align on territory, Q2 2026 expectations, and scaling the global BDR team and driving Q2 pipeline through the BFS and Insurance sales plays.. Ask about your target account list and any deals already in flight.</div>
+            <div class="event-note">Align on territory, Q2 2026 expectations, and focused on building and scaling the BDR team across EMEA and aligning outbound sequences with the active sales plays. He'll walk you through your territory and outreach expectations in your first 1:1.. Ask about your target account list and any deals already in flight.</div>
           </div>
         </div>
         <div class="event">
@@ -962,7 +1005,7 @@
           <div class="event-time">Live session</div>
           <div class="event-body">
             <div class="event-title">Enablement, Coaching & Onboarding <span class="pill pill-red">Attend</span></div>
-            <div class="event-note">Recurring weekly session with Madeline Dibble's team. Zoom: <a href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=aXVhY2k0ZjI5cWp2bWlpY2FmcmkxdjFkMmMgc2FsZXMuZW5hYmxlbWVudGFuZHByb2R1Y3Rpdml0eUBvdXRzeXN0ZW1zLmNvbQ&tmsrc=sales.enablementandproductivity%40outsystems.com" class="event-link">Join Meeting →</a> (ID: See Google Calendar invite, Passcode: See Google Calendar invite)</div>
+            <div class="event-note">Recurring weekly session with Madeline Dibble's team. Zoom: <a href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=bW4yaW5odnNpMmdnbjlzZzZkNHU5am5hbG8gc2FsZXMuZW5hYmxlbWVudGFuZHByb2R1Y3Rpdml0eUBvdXRzeXN0ZW1zLmNvbQ" class="event-link">Join Meeting →</a> (ID: See invite, Passcode: See invite)</div>
           </div>
         </div>
         <div class="event">
@@ -1016,7 +1059,7 @@
 
   <div class="aside-box" style="margin-top:16px">
     <strong>Revenue Launchpad</strong>
-    OutSystems runs a dedicated field onboarding bootcamp called <em>Revenue Launchpad</em> held in Lisbon. The most recent cohort completed April 2026. Ask your enablement contact — Sarah Cropp or Bobbie Jo Frazier — about the next cohort date and whether you'll be registered. Graduates leave with a full account entry package and Day One ready status.
+    OutSystems runs a dedicated field onboarding bootcamp called <em>Revenue Launchpad</em> held in Lisbon. The most recent cohort completed April 2026. Ask your enablement contact — Bobbie Jo Frazier or Sarah Cropp — about the next cohort date and whether you'll be registered. Graduates leave with a full account entry package and Day One ready status.
   </div>
 </section>
 
@@ -1024,7 +1067,7 @@
 <!-- ══════════════ TOOLS & ACCESS ══════════════ -->
 <section class="section">
   <div class="section-header">
-    <span class="section-num">02</span>
+    <span class="section-num">03</span>
     <h2 class="section-title">Tools & Access</h2>
     <div class="section-rule"></div>
   </div>
@@ -1134,7 +1177,7 @@
 <!-- ══════════════ TEAM ══════════════ -->
 <section class="section">
   <div class="section-header">
-    <span class="section-num">03</span>
+    <span class="section-num">04</span>
     <h2 class="section-title">Your Team — Key Introductions</h2>
     <div class="section-rule"></div>
   </div>
@@ -1155,28 +1198,28 @@
       <tr>
         <td class="name-cell">Diogo Mendes</td>
         <td class="role-cell">Director, Business Development<br>Your direct manager</td>
-        <td>scaling the global BDR team across multiple regions and driving pipeline generation through the BFS and Insurance sales plays. He&rsquo;ll want to align on your territory focus, outreach sequencing, and Q2 ramp targets in your first 1:1 this week.</td>
+        <td>focused on building and scaling the BDR team across EMEA, aligning outbound pipeline generation with the BFS and Insurance sales plays, and onboarding new team members. He'll want to align on your territory, outreach approach, and first-week priorities in your first 1:1.</td>
         <td class="slack-cell">@diogo.mendes</td>
       </tr>
       <!-- Row 2: Always the department leader (sourced from Workday org chart) -->
       <tr>
         <td class="name-cell">Kim Seabrook</td>
         <td class="role-cell">Chief Revenue Officer<br>Your department leader</td>
-        <td>Kim owns the entire revenue organisation — field sales, RevOps, solution engineering, customer success, and partner alliances. Her Q2 priorities are driving the BFS and Insurance sales plays, scaling the Agentic Systems Engineering narrative, and pushing toward €550M ARR in 2026. Follow her in <strong>#one-revenue-team</strong> for leadership posts, SPIFF announcements, and strategic direction on the path to €1B.</td>
+        <td>Kim owns the entire revenue organisation — field sales, RevOps, solution engineering, CS, and partner alliances. Her Q2 priorities are driving the BFS, Insurance, and Compete sales plays and pushing toward €550M ARR. Follow her in <strong>#one-revenue-team</strong> for leadership posts, SPIFF announcements, and strategic direction.</td>
         <td class="slack-cell">@kim.seabrook</td>
       </tr>
       <!-- Rows 3+: Peers and relevant persons adapted to this hire's role -->
       <tr>
-        <td class="name-cell">André Fenchel</td>
+        <td class="name-cell">Emir Filipovic</td>
         <td class="role-cell">AE — Global</td>
         <td>Regional peer. Ask to shadow their calls in week 1. Good model for the territory and how the Sales motion works in this region.</td>
-        <td class="slack-cell">@andre.fenchel</td>
+        <td class="slack-cell">@emir.filipovic</td>
       </tr>
       <tr>
-        <td class="name-cell">Jaimin Lakhani</td>
+        <td class="name-cell">Silvia Miguel San Agustín</td>
         <td class="role-cell">AE — Global</td>
-        <td>Regional peer. Great peer to connect with — active BDR on the team and a useful sounding board for your first outreach sequences.</td>
-        <td class="slack-cell">@jaimin.lakhani</td>
+        <td>Regional peer. A fellow BDR — great for comparing talk tracks, sharing prospecting tips, and navigating your first week together.</td>
+        <td class="slack-cell">@silvia.miguel</td>
       </tr>
       <tr>
         <td class="name-cell">Bobbie Jo Frazier</td>
@@ -1185,7 +1228,7 @@
         <td class="slack-cell">@bobbie.jo.frazier</td>
       </tr>
       <tr>
-        <td class="name-cell">Your assigned SA (check with Diogo Mendes)</td>
+        <td class="name-cell">Your assigned Solution Architect (ask Diogo)</td>
         <td class="role-cell">Solution Architecture — Global</td>
         <td>Your SA counterpart for Global. Critical for technical deals and demos. Get a 1:1 this week.</td>
         <td class="slack-cell">@your-sa</td>
@@ -1204,7 +1247,7 @@
 <!-- ══════════════ SLACK CHANNELS ══════════════ -->
 <section class="section">
   <div class="section-header">
-    <span class="section-num">04</span>
+    <span class="section-num">05</span>
     <h2 class="section-title">Slack Channels — Join These Now</h2>
     <div class="section-rule"></div>
   </div>
@@ -1220,7 +1263,7 @@
     <div class="channel-item">
       <div class="channel-hash">#</div>
       <div class="channel-body">
-        <div class="channel-name">#one-revenue-team</div>
+        <div class="channel-name">#emea-sdr-leadership</div>
         <div class="channel-desc">Your primary team channel. Global AEs, SAs, and Diogo Mendes. Introduce yourself here Day 1.</div>
       </div>
     </div>
@@ -1263,7 +1306,7 @@
       <div class="channel-hash">#</div>
       <div class="channel-body">
         <div class="channel-name">#one-revenue-team</div>
-        <div class="channel-desc">Global-wide announcements from Kim Seabrook. GTM changes, promotions, territory updates.</div>
+        <div class="channel-desc">Global-wide announcements from Mike Corr. GTM changes, promotions, territory updates.</div>
       </div>
     </div>
   </div>
@@ -1278,7 +1321,7 @@
 <!-- ══════════════ OFFICE LOGISTICS ══════════════ -->
 <section class="section">
   <div class="section-header">
-    <span class="section-num">05</span>
+    <span class="section-num">06</span>
     <h2 class="section-title">Office & Logistics</h2>
     <div class="section-rule"></div>
   </div>
@@ -1297,7 +1340,7 @@
     <div class="logistics-cell">
       <div class="lc-label">SPIFF / Compensation Qs</div>
       <div class="lc-value">Sales Operations</div>
-      <div class="lc-sub"><a href="mailto:sales.operations.team@outsystems.com" style="color:var(--accent);text-decoration:none">sales.operations.team@outsystems.com</a> or DM Sonia Parreira in Slack.</div>
+      <div class="lc-sub"><a href="mailto:sales.operations.team@outsystems.com" style="color:var(--accent);text-decoration:none">sales.operations.team@outsystems.com</a> or DM Brendon Meisinger in Slack.</div>
     </div>
     <div class="logistics-cell">
       <div class="lc-label">Sales Content</div>
@@ -1321,18 +1364,18 @@
 <!-- ══════════════ Q2 SPIFF ══════════════ -->
 <section class="section">
   <div class="section-header">
-    <span class="section-num">06</span>
-    <h2 class="section-title">Q2 2026 SPIFF — Money on the Table</h2>
+    <span class="section-num">07</span>
+    <h2 class="section-title">Q2 SPIFF — Money on the Table</h2>
     <div class="section-rule"></div>
   </div>
 
   <div class="spiff-banner">
     <div>
-      <div class="spiff-label">Q2 Create & Close Revenue SPIFF · Active Now</div>
-      <div class="spiff-title">New ARR created March 1 – June 30, 2026 and<br>closed by June 30, 2026 · 1.5x quota &amp; commission uplift</div>
+      <div class="spiff-label">Q2 Create & Close SPIFF · Active Now</div>
+      <div class="spiff-title">New ARR created Mar 1 – Jun 30, 2026 and<br>closed by Jun 30, 2026</div>
     </div>
     <div style="text-align:right">
-      <div class="spiff-mult">1.5x</div>
+      <div class="spiff-mult">1.5×</div>
       <div class="spiff-sub">Quota + Commission<br>Uplift</div>
     </div>
   </div>
@@ -1340,15 +1383,15 @@
   <div class="two-col">
     <div class="info-card">
       <div class="card-label">Eligible Roles</div>
-      <p>Direct Quota Carriers (RSM, SAM, AE2, AE1), Sales Managers, PAMs, Solution Architects</p>
-      <p style="margin-top:8px;font-size:12px;color:var(--muted)">Agent Execution Growth SPIFF also active: €250–€1,000 per customer growing executions from <50 to 200+ by June 30 (CSM/TSM eligible).</p>
+      <p>BDR · SDR · AE1 · AE2 · RSM (check with your manager for BDR eligibility specifics)</p>
+      <p style="margin-top:8px;font-size:12px;color:var(--muted)">PAMs and Managers (partner-sourced deals), Solution Architects and Managers, Strategic Directors</p>
       <p style="margin-top:8px"><a href="https://docs.google.com/document/d/1adMYNZr16ZC1YqTYeWfzmGZlMFwbuQnlhK0apns-36Q/edit" style="color:var(--accent);font-size:12px;text-decoration:none;font-weight:500">Full SPIFF details →</a></p>
     </div>
     <div class="info-card">
       <div class="card-label">Additional Q2 Incentives</div>
       <p><strong>Agent Execution Growth SPIFF</strong> — April 1 – June 30, 2026</p>
-      <p><strong>Mid-Term Upgrade SPIFF</strong> — New ARR deals created March 1 – June 30, 2026 and closed in Q2 2026</p>
-      <p style="margin-top:8px;font-size:12px;color:var(--muted)">Ask Sonia Parreira for the specific terms on these.</p>
+      <p><strong>Mid-Term Upgrade SPIFF</strong> — New ARR created March 1 – June 30, 2026 and closed April 1 – June 30, 2026</p>
+      <p style="margin-top:8px;font-size:12px;color:var(--muted)">Ask Brendon Meisinger for the specific terms on these.</p>
     </div>
   </div>
 </section>
@@ -1357,15 +1400,15 @@
 <!-- ══════════════ RESOURCES ══════════════ -->
 <section class="section">
   <div class="section-header">
-    <span class="section-num">07</span>
+    <span class="section-num">08</span>
     <h2 class="section-title">Essential Resources — Bookmark These</h2>
     <div class="section-rule"></div>
   </div>
 
   <div class="resource-row">
     <div class="res-type">Playbook</div>
-    <a href="https://outsystems.seismic.com/Link/Content/DCHFgCcGMVPHD8HPBhp6gqQqFqFV">Banking & Financial Services (BFS) CX Modernization — Seismic Hub</a>
-    <div class="res-note">Banking & Financial Services</div>
+    <a href="https://outsystems.seismic.com/Link/Content/DCHFgCcGMVPHD8HPBhp6gqQqFqFV">Banking & Financial Services (BFS) — Seismic Hub</a>
+    <div class="res-note">Banking & Financial Services, Insurance</div>
   </div>
   <div class="resource-row">
     <div class="res-type">Slides</div>
@@ -1389,7 +1432,7 @@
   </div>
   <div class="resource-row">
     <div class="res-type">Dashboard</div>
-    <a href="https://outsystems.lightning.force.com/lightning/r/Dashboard/01ZQA000001keRh2AI/view?queryScope=userFolders">SFDC BFS CX Modernization Account Dashboard</a>
+    <a href="https://outsystems.lightning.force.com/lightning/r/Dashboard/01ZQA000001keRh2AI/view?queryScope=userFolders">SFDC BFS CX Modernization · Insurance Agentic Process Modernization · Compete vs Pro Code & AI Account Dashboard</a>
     <div class="res-note">Territory view</div>
   </div>
   <div class="resource-row">
@@ -1404,12 +1447,12 @@
   </div>
   <div class="resource-row">
     <div class="res-type">Analytics</div>
-    <a href="https://app.powerbi.com/groups/me/apps/451f4850-88df-4c9d-9cd4-ef710f5316f7/reports/cf8dc1ea-3882-4387-95c2-f8e82403e4fc/3f009f41c3c7bf737ff0">Q2 2026 SPIFF Power BI Dashboard</a>
+    <a href="https://app.powerbi.com/groups/me/apps/451f4850-88df-4c9d-9cd4-ef710f5316f7/reports/cf8dc1ea-3882-4387-95c2-f8e82403e4fc/3f009f41c3c7bf737ff0">Q2 SPIFF Power BI Dashboard</a>
     <div class="res-note">Track your incentive performance</div>
   </div>
   <div class="resource-row">
     <div class="res-type">Conference</div>
-    <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE '26 Internal App — Apply by April 24, 2026 (CLOSED — check with manager)</a>
+    <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE '26 Internal App — Apply by April 24, 2026</a>
     <div class="res-note">June 2–3, 2026 conference</div>
   </div>
 </section>
@@ -1418,7 +1461,7 @@
 <!-- ══════════════ FAQ ══════════════ -->
 <section class="section">
   <div class="section-header">
-    <span class="section-num">08</span>
+    <span class="section-num">09</span>
     <h2 class="section-title">Common First-Week Questions</h2>
     <div class="section-rule"></div>
   </div>
@@ -1435,12 +1478,12 @@
 
   <div class="faq-item">
     <div class="faq-q">What is Revenue Launchpad and will I go through it?</div>
-    <div class="faq-a">Revenue Launchpad is OutSystems' field-specific onboarding bootcamp, held in Lisbon. The most recent cohort completed April 28 – May 1, 2026. Graduates leave with a territory POV and account entry package. Ask Bobbie Jo Frazier when the next cohort is scheduled and whether you're enrolled. If you missed this cohort, the replays and materials are in the Revenue Hub Canvas in Slack.</div>
+    <div class="faq-a">Revenue Launchpad is OutSystems' field-specific onboarding bootcamp, held in Lisbon. The most recent cohort completed April 28 – May 2, 2026. Graduates leave with a territory POV and account entry package. Ask Bobbie Jo Frazier when the next cohort is scheduled and whether you're enrolled. If you missed this cohort, the replays and materials are in the Revenue Hub Canvas in Slack.</div>
   </div>
 
   <div class="faq-item">
-    <div class="faq-q">How does the Q2 2026 SPIFF work for me as an AE?</div>
-    <div class="faq-a">The <strong>Q2 Create & Close Revenue SPIFF</strong> pays 1.5x on quota AND commission for any new ARR opportunity created April 28, 2026 – June 30, 2026 that closes in Q2 2026. As a Senior Business Development Representative, you're eligible for any deal source. Track performance on the <a href="https://app.powerbi.com/groups/me/apps/451f4850-88df-4c9d-9cd4-ef710f5316f7/reports/cf8dc1ea-3882-4387-95c2-f8e82403e4fc/3f009f41c3c7bf737ff0">Q2 2026 SPIFF Dashboard</a>. Questions → email <a href="mailto:sales.operations.team@outsystems.com">sales.operations.team@outsystems.com</a>.</div>
+    <div class="faq-q">How does the Q2 SPIFF work for me as an AE?</div>
+    <div class="faq-a">The <strong>Q2 Create & Close SPIFF</strong> pays 1.5× on quota AND commission for any new ARR opportunity created April 28, 2026 – May 2, 2026 that closes in Q2. As a Senior Business Development Representative, you're eligible for any deal source. Track performance on the <a href="https://app.powerbi.com/groups/me/apps/451f4850-88df-4c9d-9cd4-ef710f5316f7/reports/cf8dc1ea-3882-4387-95c2-f8e82403e4fc/3f009f41c3c7bf737ff0">Q2 SPIFF Dashboard</a>. Questions → email <a href="mailto:sales.operations.team@outsystems.com">sales.operations.team@outsystems.com</a>.</div>
   </div>
 
   <div class="faq-item">
@@ -1450,7 +1493,7 @@
 
   <div class="faq-item">
     <div class="faq-q">Where do I get help with a technical question in a deal?</div>
-    <div class="faq-a">Three paths: (1) Your assigned SA (check with Diogo Mendes), your Global SA — for anything specific to your deal. (2) <strong>#solutions_ama</strong> — SA team answers field questions here. (3) <strong>#ase-internal</strong> — for Agentic Systems Engineering questions. For customer references, ask in <strong>#customer-references</strong>.</div>
+    <div class="faq-a">Three paths: (1) Your assigned Solution Architect (ask Diogo), your Global SA — for anything specific to your deal. (2) <strong>#solutions_ama</strong> — SA team answers field questions here. (3) <strong>#ase-internal</strong> — for Agentic Systems Engineering questions. For customer references, ask in <strong>#customer-references</strong>.</div>
   </div>
 
   <div class="faq-item">
@@ -1471,11 +1514,11 @@
   <p>OUTSYSTEMS Global Sales · Global · Global<br>
      George Williams — Senior Business Development Representative<br>
      Generated April 28, 2026</p>
-  <p style="text-align:right">Prepared by People & Enablement Team<br>Questions → Sarah Cropp or Bobbie Jo Frazier</p>
+  <p style="text-align:right">Prepared by Revenue Enablement<br>Questions → Bobbie Jo Frazier or Sarah Cropp</p>
 </footer>
 
 <div class="sources-list">
-  Sources: [1] <span style="color:var(--muted)">Slack #one-revenue-team (April 2026)</span> · [2] <span style="color:var(--muted)">Google Calendar — Google Calendar (April 28, 2026)</span> · [3] <span style="color:var(--muted)">Google Drive — Google Drive (April 28, 2026)</span> · [2] <a href="https://www.google.com/calendar/event?eid=MmU3bmY3cThza3BzbGJodWJpNDE3OGsxYXUgY2F0YXJpbmEuc291c2FAb3V0c3lzdGVtcy5jb20" style="color:var(--muted)">Google Calendar — Enablement, Coaching & Onboarding</a> (Apr 23, 2026) · [3] Google Calendar — Sync about Onboarding, Enablement Sales Reps (Apr 21, 2026) · [4] <a href="https://docs.google.com/document/d/12mdVJb3eL1-UzEBZIQL-Jv8RLCbGO7rYD9FMl5NPcfU/edit" style="color:var(--muted)">Google Drive — Onboarding Agent Technical Spec</a> (Apr 2026)
+  Sources: [1] <span style="color:var(--muted)">Slack #one-revenue-team (April 2026)</span> · [2] <span style="color:var(--muted)">Google Calendar — Sales Enablement Calendar (April 28, 2026)</span> · [3] <span style="color:var(--muted)">Google Drive — Revenue Hub Canvas (April 28, 2026)</span> · [2] <a href="https://www.google.com/calendar/event?eid=MmU3bmY3cThza3BzbGJodWJpNDE3OGsxYXUgY2F0YXJpbmEuc291c2FAb3V0c3lzdGVtcy5jb20" style="color:var(--muted)">Google Calendar — Enablement, Coaching & Onboarding</a> (Apr 23, 2026) · [3] Google Calendar — Sync about Onboarding, Enablement Sales Reps (Apr 21, 2026) · [4] <a href="https://docs.google.com/document/d/12mdVJb3eL1-UzEBZIQL-Jv8RLCbGO7rYD9FMl5NPcfU/edit" style="color:var(--muted)">Google Drive — Onboarding Agent Technical Spec</a> (Apr 2026)
 </div>
 
 </body>
