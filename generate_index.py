@@ -1,9 +1,9 @@
 """
 generate_index.py
 Scans all *-guide.html files in the repo root and regenerates index.html.
-Filename convention: {first}-{last}-week-{n}-guide.html
-  e.g. lexie-porter-week-one-guide.html  ->  "Lexie Porter", Week 1
-Groups guides by person; clicking a person expands their available weeks.
+Supported filename conventions:
+  {slug}-week-{n}-guide.html   e.g. lexie-porter-week-one-guide.html
+  {slug}-month-{n}-guide.html  e.g. lexie-porter-month-two-guide.html
 """
 
 import glob
@@ -12,39 +12,52 @@ import re
 import json
 from collections import defaultdict
 
-WEEK_MAP = {
+NUM_MAP = {
     "one": 1, "two": 2, "three": 3, "four": 4,
     "1": 1,   "2": 2,   "3": 3,    "4": 4,
 }
-WEEK_LABEL = {1: "Week One", 2: "Week Two", 3: "Week Three", 4: "Week Four"}
+PERIOD_LABEL = {
+    "week":  {1: "Week One",   2: "Week Two",   3: "Week Three",   4: "Week Four"},
+    "month": {1: "Month Two",  2: "Month Two",  3: "Month Three",  4: "Month Four"},
+}
+
+# Sort key: weeks before months, then by number
+SORT_ORDER = {"week": 0, "month": 1}
 
 def parse_guide(filename):
     base = os.path.basename(filename)
-    m = re.match(r'^(.+?)-week-(\w+)-guide\.html$', base)
+    m = re.match(r'^(.+?)-(week|month)-(\w+)-guide\.html$', base)
     if not m:
         return None
-    slug, week_str = m.group(1), m.group(2).lower()
-    week = WEEK_MAP.get(week_str)
-    if week is None:
+    slug, period, num_str = m.group(1), m.group(2), m.group(3).lower()
+    num = NUM_MAP.get(num_str)
+    if num is None:
         return None
     name = " ".join(part.capitalize() for part in slug.split("-"))
-    return {"file": base, "name": name, "week": week}
+    # human-readable label
+    label = f"{'Week' if period == 'week' else 'Month'} {num_str.capitalize()}"
+    return {"file": base, "name": name, "period": period, "num": num, "label": label}
 
 def build_guides():
     files = sorted(glob.glob("*-guide.html"))
     guides = [g for f in files if (g := parse_guide(f))]
     people = defaultdict(list)
     for g in guides:
-        people[g["name"]].append({"file": g["file"], "week": g["week"]})
+        people[g["name"]].append({
+            "file": g["file"],
+            "period": g["period"],
+            "num": g["num"],
+            "label": g["label"],
+        })
     for name in people:
-        people[name].sort(key=lambda x: x["week"])
+        people[name].sort(key=lambda x: (SORT_ORDER[x["period"]], x["num"]))
     result = [{"name": n, "guides": people[n]} for n in sorted(people)]
-    return result, len(guides)
+    total = sum(len(p["guides"]) for p in result)
+    return result, total
 
 def render_index(people, total):
     unique_people = len(people)
     people_js = json.dumps(people, ensure_ascii=False)
-    week_label_js = json.dumps({1:"Week One",2:"Week Two",3:"Week Three",4:"Week Four"})
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -99,7 +112,7 @@ def render_index(people, total):
     .week-link:last-child {{ border-bottom: none; }}
     .week-link:hover {{ background: var(--red-soft); color: var(--red); }}
     .week-link:hover .week-arrow {{ color: var(--red); }}
-    .week-badge {{ font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--bg); border: 1px solid var(--border); border-radius: 3px; padding: 0.15rem 0.45rem; color: var(--muted); flex-shrink: 0; }}
+    .guide-badge {{ font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; background: var(--bg); border: 1px solid var(--border); border-radius: 3px; padding: 0.15rem 0.45rem; color: var(--muted); flex-shrink: 0; }}
     .week-arrow {{ color: var(--border); font-size: 0.9rem; }}
     .empty {{ grid-column: 1/-1; text-align: center; padding: 4rem 1rem; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }}
     footer {{ border-top: 1px solid var(--border); padding: 1.6rem 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }}
@@ -131,7 +144,6 @@ def render_index(people, total):
 </footer>
 <script>
   const people = {people_js};
-  const weekLabel = {week_label_js};
   function initials(name) {{
     const p = name.split(' ');
     return p.length >= 2 ? (p[0][0] + p[p.length-1][0]).toUpperCase() : name.slice(0,2).toUpperCase();
@@ -144,11 +156,11 @@ def render_index(people, total):
       const card = document.createElement('div');
       card.className = 'person-card';
       card.style.animationDelay = i * 45 + 'ms';
-      const weekRows = person.guides.map(g => `
+      const rows = person.guides.map(g => `
         <a class="week-link" href="${{g.file}}">
-          <span>${{weekLabel[g.week]}}</span>
+          <span>${{g.label}}</span>
           <span style="display:flex;align-items:center;gap:0.5rem">
-            <span class="week-badge">W${{g.week}}</span>
+            <span class="guide-badge">${{g.period[0].toUpperCase()}}${{g.num}}</span>
             <span class="week-arrow">→</span>
           </span>
         </a>`).join('');
@@ -161,7 +173,7 @@ def render_index(people, total):
           </div>
           <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
         </div>
-        <div class="week-list">${{weekRows}}</div>`;
+        <div class="week-list">${{rows}}</div>`;
       card.querySelector('.person-header').addEventListener('click', () => card.classList.toggle('open'));
       if (list.length === 1) card.classList.add('open');
       grid.appendChild(card);

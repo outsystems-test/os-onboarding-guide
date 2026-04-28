@@ -51,7 +51,7 @@
     .week-link:last-child { border-bottom: none; }
     .week-link:hover { background: var(--red-soft); color: var(--red); }
     .week-link:hover .week-arrow { color: var(--red); }
-    .week-badge { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--bg); border: 1px solid var(--border); border-radius: 3px; padding: 0.15rem 0.45rem; color: var(--muted); flex-shrink: 0; }
+    .guide-badge { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; background: var(--bg); border: 1px solid var(--border); border-radius: 3px; padding: 0.15rem 0.45rem; color: var(--muted); flex-shrink: 0; }
     .week-arrow { color: var(--border); font-size: 0.9rem; }
     .empty { grid-column: 1/-1; text-align: center; padding: 4rem 1rem; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
     footer { border-top: 1px solid var(--border); padding: 1.6rem 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
@@ -69,7 +69,7 @@
     </div>
     <div class="stats">
       <div><div class="stat-val">2</div><div class="stat-lbl">People</div></div>
-      <div><div class="stat-val">5</div><div class="stat-lbl">Guides</div></div>
+      <div><div class="stat-val">7</div><div class="stat-lbl">Guides</div></div>
     </div>
   </div>
 </header>
@@ -82,8 +82,7 @@
   <a class="footer-text footer-link" href="https://github.com/outsystems-test/os-onboarding-guide" target="_blank">View on GitHub ↗</a>
 </footer>
 <script>
-  const people = [{"name": "Carlie Chiarenza", "guides": [{"file": "carlie-chiarenza-week-one-guide.html", "week": 1}]}, {"name": "Lexie Porter", "guides": [{"file": "lexie-porter-week-one-guide.html", "week": 1}, {"file": "lexie-porter-week-two-guide.html", "week": 2}, {"file": "lexie-porter-week-three-guide.html", "week": 3}, {"file": "lexie-porter-week-four-guide.html", "week": 4}]}];
-  const weekLabel = {"1": "Week One", "2": "Week Two", "3": "Week Three", "4": "Week Four"};
+  const people = [{"name": "Carlie Chiarenza", "guides": [{"file": "carlie-chiarenza-week-one-guide.html", "period": "week", "num": 1, "label": "Week One"}]}, {"name": "Lexie Porter", "guides": [{"file": "lexie-porter-week-one-guide.html", "period": "week", "num": 1, "label": "Week One"}, {"file": "lexie-porter-week-two-guide.html", "period": "week", "num": 2, "label": "Week Two"}, {"file": "lexie-porter-week-three-guide.html", "period": "week", "num": 3, "label": "Week Three"}, {"file": "lexie-porter-week-four-guide.html", "period": "week", "num": 4, "label": "Week Four"}, {"file": "lexie-porter-month-two-guide.html", "period": "month", "num": 2, "label": "Month Two"}, {"file": "lexie-porter-month-three-guide.html", "period": "month", "num": 3, "label": "Month Three"}]}];
   function initials(name) {
     const p = name.split(' ');
     return p.length >= 2 ? (p[0][0] + p[p.length-1][0]).toUpperCase() : name.slice(0,2).toUpperCase();
@@ -96,11 +95,11 @@
       const card = document.createElement('div');
       card.className = 'person-card';
       card.style.animationDelay = i * 45 + 'ms';
-      const weekRows = person.guides.map(g => `
+      const rows = person.guides.map(g => `
         <a class="week-link" href="${g.file}">
-          <span>${weekLabel[g.week]}</span>
+          <span>${g.label}</span>
           <span style="display:flex;align-items:center;gap:0.5rem">
-            <span class="week-badge">W${g.week}</span>
+            <span class="guide-badge">${g.period[0].toUpperCase()}${g.num}</span>
             <span class="week-arrow">→</span>
           </span>
         </a>`).join('');
@@ -113,7 +112,7 @@
           </div>
           <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
         </div>
-        <div class="week-list">${weekRows}</div>`;
+        <div class="week-list">${rows}</div>`;
       card.querySelector('.person-header').addEventListener('click', () => card.classList.toggle('open'));
       if (list.length === 1) card.classList.add('open');
       grid.appendChild(card);
