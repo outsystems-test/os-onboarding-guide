@@ -2,23 +2,23 @@
 generate_index.py
 Scans all *-guide.html files in the repo root and regenerates index.html.
 Filename convention: {first}-{last}-week-{n}-guide.html
-  e.g. lexie-porter-week-one-guide.html  →  "Lexie Porter", Week 1
+  e.g. lexie-porter-week-one-guide.html  ->  "Lexie Porter", Week 1
+Groups guides by person; clicking a person expands their available weeks.
 """
 
 import glob
 import os
 import re
 import json
+from collections import defaultdict
 
 WEEK_MAP = {
     "one": 1, "two": 2, "three": 3, "four": 4,
     "1": 1,   "2": 2,   "3": 3,    "4": 4,
 }
 WEEK_LABEL = {1: "Week One", 2: "Week Two", 3: "Week Three", 4: "Week Four"}
-WEEK_KEY   = {1: "week-one", 2: "week-two", 3: "week-three", 4: "week-four"}
 
 def parse_guide(filename):
-    """Return (display_name, week_int) or None if filename doesn't match."""
     base = os.path.basename(filename)
     m = re.match(r'^(.+?)-week-(\w+)-guide\.html$', base)
     if not m:
@@ -33,241 +33,152 @@ def parse_guide(filename):
 def build_guides():
     files = sorted(glob.glob("*-guide.html"))
     guides = [g for f in files if (g := parse_guide(f))]
-    return guides
+    people = defaultdict(list)
+    for g in guides:
+        people[g["name"]].append({"file": g["file"], "week": g["week"]})
+    for name in people:
+        people[name].sort(key=lambda x: x["week"])
+    result = [{"name": n, "guides": people[n]} for n in sorted(people)]
+    return result, len(guides)
 
-def render_index(guides):
-    unique_people = len({g["name"] for g in guides})
-    total = len(guides)
-
-    cards_js = json.dumps(guides, ensure_ascii=False)
+def render_index(people, total):
+    unique_people = len(people)
+    people_js = json.dumps(people, ensure_ascii=False)
+    week_label_js = json.dumps({1:"Week One",2:"Week Two",3:"Week Three",4:"Week Four"})
 
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>OutSystems Onboarding Guides</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {{
-      --red:    #E8272A;
-      --dark:   #0E0E0E;
-      --mid:    #1A1A1A;
-      --border: #2A2A2A;
-      --muted:  #666;
-      --light:  #F5F4F0;
+      --red:      #D42B2B;
+      --red-soft: #FDEAEA;
+      --bg:       #F7F5F0;
+      --surface:  #FFFFFF;
+      --border:   #E4E0D8;
+      --text:     #1A1714;
+      --muted:    #8A8480;
+      --shadow:   0 2px 12px rgba(0,0,0,0.07);
+      --shadow-lg:0 8px 32px rgba(0,0,0,0.11);
     }}
     *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
-    body {{
-      background: var(--dark); color: var(--light);
-      font-family: 'DM Sans', sans-serif; font-weight: 300;
-      min-height: 100vh; overflow-x: hidden;
-    }}
-    header {{
-      padding: 4rem 6vw 3rem; border-bottom: 1px solid var(--border);
-      position: relative; overflow: hidden;
-    }}
-    header::before {{
-      content: ''; position: absolute; top: -60px; right: -60px;
-      width: 320px; height: 320px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,39,42,0.18) 0%, transparent 70%);
-      pointer-events: none;
-    }}
-    .logo-row {{ display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.5rem; }}
-    .logo-dot {{
-      width: 10px; height: 10px; border-radius: 50%; background: var(--red);
-      animation: pulse 2.4s ease-in-out infinite;
-    }}
-    @keyframes pulse {{
-      0%, 100% {{ opacity: 1; transform: scale(1); }}
-      50%       {{ opacity: 0.5; transform: scale(0.8); }}
-    }}
-    .logo-label {{
-      font-family: 'DM Mono', monospace; font-size: 0.7rem;
-      letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
-    }}
-    h1 {{
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.4rem, 6vw, 4.8rem);
-      line-height: 1.05; letter-spacing: -0.02em; max-width: 700px;
-    }}
+    body {{ background: var(--bg); color: var(--text); font-family: 'Instrument Sans', sans-serif; min-height: 100vh; }}
+    header {{ background: var(--surface); border-bottom: 1px solid var(--border); padding: 3rem 6vw 2.5rem; }}
+    .header-inner {{ max-width: 960px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }}
+    .brand {{ display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.4rem; }}
+    .brand-dot {{ width: 9px; height: 9px; border-radius: 50%; background: var(--red); }}
+    .brand-name {{ font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }}
+    h1 {{ font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; letter-spacing: -0.02em; }}
     h1 em {{ font-style: italic; color: var(--red); }}
-    .subtitle {{
-      margin-top: 1.2rem; font-size: 0.95rem; color: var(--muted);
-      letter-spacing: 0.01em; max-width: 480px; line-height: 1.7;
-    }}
-    .stats-bar {{
-      display: flex; gap: 3rem; padding: 1.6rem 6vw;
-      border-bottom: 1px solid var(--border);
-    }}
-    .stat {{ display: flex; flex-direction: column; gap: 0.2rem; }}
-    .stat-value {{ font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--light); }}
-    .stat-label {{
-      font-family: 'DM Mono', monospace; font-size: 0.62rem;
-      letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
-    }}
-    .filter-row {{
-      padding: 1.4rem 6vw; display: flex; align-items: center;
-      gap: 0.6rem; border-bottom: 1px solid var(--border); flex-wrap: wrap;
-    }}
-    .filter-label {{
-      font-family: 'DM Mono', monospace; font-size: 0.65rem;
-      letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-right: 0.4rem;
-    }}
-    .filter-btn {{
-      background: transparent; border: 1px solid var(--border); color: var(--muted);
-      font-family: 'DM Mono', monospace; font-size: 0.68rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.35rem 0.8rem; border-radius: 2px; cursor: pointer; transition: all 0.18s;
-    }}
-    .filter-btn:hover, .filter-btn.active {{
-      background: var(--red); border-color: var(--red); color: white;
-    }}
-    .grid {{
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1px; background: var(--border); padding: 1px;
-      margin: 2rem 6vw; border: 1px solid var(--border);
-    }}
-    .card {{
-      background: var(--mid); padding: 1.8rem 1.6rem;
-      display: flex; flex-direction: column; gap: 1rem;
-      text-decoration: none; color: inherit;
-      position: relative; overflow: hidden; transition: background 0.2s;
-      opacity: 0; transform: translateY(16px);
-      animation: fadeUp 0.4s ease forwards;
-    }}
-    .card:hover {{ background: #222; }}
-    .card::after {{
-      content: ''; position: absolute; top: 0; left: 0;
-      width: 3px; height: 100%; background: var(--red);
-      transform: scaleY(0); transform-origin: bottom; transition: transform 0.22s ease;
-    }}
-    .card:hover::after {{ transform: scaleY(1); }}
+    .stats {{ display: flex; gap: 2.4rem; padding-bottom: 0.2rem; }}
+    .stat-val {{ font-family: 'Fraunces', serif; font-weight: 600; font-size: 2rem; color: var(--text); line-height: 1; }}
+    .stat-lbl {{ font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }}
+    .search-bar {{ max-width: 960px; margin: 2rem auto 0; padding: 0 6vw; }}
+    .search-input {{ width: 100%; padding: 0.75rem 1rem 0.75rem 2.6rem; border: 1.5px solid var(--border); border-radius: 6px; background: var(--surface); font-family: 'Instrument Sans', sans-serif; font-size: 0.9rem; color: var(--text); outline: none; transition: border-color 0.18s; background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238A8480' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: 0.8rem center; }}
+    .search-input:focus {{ border-color: var(--red); }}
+    .search-input::placeholder {{ color: var(--muted); }}
+    .grid {{ max-width: 960px; margin: 2rem auto 4rem; padding: 0 6vw; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }}
+    .person-card {{ background: var(--surface); border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); transition: box-shadow 0.2s, border-color 0.2s; opacity: 0; transform: translateY(14px); animation: fadeUp 0.38s ease forwards; }}
+    .person-card:hover {{ box-shadow: var(--shadow-lg); border-color: #ccc; }}
     @keyframes fadeUp {{ to {{ opacity: 1; transform: none; }} }}
-    .card-week {{
-      font-family: 'DM Mono', monospace; font-size: 0.62rem;
-      letter-spacing: 0.16em; text-transform: uppercase; color: var(--red);
-    }}
-    .card-name {{ font-family: 'DM Serif Display', serif; font-size: 1.35rem; line-height: 1.2; color: var(--light); }}
-    .card-filename {{
-      font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted);
-      letter-spacing: 0.04em; margin-top: auto; padding-top: 0.8rem;
-      border-top: 1px solid var(--border); display: flex; align-items: center; gap: 0.4rem;
-    }}
-    .card-filename svg {{ flex-shrink: 0; opacity: 0.4; }}
-    .arrow {{
-      position: absolute; top: 1.6rem; right: 1.6rem;
-      width: 24px; height: 24px; color: var(--border); transition: color 0.18s, transform 0.18s;
-    }}
-    .card:hover .arrow {{ color: var(--red); transform: translate(3px, -3px); }}
-    footer {{
-      margin-top: 4rem; padding: 2rem 6vw; border-top: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-    }}
-    .footer-text {{
-      font-family: 'DM Mono', monospace; font-size: 0.65rem;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
-    }}
-    .footer-link {{ color: var(--muted); text-decoration: none; transition: color 0.15s; }}
-    .footer-link:hover {{ color: var(--light); }}
-    .empty {{
-      grid-column: 1/-1; padding: 3rem; text-align: center;
-      font-family: 'DM Mono', monospace; font-size: 0.75rem;
-      letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase;
-    }}
+    .person-header {{ display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.3rem; cursor: pointer; user-select: none; }}
+    .avatar {{ width: 42px; height: 42px; border-radius: 50%; background: var(--red-soft); color: var(--red); font-family: 'Fraunces', serif; font-weight: 600; font-size: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }}
+    .person-info {{ flex: 1; min-width: 0; }}
+    .person-name {{ font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
+    .person-meta {{ font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }}
+    .chevron {{ color: var(--muted); transition: transform 0.22s ease; flex-shrink: 0; }}
+    .person-card.open .chevron {{ transform: rotate(180deg); }}
+    .week-list {{ border-top: 1px solid var(--border); display: none; }}
+    .person-card.open .week-list {{ display: block; }}
+    .week-link {{ display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.3rem; text-decoration: none; color: var(--text); font-size: 0.88rem; border-bottom: 1px solid var(--border); transition: background 0.15s; gap: 0.5rem; }}
+    .week-link:last-child {{ border-bottom: none; }}
+    .week-link:hover {{ background: var(--red-soft); color: var(--red); }}
+    .week-link:hover .week-arrow {{ color: var(--red); }}
+    .week-badge {{ font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--bg); border: 1px solid var(--border); border-radius: 3px; padding: 0.15rem 0.45rem; color: var(--muted); flex-shrink: 0; }}
+    .week-arrow {{ color: var(--border); font-size: 0.9rem; }}
+    .empty {{ grid-column: 1/-1; text-align: center; padding: 4rem 1rem; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }}
+    footer {{ border-top: 1px solid var(--border); padding: 1.6rem 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }}
+    .footer-text {{ font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }}
+    a.footer-link {{ color: var(--muted); text-decoration: none; transition: color 0.15s; }}
+    a.footer-link:hover {{ color: var(--red); }}
   </style>
 </head>
 <body>
-
 <header>
-  <div class="logo-row">
-    <div class="logo-dot"></div>
-    <span class="logo-label">OutSystems — Onboarding</span>
+  <div class="header-inner">
+    <div>
+      <div class="brand"><div class="brand-dot"></div><span class="brand-name">OutSystems — Revenue Onboarding</span></div>
+      <h1>New Hire<br><em>Guides</em></h1>
+    </div>
+    <div class="stats">
+      <div><div class="stat-val">{unique_people}</div><div class="stat-lbl">People</div></div>
+      <div><div class="stat-val">{total}</div><div class="stat-lbl">Guides</div></div>
+    </div>
   </div>
-  <h1>New Hire<br><em>Guides</em></h1>
-  <p class="subtitle">Personalised week-by-week onboarding documents, generated for each new team member joining the Revenue organisation.</p>
 </header>
-
-<div class="stats-bar">
-  <div class="stat">
-    <span class="stat-value">{total}</span>
-    <span class="stat-label">Guides published</span>
-  </div>
-  <div class="stat">
-    <span class="stat-value">{unique_people}</span>
-    <span class="stat-label">People onboarded</span>
-  </div>
+<div class="search-bar">
+  <input class="search-input" type="text" id="search" placeholder="Search by name..." autocomplete="off"/>
 </div>
-
-<div class="filter-row">
-  <span class="filter-label">Filter</span>
-  <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="week-one">Week 1</button>
-  <button class="filter-btn" data-filter="week-two">Week 2</button>
-  <button class="filter-btn" data-filter="week-three">Week 3</button>
-  <button class="filter-btn" data-filter="week-four">Week 4</button>
-</div>
-
 <div class="grid" id="grid"></div>
-
 <footer>
   <span class="footer-text">os-onboarding-guide · outsystems-test</span>
   <a class="footer-text footer-link" href="https://github.com/outsystems-test/os-onboarding-guide" target="_blank">View on GitHub ↗</a>
 </footer>
-
 <script>
-  const guides = {cards_js};
-  const weekLabel = {{1:"Week One",2:"Week Two",3:"Week Three",4:"Week Four"}};
-  const weekKey   = {{1:"week-one",2:"week-two",3:"week-three",4:"week-four"}};
-  const grid = document.getElementById("grid");
-
-  function render(filter) {{
-    grid.innerHTML = "";
-    const filtered = filter === "all" ? guides : guides.filter(g => weekKey[g.week] === filter);
-    if (!filtered.length) {{
-      grid.innerHTML = '<div class="empty">No guides found</div>';
-      return;
-    }}
-    filtered.forEach((g, i) => {{
-      const a = document.createElement("a");
-      a.className = "card";
-      a.href = g.file;
-      a.style.animationDelay = i * 55 + "ms";
-      a.innerHTML = `
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M7 17L17 7M17 7H7M17 7v10"/>
-        </svg>
-        <span class="card-week">${{weekLabel[g.week]}}</span>
-        <span class="card-name">${{g.name}}</span>
-        <span class="card-filename">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-          </svg>
-          ${{g.file}}
-        </span>`;
-      grid.appendChild(a);
+  const people = {people_js};
+  const weekLabel = {week_label_js};
+  function initials(name) {{
+    const p = name.split(' ');
+    return p.length >= 2 ? (p[0][0] + p[p.length-1][0]).toUpperCase() : name.slice(0,2).toUpperCase();
+  }}
+  function render(list) {{
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    if (!list.length) {{ grid.innerHTML = '<div class="empty">No guides found</div>'; return; }}
+    list.forEach((person, i) => {{
+      const card = document.createElement('div');
+      card.className = 'person-card';
+      card.style.animationDelay = i * 45 + 'ms';
+      const weekRows = person.guides.map(g => `
+        <a class="week-link" href="${{g.file}}">
+          <span>${{weekLabel[g.week]}}</span>
+          <span style="display:flex;align-items:center;gap:0.5rem">
+            <span class="week-badge">W${{g.week}}</span>
+            <span class="week-arrow">→</span>
+          </span>
+        </a>`).join('');
+      card.innerHTML = `
+        <div class="person-header">
+          <div class="avatar">${{initials(person.name)}}</div>
+          <div class="person-info">
+            <div class="person-name">${{person.name}}</div>
+            <div class="person-meta">${{person.guides.length}} guide${{person.guides.length > 1 ? 's' : ''}}</div>
+          </div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+        <div class="week-list">${{weekRows}}</div>`;
+      card.querySelector('.person-header').addEventListener('click', () => card.classList.toggle('open'));
+      if (list.length === 1) card.classList.add('open');
+      grid.appendChild(card);
     }});
   }}
-
-  document.querySelectorAll(".filter-btn").forEach(btn => {{
-    btn.addEventListener("click", () => {{
-      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      render(btn.dataset.filter);
-    }});
+  document.getElementById('search').addEventListener('input', e => {{
+    const q = e.target.value.toLowerCase();
+    render(q ? people.filter(p => p.name.toLowerCase().includes(q)) : people);
   }});
-
-  render("all");
+  render(people);
 </script>
 </body>
 </html>"""
 
 if __name__ == "__main__":
-    guides = build_guides()
-    html = render_index(guides)
+    people, total = build_guides()
+    html = render_index(people, total)
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html)
-    print(f"✓ index.html regenerated — {len(guides)} guide(s) found.")
+    print(f"Regenerated index.html — {len(people)} people, {total} guide(s).")
