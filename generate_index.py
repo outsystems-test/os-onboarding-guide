@@ -126,7 +126,7 @@ def render_index(people, total):
   <div class="header-inner">
     <div>
       <div class="brand"><div class="brand-dot"></div><span class="brand-name">OutSystems — Revenue Onboarding</span></div>
-      <h1>New Hire<br><em>Guides</em></h1>
+      <h1>New Hire<br><em>Onboarding Guides</em></h1>
     </div>
     <div class="stats">
       <div><div class="stat-val">{unique_people}</div><div class="stat-lbl">People</div></div>
