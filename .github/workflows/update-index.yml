@@ -3,8 +3,7 @@ name: Update Index
 on:
   push:
     branches: [main]
-    paths:
-      - '**-guide.html'
+  workflow_dispatch:
 
 permissions:
   contents: write
