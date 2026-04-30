@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexandra DeBellis — Month Two at OutSystems</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,40,360;0,40,540;0,40,720;1,40,360&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #171717;
+    --paper: #FFFFFF;
+    --rule: #C7C7C7;
+    --accent: #E62028;
+    --accent-soft: #F9D0D2;
+    --green: #171717;
+    --green-soft: #F5F5F5;
+    --gold: #A51018;
+    --gold-soft: #F9D0D2;
+    --blue: #454545;
+    --blue-soft: #F5F5F5;
+    --muted: #666666;
+    --mono: 'DM Sans', Calibri, sans-serif;
+    --serif: 'DM Sans', Calibri, sans-serif;
+    --sans: 'DM Sans', Calibri, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 360; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 48px 32px 80px; }
+  /* MASTHEAD */
+  .masthead { border-top: 4px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 28px 0 20px; margin-bottom: 0; display: grid; grid-template-columns: 1fr 120px auto; align-items: center; gap: 24px; }
+  .masthead-logo { display: flex; align-items: center; justify-content: center; }
+  .masthead-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .masthead h1 { font-family: var(--serif); font-size: clamp(34px, 6vw, 56px); font-weight: 720; line-height: 1.0; letter-spacing: -1px; }
+  .masthead h1 em { font-style: italic; color: var(--accent); }
+  .masthead-meta { text-align: right; }
+  .masthead-meta .badge { font-family: var(--mono); font-size: 8px; letter-spacing: 0.03em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 5px 10px; display: inline-block; margin-bottom: 8px; }
+  .masthead-meta p { font-size: 11px; color: var(--muted); font-family: var(--mono); line-height: 1.7; }
+  /* BYLINE */
+  .byline-strip { border-bottom: 1px solid var(--rule); padding: 10px 0; display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; }
+  .byline-item { display: flex; flex-direction: column; }
+  .byline-item .label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); }
+  .byline-item .value { font-size: 13px; font-weight: 540; color: var(--ink); }
+  /* PROGRESS BAR */
+  .progress-bar { display: flex; gap: 4px; margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
+  .progress-step { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+  .progress-step-bar { height: 6px; background: var(--rule); }
+  .progress-step.done .progress-step-bar { background: var(--ink); }
+  .progress-step.active .progress-step-bar { background: var(--accent); }
+  .progress-label { font-family: var(--mono); font-size: 8px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .progress-step.active .progress-label { color: var(--accent); font-weight: 540; }
+  .progress-step.done .progress-label { color: var(--ink); }
+  /* INTRO */
+  .week-intro { display: grid; grid-template-columns: 1fr 280px; gap: 40px; margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--rule); }
+  .week-intro .lead { font-family: var(--serif); font-size: 18px; line-height: 1.55; font-weight: 400; }
+  .week-intro .lead strong { font-weight: 720; }
+  .week-intro .lead em { font-style: italic; color: var(--accent); }
+  .context-card { background: var(--ink); color: var(--paper); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+  .context-card .context-title { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.6; }
+  .context-card .context-stat { border-top: 1px solid rgba(255,255,255,.15); padding-top: 14px; }
+  .context-card .stat-label { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; opacity: 0.55; margin-bottom: 3px; }
+  .context-card .stat-value { font-family: var(--serif); font-size: 15px; font-weight: 720; line-height: 1.3; }
+  .context-card .stat-sub { font-size: 11px; opacity: 0.65; margin-top: 2px; }
+  /* SECTION */
+  .section { margin-bottom: 48px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .section-num { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .1em; min-width: 24px; }
+  .section-title { font-family: var(--serif); font-size: 22px; font-weight: 720; letter-spacing: -0.3px; }
+  .section-rule { flex: 1; height: 1px; background: var(--rule); }
+  /* OUTCOMES BAND */
+  .outcomes-band { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 32px; }
+  .outcome-cell { background: var(--paper); padding: 18px 20px; }
+  .outcome-cell.dark { background: var(--ink); color: var(--paper); }
+  .outcome-label { font-family: var(--mono); font-size: 8px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .outcome-cell.dark .outcome-label { color: rgba(255,255,255,.5); }
+  .outcome-title { font-family: var(--serif); font-size: 15px; font-weight: 720; margin-bottom: 6px; }
+  .outcome-desc { font-size: 12px; line-height: 1.5; color: var(--muted); }
+  .outcome-cell.dark .outcome-desc { color: rgba(255,255,255,.65); }
+  /* CATEGORY BLOCK */
+  .category-block { margin-bottom: 32px; }
+  .category-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; border-bottom: 1px solid var(--rule); padding-bottom: 6px; }
+  /* CHECKLIST */
+  .checklist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 24px; }
+  .checklist-col { background: var(--paper); padding: 0; }
+  .checklist-col-header { font-family: var(--mono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 8px; border-bottom: 1px solid var(--rule); }
+  .checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 14px; border-bottom: 1px solid var(--rule); font-size: 12.5px; }
+  .checklist-item:last-child { border-bottom: none; }
+  .checklist-text { line-height: 1.4; }
+  .checklist-text .sub { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+  /* MILESTONE SCORECARD */
+  .milestone-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 24px; }
+  .milestone-cell { background: var(--paper); padding: 16px; }
+  .ms-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .ms-value { font-size: 13px; font-weight: 540; line-height: 1.4; }
+  .ms-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  /* PILLS */
+  .pill { display: inline-block; font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; padding: 2px 7px; border-radius: 2px; margin-left: 6px; vertical-align: middle; }
+  .pill-red { background: var(--accent); color: white; }
+  .pill-green { background: var(--green); color: white; }
+  .pill-gold { background: var(--gold); color: white; }
+  .pill-blue { background: var(--blue); color: white; }
+  .pill-outline { border: 1px solid var(--rule); color: var(--muted); }
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  /* INFO CARD */
+  .info-card { border: 1px solid var(--rule); padding: 20px; }
+  .info-card .card-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .info-card p { font-size: 13px; color: var(--ink); margin-bottom: 6px; line-height: 1.5; }
+  .info-card p strong { font-weight: 540; }
+  /* SPIFF BANNER */
+  .spiff-banner { background: var(--green); color: white; padding: 20px 24px; margin-bottom: 24px; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
+  .spiff-banner .spiff-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.7; margin-bottom: 5px; }
+  .spiff-banner .spiff-title { font-family: var(--serif); font-size: 17px; font-weight: 720; line-height: 1.3; }
+  .spiff-banner .spiff-mult { font-family: var(--serif); font-size: 36px; font-weight: 720; line-height: 1; opacity: 0.9; }
+  .spiff-sub { font-family: var(--mono); font-size: 9px; opacity: 0.65; text-align: right; letter-spacing: .06em; }
+  /* RESOURCE */
+  .resource-row { display: flex; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--rule); font-size: 12.5px; }
+  .resource-row:last-child { border-bottom: none; }
+  .resource-row .res-type { font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 7px; background: var(--gold-soft); color: var(--gold); white-space: nowrap; flex-shrink: 0; min-width: 58px; text-align: center; }
+  .resource-row a { color: var(--accent); text-decoration: none; font-weight: 540; }
+  .resource-row a:hover { text-decoration: underline; }
+  .resource-row .res-note { color: var(--muted); font-size: 11px; margin-left: auto; flex-shrink: 0; }
+  /* FAQ */
+  .faq-item { border-bottom: 1px solid var(--rule); padding: 16px 0; }
+  .faq-item:first-child { padding-top: 0; }
+  .faq-q { font-family: var(--serif); font-size: 15px; font-weight: 720; margin-bottom: 8px; display: flex; gap: 10px; align-items: baseline; }
+  .faq-q::before { content: 'Q'; font-family: var(--mono); font-size: 9px; color: var(--accent); letter-spacing: .1em; padding-top: 2px; flex-shrink: 0; }
+  .faq-a { font-size: 13px; line-height: 1.6; color: var(--ink); padding-left: 20px; }
+  .faq-a a { color: var(--accent); text-decoration: none; font-weight: 540; }
+  /* ASIDE */
+  .aside-box { border-left: 3px solid var(--accent); padding: 14px 16px; background: var(--accent-soft); margin-top: 16px; font-size: 12px; line-height: 1.5; }
+  .aside-box strong { display: block; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  /* FOOTER */
+  .footer { border-top: 1px solid var(--rule); margin-top: 60px; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer p { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .06em; }
+  .sources-list { font-family: var(--mono); font-size: 9px; color: var(--muted); line-height: 1.8; letter-spacing: .03em; margin-top: 8px; }
+  @media (max-width: 680px) {
+    .week-intro, .two-col, .checklist-grid, .outcomes-band { grid-template-columns: 1fr; }
+    .masthead { grid-template-columns: 1fr auto; }
+    .masthead-logo { display: none; }
+    body { padding: 28px 18px 60px; }
+  }
+  @media print {
+    body { background: white; padding: 20px; }
+    .spiff-banner, .context-card, .outcome-cell.dark { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div>
+    <div class="masthead-label">OutSystems · Global Sales</div>
+    <h1>Month Two,<br><em>Alexandra.</em></h1>
+  </div>
+  <div class="masthead-logo"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+  <defs><mask id="donut-ring"><circle cx="50" cy="50" r="48" fill="white"/><circle cx="50" cy="50" r="22" fill="black"/></mask></defs>
+  <circle cx="50" cy="50" r="48" fill="#E62028" mask="url(#donut-ring)"/>
+</svg></div>
+  <div class="masthead-meta">
+    <div class="badge">Month 2 Guide · Days 31–60</div>
+    <p>Role: Account Executive II<br>
+       Team: Global Sales — West<br>
+       Manager: Gabriela Rego<br>
+       Start: April 2026</p>
+  </div>
+</header>
+<div class="byline-strip">
+  <div class="byline-item"><span class="label">Region</span><span class="value">West</span></div>
+  <div class="byline-item"><span class="label">Manager</span><span class="value">Gabriela Rego</span></div>
+  <div class="byline-item"><span class="label">Department Leader</span><span class="value">Kim Seabrook, Chief Revenue Officer</span></div>
+  <div class="byline-item"><span class="label">Company Mission</span><span class="value">We provide the AI development platform that enterprise leaders trust to build and secure their applications, agents, and mission critical systems.</span></div>
+</div>
+<!-- PROGRESS BAR: 3-month ramp -->
+<div>
+  <div class="progress-bar">
+    <div class="progress-step done"><div class="progress-step-bar"></div><span class="progress-label">Month 1 · Onboard</span></div>
+    <div class="progress-step active"><div class="progress-step-bar"></div><span class="progress-label">Month 2 · Execute</span></div>
+    <div class="progress-step "><div class="progress-step-bar"></div><span class="progress-label">Month 3 · Close</span></div>
+  </div>
+</div>
+<!-- INTRO -->
+<section class="section">
+  <div class="week-intro">
+    <div>
+      <div class="masthead-label" style="margin-bottom:12px">§ Month Two — Days 31–60</div>
+      <p class="lead">
+        Onboarding is behind you. <strong>Month 2 is about execution.</strong> You have accounts. You have sequences running. Now the job is to convert activity into pipeline — creating your first real opportunities, hosting your first New Business Meetings, and running your first complete discovery calls solo.
+      </p>
+      <p class="lead" style="margin-top:16px">
+        The target by end of month: <em>5 active opportunities (land &amp; expand), 4 NBMs per week, and your 2nd Deal Clinic complete.</em> Your manager will be in the room with you for your first 5 meetings — lean into that coaching window.
+      </p>
+      <div class="aside-box">
+        <strong>Month 2 theme</strong>
+        Explain OutSystems · Execute your pipeline plan · Master the tools that save you time selling
+      </div>
+    </div>
+    <div class="context-card">
+      <div class="context-title">Ramp Snapshot · Q2 2026</div>
+      <div class="context-stat">
+        <div class="stat-label">Meetings Target</div>
+        <div class="stat-value">4 NBMs / week</div>
+        <div class="stat-sub">16 per month · 36 per quarter</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">Pipeline Target</div>
+        <div class="stat-value">5 active opps</div>
+        <div class="stat-sub">Both land &amp; expand</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">Deal Clinic</div>
+        <div class="stat-value">2nd session — Week 8</div>
+        <div class="stat-sub">With Enablement</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">Active Sales Plays</div>
+        <div class="stat-value">BFS CX Modernization · Insurance</div>
+        <div class="stat-sub">New play drops every Sales Play Tuesday through May</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- MONTH 2 OUTCOMES -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Month 2 Outcomes</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="outcomes-band">
+    <div class="outcome-cell dark">
+      <div class="outcome-label">Explain OutSystems</div>
+      <div class="outcome-title">Stand &amp; Deliver</div>
+      <div class="outcome-desc">Learn, practice, and deliver a presentation on the Executive Message and Product Overview. Complete the Stand and Deliver role-play with your manager and get evaluated.</div>
+    </div>
+    <div class="outcome-cell">
+      <div class="outcome-label">Run Your Business</div>
+      <div class="outcome-title">Execute Your Pipeline Plan</div>
+      <div class="outcome-desc">Execute against your defined pipeline plan. 4 NBMs per week. Prospecting cadence live with SDR. MQLs actioned within SLA.</div>
+    </div>
+    <div class="outcome-cell">
+      <div class="outcome-label">Leverage the Tools</div>
+      <div class="outcome-title">Tools That Save You Time</div>
+      <div class="outcome-desc">Expand your system and tool understanding — SFDC order management, Clari forecasting, Deal Desk, and renewals workflow. Let the systems do the work.</div>
+    </div>
+    <div class="outcome-cell dark">
+      <div class="outcome-label">Mentor &amp; Manager</div>
+      <div class="outcome-title">Coached in the Room</div>
+      <div class="outcome-desc">Your manager attends your first 5 meetings. Your mentor shadows calls in weeks 5–7. Week 8 is a deep debrief on pipeline, pricing, and engaging other teams.</div>
+    </div>
+  </div>
+</section>
+<!-- LEARNING -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Learning &amp; Training</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="spiff-banner">
+    <div>
+      <div class="spiff-label">Seismic Learning · Month 2 Assignments</div>
+      <div class="spiff-title"><a href="https://outsystems.seismic.com/app#/learning/v2/learn" style="color:white;text-decoration:none;">Complete monthly eLearning assignments →</a></div>
+    </div>
+    <div style="text-align:right;">
+      <div class="spiff-mult" style="font-size:22px;opacity:0.85;">Month 2</div>
+      <div class="spiff-sub">New assignments<br>emailed to you</div>
+    </div>
+  </div>
+  <div class="category-block">
+    <div class="category-label">Live Training</div>
+    <div class="checklist-grid">
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Attend any scheduled Bootcamp Follow-up sessions or complete additional required eLearning<div class="sub">Check #one-revenue-team and calendar for scheduled sessions</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Participate in spotlights, all-hands, or QBR sessions as scheduled<div class="sub">Global and geo audience sessions — check calendar</div></div></div>
+      </div>
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Attend Sales Play Tuesday sessions<div class="sub">Weekly — new play drops every Tuesday through May</div></div></div>
+        <div class="checklist-item"><div class="checklist-text">Attend Agentic Confidence Thursday sessions<div class="sub">Weekly — Agent Workbench, ASE, value selling</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="category-block">
+    <div class="category-label">Online Training</div>
+    <div class="checklist-grid">
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Complete any required eLearning<div class="sub">New monthly assignments will be emailed to you</div></div></div>
+      </div>
+      <div class="checklist-col">
+        <div class="checklist-item"><div class="checklist-text">Learn, practice &amp; deliver the OutSystems Overview<div class="sub">Stand and Deliver — role-play with Gabriela Rego</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- PROCESS & SKILLS -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Process &amp; Skills</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="checklist-grid">
+    <div class="checklist-col">
+      <div class="checklist-item"><div class="checklist-text">Create your Plan to Win for the year<div class="sub">Territory strategy, top accounts, revenue targets</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Participate in weekly forecast calls<div class="sub">Enter forecasts in Clari consistently and on time</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Invite Gabriela Rego to observe your first 5 meetings<div class="sub">Reinforce preparation, discovery flow, and next steps together</div></div></div>
+    </div>
+    <div class="checklist-col">
+      <div class="checklist-item"><div class="checklist-text">Learn about Personal Environments, PQLs, and Chat Qualified Leads<div class="sub">Talk to White Glove or your SA contact</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Review Channel page and set cadence with territory PAMs/partners<div class="sub">Understand which partners are active in your region</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Complete a practice discovery meeting<div class="sub">With Gabriela Rego or Gabriela Rego playing the prospect</div></div></div>
+    </div>
+  </div>
+</section>
+<!-- SYSTEMS & TOOLS -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Systems &amp; Tools</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="checklist-grid">
+    <div class="checklist-col">
+      <div class="checklist-item"><div class="checklist-text">SFDC / Order Management<div class="sub">Review the Deal Desk page for tutorials on opportunity creation, trials, and quote creation</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">SFDC / Renewals<div class="sub">Review your upcoming renewals — understand timing, expansion opportunity, and risk</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Clari — forecasting setup<div class="sub">Review Revenue and Forecast Operations page for Clari tutorials. Enter weekly forecasts.</div></div></div>
+    </div>
+    <div class="checklist-col">
+      <div class="checklist-item"><div class="checklist-text">Pricing Calculator<div class="sub">Understand how to build a basic pricing scenario for your accounts</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Review Pricing &amp; Licensing page<div class="sub">Foundational for any deal conversation — know the model before Month 3</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Review Professional Services page<div class="sub">Understand what PS can do and when to bring them in</div></div></div>
+    </div>
+  </div>
+</section>
+<!-- ACCOUNT & PIPELINE -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Account &amp; Pipeline</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="checklist-grid">
+    <div class="checklist-col">
+      <div class="checklist-item"><div class="checklist-text">Continue account research and outreach for target accounts<div class="sub">Build on the contact maps from Month 1</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Execute Weekly Pipeline Generation Plan<div class="sub">4+ hours of prospecting per week; share updated plan with SDR every Monday</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Talk to partners in your region and co-plan<div class="sub">Identify 1–2 partner co-sell opportunities for Q2</div></div></div>
+    </div>
+    <div class="checklist-col">
+      <div class="checklist-item"><div class="checklist-text">Review MQLs and respond within SLA<div class="sub">Speed to lead &lt; 24 hours. Check with RevOps for your SLA target.</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Reinforce timely demand gen events with contacts<div class="sub">Use ONE Conference, webinars, and Sales Play sessions as outreach triggers</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Continue meeting regularly with your SDR<div class="sub">Weekly sync: review sequences, conversion rates, and next week's outreach plan</div></div></div>
+    </div>
+  </div>
+</section>
+<!-- PRODUCT & MESSAGE -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Product &amp; Message</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="checklist-grid">
+    <div class="checklist-col">
+      <div class="checklist-item"><div class="checklist-text">Familiarize yourself with ways to respond to and reverse common objections<div class="sub">Focus on "we'll just use AI to code it" and "vendor lock-in" — see Competitive Playbook</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Explore OutSystems Mentor<div class="sub">Understand the Mentor product and its positioning in the Agentic Systems Engineering narrative</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Review the OutSystems Evaluation Guide on the website</div></div>
+    </div>
+    <div class="checklist-col">
+      <div class="checklist-item"><div class="checklist-text">Review the Competitive page<div class="sub">Update your knowledge based on any new plays from Sales Play Tuesday</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Review the AI Customer Story Collection<div class="sub">Focus on stories matching your top account verticals</div></div></div>
+      <div class="checklist-item"><div class="checklist-text">Review the Customer Stories Seismic page</div></div>
+    </div>
+  </div>
+</section>
+<!-- ACTIVITIES WITH MANAGER & MENTOR -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Manager &amp; Mentor Activities</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="card-label">Activities with Gabriela Rego</div>
+      <p><strong>Weekly 1:1s</strong> — opportunity level coaching every week. Come with your top 3 deals and a Clari forecast update.</p>
+      <p><strong>First 5 meetings</strong> — Gabriela Rego will attend to reinforce preparation, discovery flow, and next step commitment.</p>
+      <p><strong>Stand &amp; Deliver evaluation</strong> — deliver the OutSystems Overview and discuss feedback. This is a formal ramp milestone.</p>
+      <p><strong>Practice discovery meeting</strong> — Gabriela Rego plays the prospect. Focus on pains, qualification, and MEDDPICC.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-label">Activities with Gabriela Rego</div>
+      <p><strong>Weeks 5–7</strong> — shadow Gabriela Rego on two live customer calls or review two recorded meetings together.</p>
+      <p><strong>Week 8 debrief</strong> — cover: pipeline to date, opp/quote creation process in SFDC, pricing and proposal best practices, and how to engage BV, SA, and Product Marketing.</p>
+      <p><strong>Week 8 — 2nd Deal Clinic</strong> — complete with Enablement. Bring a live opportunity if possible; use a hypothesis deal if not.</p>
+    </div>
+  </div>
+</section>
+<!-- MONTH 2 SCORECARD -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Complete by Month 2</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="milestone-grid">
+    <div class="milestone-cell">
+      <div class="ms-label">Training</div>
+      <div class="ms-value">All required training, Stand &amp; Deliver, and role-play activities complete</div>
+    </div>
+    <div class="milestone-cell">
+      <div class="ms-label">Pipeline</div>
+      <div class="ms-value">Created first opportunity</div>
+      <div class="ms-sub">In SFDC with correct stage and MEDDPICC populated</div>
+    </div>
+    <div class="milestone-cell">
+      <div class="ms-label">Pipeline</div>
+      <div class="ms-value">5 active opportunities</div>
+      <div class="ms-sub">Both land &amp; expand included</div>
+    </div>
+    <div class="milestone-cell">
+      <div class="ms-label">Demand Gen</div>
+      <div class="ms-value">Demand gen activities complete for target accounts</div>
+      <div class="ms-sub">Events, campaigns, and partner co-plans</div>
+    </div>
+    <div class="milestone-cell">
+      <div class="ms-label">Prospecting</div>
+      <div class="ms-value">4+ hours/week prospecting</div>
+      <div class="ms-sub">Consistent cadence with SDR</div>
+    </div>
+    <div class="milestone-cell">
+      <div class="ms-label">Meetings</div>
+      <div class="ms-value">4 NBMs/week</div>
+      <div class="ms-sub">16 per month · 36 per quarter target</div>
+    </div>
+    <div class="milestone-cell">
+      <div class="ms-label">SDR Cadence</div>
+      <div class="ms-value">Prospecting cadence sync with SDR maintained</div>
+    </div>
+    <div class="milestone-cell">
+      <div class="ms-label">Forecasting</div>
+      <div class="ms-value">Regular Pipeline Dashboard and Sales Scorecard reviews</div>
+    </div>
+    <div class="milestone-cell" style="border: 2px solid var(--accent);">
+      <div class="ms-label" style="color:var(--accent)">Checkpoint</div>
+      <div class="ms-value">2nd Deal Clinic — Week 8</div>
+      <div class="ms-sub">With Enablement team</div>
+    </div>
+  </div>
+</section>
+<!-- RESOURCES -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2 class="section-title">Key Resources This Month</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="resource-row"><div class="res-type">Learning</div><a href="https://outsystems.seismic.com/app#/learning/v2/learn">Seismic — Month 2 Learning Assignments</a><div class="res-note">Check email for new assignments</div></div>
+  <div class="resource-row"><div class="res-type">Playbook</div><a href="https://outsystems.seismic.com/Link/Content/DCHFgCcGMVPHD8HPBhp6gqQqFqFV">BFS CX Modernization — Seismic Hub</a><div class="res-note">Active play for your territory</div></div>
+  <div class="resource-row"><div class="res-type">Compete</div><a href="https://outsystems.seismic.com">Competitive Playbook — Pro-Code &amp; AI-Native</a><div class="res-note">Objection handling</div></div>
+  <div class="resource-row"><div class="res-type">SFDC</div><a href="https://outsystems.seismic.com">Deal Desk Page — SFDC Tutorials</a><div class="res-note">Opp creation · quotes · trials</div></div>
+  <div class="resource-row"><div class="res-type">Forecast</div><a href="https://www.clari.com">Clari — Revenue &amp; Forecast Operations</a><div class="res-note">Enter forecasts weekly</div></div>
+  <div class="resource-row"><div class="res-type">Stories</div><a href="https://outsystems.seismic.com">AI Customer Story Collection</a><div class="res-note">Proof points for your verticals</div></div>
+  <div class="resource-row"><div class="res-type">Tool</div><a href="https://apps.outsystems.app/DealMate">Deal Mate — Account Context Agent</a><div class="res-note">Personalise outreach + prep</div></div>
+  <div class="resource-row"><div class="res-type">Dashboard</div><a href="https://app.powerbi.com/groups/me/apps/451f4850-88df-4c9d-9cd4-ef710f5316f7/reports/cf8dc1ea-3882-4387-95c2-f8e82403e4fc/3f009f41c3c7bf737ff0">Q2 SPIFF Dashboard</a><div class="res-note">Track incentive performance</div></div>
+</section>
+<footer class="footer">
+  <p>OUTSYSTEMS Global Sales · Americas · West<br>
+     Alexandra DeBellis — Account Executive II<br>
+     Generated April 30, 2026</p>
+  <p style="text-align:right">Prepared by Revenue Enablement<br>Questions → Bobbie Jo Frazier or Sarah Cropp</p>
+</footer>
+<div class="sources-list">
+  Sources: [1] Slack #one-revenue-team (April 2026) · [2] Google Drive — sales_month-two-guide_template (April 30, 2026) · [3] AE 30-60-90 Onboarding Plan Template
+</div>
+</body>
+</html>
