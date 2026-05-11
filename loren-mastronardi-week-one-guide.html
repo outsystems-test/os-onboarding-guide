@@ -1,1 +1,1519 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Loren Mastronardi — Week One at OutSystems · People</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,40,360;0,40,540;0,40,720;1,40,360&display=swap" rel="stylesheet"><style>  :root {    --ink: #171717;    --paper: #FFFFFF;    --rule: #C7C7C7;    --accent: #E62028;    --accent-soft: #F9D0D2;    --green: #171717;    --green-soft: #F5F5F5;    --gold: #A51018;    --gold-soft: #F9D0D2;    --blue: #454545;    --blue-soft: #F5F5F5;    --muted: #666666;    --mono: 'DM Sans', Calibri, sans-serif;    --serif: 'DM Sans', Calibri, sans-serif;    --sans: 'DM Sans', Calibri, sans-serif;  }  * { box-sizing: border-box; margin: 0; padding: 0; }  body {    background: var(--paper);    color: var(--ink);    font-family: var(--sans);    font-weight: 360;    line-height: 1.6;    max-width: 900px;    margin: 0 auto;    padding: 48px 32px 80px;  }  /* ── MASTHEAD ── */  .masthead {    border-top: 4px solid var(--ink);    border-bottom: 1px solid var(--ink);    padding: 28px 0 20px;    margin-bottom: 0;    display: grid;    grid-template-columns: 1fr 120px auto;    align-items: center;    gap: 24px;  }  .masthead-logo {    display: flex;    align-items: center;    justify-content: center;  }  .masthead-label {    font-family: var(--mono);    font-size: 9px;    letter-spacing: 0.05em;    text-transform: uppercase;    color: var(--muted);    margin-bottom: 8px;  }  .masthead h1 {    font-family: var(--serif);    font-size: clamp(34px, 6vw, 56px);    font-weight: 720;    line-height: 1.0;    letter-spacing: -1px;  }  .masthead h1 em {    font-style: italic;    color: var(--accent);  }  .masthead-meta {    text-align: right;  }  .masthead-meta .badge {    font-family: var(--mono);    font-size: 8px;    letter-spacing: 0.03em;    text-transform: uppercase;    background: var(--ink);    color: var(--paper);    padding: 5px 10px;    display: inline-block;    margin-bottom: 8px;  }  .masthead-meta p {    font-size: 11px;    color: var(--muted);    font-family: var(--mono);    line-height: 1.7;  }  /* ── BYLINE STRIP ── */  .byline-strip {    border-bottom: 1px solid var(--rule);    padding: 10px 0;    display: flex;    gap: 32px;    flex-wrap: wrap;    margin-bottom: 40px;  }  .byline-item {    display: flex;    flex-direction: column;  }  .byline-item .label {    font-family: var(--mono);    font-size: 8.5px;    letter-spacing: 0.03em;    text-transform: uppercase;    color: var(--muted);  }  .byline-item .value {    font-size: 13px;    font-weight: 540;    color: var(--ink);  }  /* ── WELCOME PULL-QUOTE ── */  .welcome-block {    display: grid;    grid-template-columns: 1fr 280px;    gap: 40px;    margin-bottom: 48px;    padding-bottom: 40px;    border-bottom: 1px solid var(--rule);  }  .welcome-block .lead {    font-family: var(--serif);    font-size: 18px;    line-height: 1.55;    font-weight: 400;  }  .welcome-block .lead strong {    font-weight: 720;  }  .welcome-block .lead em {    font-style: italic;    color: var(--accent);  }  .context-card {    background: var(--ink);    color: var(--paper);    padding: 24px;    display: flex;    flex-direction: column;    gap: 16px;  }  .context-card .context-title {    font-family: var(--mono);    font-size: 8.5px;    letter-spacing: 0.04em;    text-transform: uppercase;    opacity: 0.6;  }  .context-card .context-stat {    border-top: 1px solid rgba(255,255,255,.15);    padding-top: 14px;  }  .context-card .stat-label {    font-family: var(--mono);    font-size: 9px;    letter-spacing: .1em;    text-transform: uppercase;    opacity: 0.55;    margin-bottom: 3px;  }  .context-card .stat-value {    font-family: var(--serif);    font-size: 15px;    font-weight: 720;    line-height: 1.3;  }  .context-card .stat-sub {    font-size: 11px;    opacity: 0.65;    margin-top: 2px;  }  /* ── SECTION TITLES ── */  .section {    margin-bottom: 48px;  }  .section-header {    display: flex;    align-items: center;    gap: 12px;    margin-bottom: 20px;  }  .section-num {    font-family: var(--mono);    font-size: 10px;    color: var(--muted);    letter-spacing: .1em;    min-width: 24px;  }  .section-title {    font-family: var(--serif);    font-size: 22px;    font-weight: 720;    letter-spacing: -0.3px;  }  .section-rule {    flex: 1;    height: 1px;    background: var(--rule);  }  /* ── SCHEDULE ── */  .schedule-grid {    display: flex;    flex-direction: column;    gap: 1px;    background: var(--rule);    border: 1px solid var(--rule);  }  .schedule-day {    background: var(--paper);    display: grid;    grid-template-columns: 100px 1fr;  }  .schedule-day.highlight {    background: var(--accent-soft);  }  .day-label {    padding: 16px;    border-right: 1px solid var(--rule);    display: flex;    flex-direction: column;    justify-content: flex-start;  }  .day-name {    font-family: var(--serif);    font-size: 16px;    font-weight: 720;    line-height: 1;    margin-bottom: 3px;  }  .day-tag {    font-family: var(--mono);    font-size: 8px;    letter-spacing: 0.03em;    text-transform: uppercase;    color: var(--muted);  }  .day-events {    padding: 14px 16px;    display: flex;    flex-direction: column;    gap: 8px;  }  .event {    display: flex;    gap: 10px;    align-items: flex-start;  }  .event-time {    font-family: var(--mono);    font-size: 10px;    color: var(--muted);    min-width: 60px;    padding-top: 2px;    letter-spacing: .04em;  }  .event-body {}  .event-title {    font-size: 13px;    font-weight: 540;    line-height: 1.3;  }  .event-note {    font-size: 11px;    color: var(--muted);    margin-top: 2px;  }  .event-link {    color: var(--accent);    text-decoration: none;    font-family: var(--mono);    font-size: 10px;  }  .event-link:hover { text-decoration: underline; }  .pill {    display: inline-block;    font-family: var(--mono);    font-size: 8px;    letter-spacing: .1em;    text-transform: uppercase;    padding: 2px 7px;    border-radius: 2px;    margin-left: 6px;    vertical-align: middle;  }  .pill-red { background: var(--accent); color: white; }  .pill-green { background: var(--green); color: white; }  .pill-gold { background: var(--gold); color: white; }  .pill-blue { background: var(--blue); color: white; }  .pill-outline { border: 1px solid var(--rule); color: var(--muted); }  /* ── 2-COL ── */  .two-col {    display: grid;    grid-template-columns: 1fr 1fr;    gap: 24px;  }  /* ── INFO CARDS ── */  .info-card {    border: 1px solid var(--rule);    padding: 20px;  }  .info-card .card-label {    font-family: var(--mono);    font-size: 8.5px;    letter-spacing: 0.03em;    text-transform: uppercase;    color: var(--muted);    margin-bottom: 10px;  }  .info-card .card-title {    font-family: var(--serif);    font-size: 16px;    font-weight: 720;    margin-bottom: 12px;  }  .info-card p {    font-size: 13px;    color: var(--ink);    margin-bottom: 6px;    line-height: 1.5;  }  .info-card p strong {    font-weight: 540;  }  /* ── TOOL LIST ── */  .tool-row {    display: grid;    grid-template-columns: 28px 1fr auto;    align-items: start;    gap: 10px;    padding: 11px 0;    border-bottom: 1px solid var(--rule);  }  .tool-row:last-child { border-bottom: none; }  .tool-icon {    width: 28px;    height: 28px;    background: var(--ink);    color: var(--paper);    display: flex;    align-items: center;    justify-content: center;    font-family: var(--mono);    font-size: 9px;    font-weight: 540;    letter-spacing: .05em;    flex-shrink: 0;    margin-top: 2px;  }  .tool-icon.green { background: var(--green); }  .tool-icon.gold { background: var(--gold); }  .tool-icon.blue { background: var(--blue); }  .tool-icon.red { background: var(--accent); }  .tool-name {    font-size: 13.5px;    font-weight: 540;    line-height: 1.2;    margin-bottom: 2px;  }  .tool-desc {    font-size: 11.5px;    color: var(--muted);  }  .tool-status {    font-family: var(--mono);    font-size: 9px;    letter-spacing: .08em;    text-transform: uppercase;    color: var(--green);    padding-top: 3px;  }  /* ── TEAM TABLE ── */  .team-table {    width: 100%;    border-collapse: collapse;    font-size: 13px;  }  .team-table th {    font-family: var(--mono);    font-size: 8.5px;    letter-spacing: 0.03em;    text-transform: uppercase;    color: var(--muted);    text-align: left;    padding: 0 12px 8px 0;    border-bottom: 1px solid var(--rule);    font-weight: 400;  }  .team-table td {    padding: 10px 12px 10px 0;    border-bottom: 1px solid var(--rule);    vertical-align: top;    line-height: 1.45;  }  .team-table td:last-child { border-right: none; }  .team-table tr:last-child td { border-bottom: none; }  .name-cell {    font-weight: 540;    white-space: nowrap;  }  .role-cell {    color: var(--muted);    font-size: 12px;  }  .slack-cell {    font-family: var(--mono);    font-size: 10px;    color: var(--blue);  }  /* ── CHANNEL LIST ── */  .channel-grid {    display: grid;    grid-template-columns: 1fr 1fr;    gap: 8px;  }  .channel-item {    display: flex;    align-items: flex-start;    gap: 8px;    padding: 10px;    background: white;    border: 1px solid var(--rule);  }  .channel-hash {    font-family: var(--mono);    font-size: 14px;    color: var(--muted);    line-height: 1;    margin-top: 2px;    flex-shrink: 0;  }  .channel-body {}  .channel-name {    font-family: var(--mono);    font-size: 11px;    font-weight: 540;    color: var(--blue);    margin-bottom: 2px;  }  .channel-desc {    font-size: 11px;    color: var(--muted);    line-height: 1.35;  }  /* ── FAQ ── */  .faq-item {    border-bottom: 1px solid var(--rule);    padding: 16px 0;  }  .faq-item:first-child { padding-top: 0; }  .faq-q {    font-family: var(--serif);    font-size: 15px;    font-weight: 720;    margin-bottom: 8px;    display: flex;    gap: 10px;    align-items: baseline;  }  .faq-q::before {    content: 'Q';    font-family: var(--mono);    font-size: 9px;    color: var(--accent);    letter-spacing: .1em;    padding-top: 2px;    flex-shrink: 0;  }  .faq-a {    font-size: 13px;    line-height: 1.6;    color: var(--ink);    padding-left: 20px;  }  .faq-a a {    color: var(--accent);    text-decoration: none;    font-weight: 540;  }  .faq-a a:hover { text-decoration: underline; }  /* ── SPIFF BANNER ── */  .spiff-banner {    background: var(--green);    color: white;    padding: 20px 24px;    margin-bottom: 24px;    display: grid;    grid-template-columns: 1fr auto;    gap: 16px;    align-items: center;  }  .spiff-banner .spiff-label {    font-family: var(--mono);    font-size: 8px;    letter-spacing: 0.05em;    text-transform: uppercase;    opacity: 0.7;    margin-bottom: 5px;  }  .spiff-banner .spiff-title {    font-family: var(--serif);    font-size: 17px;    font-weight: 720;    line-height: 1.3;  }  .spiff-banner .spiff-mult {    font-family: var(--serif);    font-size: 36px;    font-weight: 720;    line-height: 1;    opacity: 0.9;  }  .spiff-sub {    font-family: var(--mono);    font-size: 9px;    opacity: 0.65;    text-align: right;    letter-spacing: .06em;  }  /* ── OFFICE ── */  .logistics-grid {    display: grid;    grid-template-columns: repeat(3, 1fr);    gap: 1px;    background: var(--rule);    border: 1px solid var(--rule);    margin-bottom: 20px;  }  .logistics-cell {    background: var(--paper);    padding: 16px;  }  .logistics-cell .lc-label {    font-family: var(--mono);    font-size: 8.5px;    letter-spacing: 0.03em;    text-transform: uppercase;    color: var(--muted);    margin-bottom: 6px;  }  .logistics-cell .lc-value {    font-size: 13px;    font-weight: 540;    line-height: 1.4;  }  .logistics-cell .lc-sub {    font-size: 11px;    color: var(--muted);    margin-top: 3px;  }  /* ── RESOURCES ── */  .resource-row {    display: flex;    gap: 10px;    align-items: center;    padding: 9px 0;    border-bottom: 1px solid var(--rule);    font-size: 12.5px;  }  .resource-row:last-child { border-bottom: none; }  .resource-row .res-type {    font-family: var(--mono);    font-size: 8px;    letter-spacing: .1em;    text-transform: uppercase;    padding: 3px 7px;    background: var(--gold-soft);    color: var(--gold);    white-space: nowrap;    flex-shrink: 0;    min-width: 58px;    text-align: center;  }  .resource-row a {    color: var(--accent);    text-decoration: none;    font-weight: 540;  }  .resource-row a:hover { text-decoration: underline; }  .resource-row .res-note {    color: var(--muted);    font-size: 11px;    margin-left: auto;    flex-shrink: 0;  }  /* ── FOOTER ── */  .footer {    border-top: 1px solid var(--rule);    margin-top: 60px;    padding-top: 20px;    display: flex;    justify-content: space-between;    align-items: center;    flex-wrap: wrap;    gap: 12px;  }  .footer p {    font-family: var(--mono);    font-size: 10px;    color: var(--muted);    letter-spacing: .06em;  }  .sources-list {    font-family: var(--mono);    font-size: 9px;    color: var(--muted);    line-height: 1.8;    letter-spacing: .03em;    margin-top: 8px;  }  /* ── SIDEBAR ASIDE ── */  .aside-box {    border-left: 3px solid var(--accent);    padding: 14px 16px;    background: var(--accent-soft);    margin-top: 16px;    font-size: 12px;    line-height: 1.5;  }  .aside-box strong {    display: block;    font-family: var(--mono);    font-size: 8.5px;    letter-spacing: 0.03em;    text-transform: uppercase;    color: var(--accent);    margin-bottom: 6px;  }  /* responsiveness */  @media (max-width: 680px) {    .welcome-block, .two-col { grid-template-columns: 1fr; }    .logistics-grid { grid-template-columns: 1fr 1fr; }    .channel-grid { grid-template-columns: 1fr; }    .masthead { grid-template-columns: 1fr auto; }    .masthead-logo { display: none; }    .masthead-meta { text-align: left; }    body { padding: 28px 18px 60px; }  }  @media print {    body { background: white; padding: 20px; }    .spiff-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }    .context-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }  }  /* ── PROGRESS BAR ── */  .progress-bar { display: flex; gap: 4px; margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }  .progress-step { flex: 1; display: flex; flex-direction: column; gap: 5px; }  .progress-step-bar { height: 6px; background: var(--rule); }  .progress-step.done .progress-step-bar { background: var(--ink); }  .progress-step.active .progress-step-bar { background: var(--accent); }  .progress-label { font-family: var(--mono); font-size: 8px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }  .progress-step.active .progress-label { color: var(--accent); font-weight: 540; }  .progress-step.done .progress-label { color: var(--ink); }</style></head><body><!-- ══════════════ MASTHEAD ══════════════ --><header class="masthead">  <div>    <div class="masthead-label">OutSystems · People</div>    <h1>Welcome,<br><em>Loren.</em></h1>  </div>  <div class="masthead-logo">    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">      <defs>        <mask id="donut-ring">          <circle cx="50" cy="50" r="48" fill="white"/>          <circle cx="50" cy="50" r="22" fill="black"/>        </mask>      </defs>      <circle cx="50" cy="50" r="48" fill="#E62028" mask="url(#donut-ring)"/>    </svg>  </div>  <div class="masthead-meta">    <div class="badge">Day One Guide</div>    <p>Role: People Development Lead<br>       Function: People — Americas / West<br>       Manager: Sofia Bué Alves<br>       Start: May 11, 2026</p>  </div></header><div class="byline-strip">  <div class="byline-item">    <span class="label">Location</span>    <span class="value">Los Angeles, CA</span>  </div>  <div class="byline-item">    <span class="label">Manager</span>    <span class="value">Sofia Bué Alves</span>  </div>  <div class="byline-item">    <span class="label">Department Leader</span>    <span class="value">Mark Quigley, Chief People Officer</span>  </div>  <div class="byline-item">    <span class="label">Company Mission</span>    <span class="value">We provide the agentic systems platform that enterprise leaders trust to build and secure their applications, agents, and mission critical systems.</span>  </div></div><!-- ══ PROGRESS ══ --><div>  <div class="progress-bar">    <div class="progress-step active"><div class="progress-step-bar"></div><span class="progress-label">Week 1 · Onboard</span></div>    <div class="progress-step "><div class="progress-step-bar"></div><span class="progress-label">Week 2 · Listen</span></div>    <div class="progress-step "><div class="progress-step-bar"></div><span class="progress-label">Week 3 · Contribute</span></div>    <div class="progress-step "><div class="progress-step-bar"></div><span class="progress-label">Week 4 · Own</span></div>  </div></div><!-- ══════════════ WELCOME ══════════════ --><section class="section">  <div class="welcome-block">    <div>      <div class="masthead-label" style="margin-bottom:12px">§ Welcome</div>      <p class="lead">        You're joining OutSystems at <strong>one of the most pivotal moments in our history</strong>. In 2026 we set an ambitious V2MOM — grow to €550M ARR, put 10,000 AI agents in production, and reach 100% V2MOM coverage across every employee. The People function is at the centre of that: hiring the talent, developing the skills, and building the culture that makes it possible.      </p>      <p class="lead" style="margin-top:16px">        Your first week is structured and purposeful. By Friday, you should have your core systems live, your key relationships started, and a clear picture of your function's Q2 priorities. The People team has invested seriously in making you <strong>effective from Day One</strong> — lean into it.      </p>      <div class="aside-box">        <strong>Your Manager's Context</strong>        Sofia Bué Alves is focused on people experience, culture programs, and team development across the global People org. She'll want to align on your onboarding priorities and first priorities in your 1:1 this week.      </div>    </div>    <div class="context-card">      <div class="context-title">Company Snapshot · Q2 2026</div>      <div class="context-stat">        <div class="stat-label">Category</div>        <div class="stat-value">Agentic Systems Engineering</div>        <div class="stat-sub">Launched March 31, 2026 — a new category positioning OutSystems as the governed AI platform for enterprise agentic development.</div>      </div>      <div class="context-stat">        <div class="stat-label">ARR Target</div>        <div class="stat-value">€550.1M in 2026</div>        <div class="stat-sub">Path to €1B by 2029</div>      </div>      <div class="context-stat">        <div class="stat-label">Current Programme</div>        <div class="stat-value">Q2 V2MOM completion sprint (goal: 100% by end of Q2 2026)</div>        <div class="stat-sub">Q2 2026</div>      </div>      <div class="context-stat">        <div class="stat-label">V2MOM App</div>        <div class="stat-value"><a href="https://apps.outsystems.app/V2MOM/" style="color:white;text-decoration:none">https://apps.outsystems.app/V2MOM/</a></div>        <div class="stat-sub">Read yours and your team's V2MOMs in week 1</div>      </div>      <div class="context-stat">        <div class="stat-label">ONE Conference</div>        <div class="stat-value">ONE '26 — June 2–3, 2026</div>        <div class="stat-sub">Applications closed April 24 — check with Sofia on attendance eligibility</div>      </div>    </div>  </div></section><!-- ══════════════ ONBOARDING & LEARNING ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">01</span>    <h2 class="section-title">Onboarding &amp; Learning</h2>    <div class="section-rule"></div>  </div>  <div class="spiff-banner">    <div>      <div class="spiff-label">Docebo · Start on Day 1</div>      <div class="spiff-title"><a href="https://outsystems.docebosaas.com" style="color:white;text-decoration:none;">People Onboarding Week 1 Learning Path →</a></div>    </div>    <div style="text-align:right;">      <div class="spiff-mult" style="font-size:22px;opacity:0.85;">Day 1</div>      <div class="spiff-sub">Complete before your<br>first team meeting</div>    </div>  </div></section><!-- ══════════════ WEEK SCHEDULE ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">02</span>    <h2 class="section-title">Your First Week — Day by Day</h2>    <div class="section-rule"></div>  </div>  <div class="schedule-grid">    <div class="schedule-day">      <div class="day-label">        <div class="day-name">Mon</div>        <div class="day-tag">Day One</div>      </div>      <div class="day-events">        <div class="event">          <div class="event-time">9 AM</div>          <div class="event-body">            <div class="event-title">IT Setup & System Access <span class="pill pill-red">Priority</span></div>            <div class="event-note">Laptop, Okta/SSO, email, corporate VPN. Contact Digital Spot via <strong>#digital-spot</strong> for any access requests.</div>          </div>        </div>        <div class="event">          <div class="event-time">10 AM</div>          <div class="event-body">            <div class="event-title">1:1 with Sofia Bué Alves</div>            <div class="event-note">Align on your function (People), Q2 priorities, and focused on people experience and development programs across the global org. In week 1, she'll want you to get set up on all core tools, meet key People partners, and come to your first 1:1 with initial questions about your portfolio.. Ask about current programmes and immediate deliverables.</div>          </div>        </div>        <div class="event">          <div class="event-time">Afternoon</div>          <div class="event-body">            <div class="event-title">Workday, Docebo & Workday activation</div>            <div class="event-note">Your core People systems. Log in and complete your profile on Day 1. See <em>Tools & Access</em> section below.</div>          </div>        </div>        <div class="event">          <div class="event-time">EOD</div>          <div class="event-body">            <div class="event-title">Join all Slack channels listed in this guide</div>            <div class="event-note">Introduce yourself in <strong>#general</strong> and <strong>#people-team</strong>.</div>          </div>        </div>      </div>    </div>    <div class="schedule-day">      <div class="day-label">        <div class="day-name">Tue</div>        <div class="day-tag">Listen & Learn</div>      </div>      <div class="day-events">        <div class="event">          <div class="event-time">Morning</div>          <div class="event-body">            <div class="event-title">Read the Company V2MOM <span class="pill pill-gold">Required</span></div>            <div class="event-note">Understand OutSystems' Vision, Values, Methods, Obstacles, and Measures for 2026. Then read your team's V2MOMs at <a href="https://apps.outsystems.app/V2MOM/" class="event-link">V2MOM App →</a></div>          </div>        </div>        <div class="event">          <div class="event-time">All day</div>          <div class="event-body">            <div class="event-title">People Strategy & Roadmap Deep Dive</div>            <div class="event-note">Review the People strategy doc and current-quarter roadmap. Ask Sofia Bué Alves for the link. Understand Mark Quigley's priorities and how your function contributes.</div>          </div>        </div>        <div class="event">          <div class="event-time">Afternoon</div>          <div class="event-body">            <div class="event-title">1:1 Introduction with Client Group Leads</div>            <div class="event-note">Schedule intros with Kate Guarino and Sofia Bué Alves — your primary internal partners. Ask about their current headcount, development, and People pain points.</div>          </div>        </div>      </div>    </div>    <div class="schedule-day highlight">      <div class="day-label">        <div class="day-name">Wed</div>        <div class="day-tag">Systems Day</div>      </div>      <div class="day-events">        <div class="event">          <div class="event-time">All day</div>          <div class="event-body">            <div class="event-title">People Systems Deep Dive <span class="pill pill-blue">Self-paced</span></div>            <div class="event-note">Workday, Greenhouse, Docebo, and Lattice. Get familiar with dashboards and data views relevant to your function.</div>          </div>        </div>        <div class="event">          <div class="event-time">Afternoon</div>          <div class="event-body">            <div class="event-title">Review Active Programmes & Calendars</div>            <div class="event-note">Understand what is currently running: Q2 V2MOM completion sprint (goal: 100% by end of Q2 2026). Next key date: V2MOM submission deadline — end of Q2 2026.</div>          </div>        </div>        <div class="event">          <div class="event-time">EOD</div>          <div class="event-body">            <div class="event-title">Review the Employee Handbook & Policies</div>            <div class="event-note">Familiarise yourself with key policies. <a href="https://sites.google.com/outsystems.com" class="event-link">Employee Handbook →</a></div>          </div>        </div>      </div>    </div>    <div class="schedule-day">      <div class="day-label">        <div class="day-name">Thu</div>        <div class="day-tag">Relationships</div>      </div>      <div class="day-events">        <div class="event">          <div class="event-time">Morning</div>          <div class="event-body">            <div class="event-title">Meet your People team peers <span class="pill pill-red">Priority</span></div>            <div class="event-note">Intro 1:1s with Teresa Sousa (@teresa.sousa) and Monica Alves (@monica.alves). Understand their remits and current workload.</div>          </div>        </div>        <div class="event">          <div class="event-time">Afternoon</div>          <div class="event-body">            <div class="event-title">Shadow a People process or team meeting <span class="pill pill-gold">Recommended</span></div>            <div class="event-note">Ask Sofia Bué Alves to include you in a relevant in-progress meeting — a hiring panel, L&D session, or team review — to see the work in context.</div>          </div>        </div>        <div class="event">          <div class="event-time">EOD</div>          <div class="event-body">            <div class="event-title">Agentic Systems Engineering Orientation</div>            <div class="event-note">OutSystems launched <em>Agentic Systems Engineering</em> in March 2026 — our new company category. As a People professional, you need to understand what we're selling and building. Watch the <a href="https://www.youtube.com/watch?v=QwSJnd-NSQU" class="event-link">Product Sizzle Video →</a></div>          </div>        </div>      </div>    </div>    <div class="schedule-day">      <div class="day-label">        <div class="day-name">Fri</div>        <div class="day-tag">Synthesis Day</div>      </div>      <div class="day-events">        <div class="event">          <div class="event-time">Morning</div>          <div class="event-body">            <div class="event-title">Document your Week 1 observations</div>            <div class="event-note">Write down: what you've learned, gaps you've spotted, and your top questions. This becomes the basis of your 30-day plan — ask Sofia Bué Alves if there's a standard template.</div>          </div>        </div>        <div class="event">          <div class="event-time">Midday</div>          <div class="event-body">            <div class="event-title">End-of-week check-in with Sofia Bué Alves</div>            <div class="event-note">Share your observations and questions. Surface any access blockers. Confirm your Weekly 1:1s with Sofia · Monthly People team syncs · Quarterly All Hands cadence going forward.</div>          </div>        </div>        <div class="event">          <div class="event-time">EOD</div>          <div class="event-body">            <div class="event-title">Apply for ONE Conference 2026 <span class="pill pill-outline">Check eligibility</span></div>            <div class="event-note">June 2–3, 2026. Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation" class="event-link">ONE Internal App →</a>. Check with Sofia Bué Alves on People team attendance eligibility.</div>          </div>        </div>      </div>    </div>  </div></div>  <div class="aside-box" style="margin-top:16px">    <strong>Revenue Launchpad</strong>    OutSystems runs a dedicated field onboarding bootcamp called <em>Revenue Launchpad</em> held in Lisbon. The most recent cohort completed May 2026. Ask your enablement contact — Bobbie Jo Frazier or Sarah Cropp — about the next cohort date and whether you'll be registered. Graduates leave with a full account entry package and Day One ready status.  </div></section><!-- ══════════════ TOOLS & ACCESS ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">03</span>    <h2 class="section-title">Tools & Access</h2>    <div class="section-rule"></div>  </div>  <div class="two-col" style="margin-bottom:24px">    <div>      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Core People Systems</div>      <div class="tool-row">        <div class="tool-icon red">WD</div>        <div>          <div class="tool-name">Workday (Workday)</div>          <div class="tool-desc">HRIS — employee records, org chart, compensation, performance, and reporting. Your system of record. <a href="https://wd5.myworkday.com/outsystems" class="event-link">https://wd5.myworkday.com/outsystems →</a></div>        </div>        <div class="tool-status">Day 1</div>      </div>      <div class="tool-row">        <div class="tool-icon blue">ATS</div>        <div>          <div class="tool-name">Greenhouse</div>          <div class="tool-desc">Applicant Tracking System — all open roles, candidate pipelines, and hiring workflows. <a href="https://app.greenhouse.io" class="event-link">https://app.greenhouse.io →</a></div>        </div>        <div class="tool-status">Week 1</div>      </div>      <div class="tool-row">        <div class="tool-icon green">LMS</div>        <div>          <div class="tool-name">Docebo</div>          <div class="tool-desc">Learning Management System — all L&D content, onboarding programmes, and learning paths. <a href="https://outsystems.docebosaas.com" class="event-link">https://outsystems.docebosaas.com →</a></div>        </div>        <div class="tool-status">Day 1</div>      </div>      <div class="tool-row">        <div class="tool-icon gold">PM</div>        <div>          <div class="tool-name">Lattice</div>          <div class="tool-desc">Performance management, engagement surveys, and 1:1 tracking. <a href="https://outsystems.latticehq.com" class="event-link">https://outsystems.latticehq.com →</a></div>        </div>        <div class="tool-status">Week 1</div>      </div>      <div class="tool-row">        <div class="tool-icon">V2M</div>        <div>          <div class="tool-name">V2MOM App</div>          <div class="tool-desc">Company and individual V2MOMs. Read the company, department, and your manager's V2MOM in your first week. <a href="https://apps.outsystems.app/V2MOM/" class="event-link">https://apps.outsystems.app/V2MOM/ →</a></div>        </div>        <div class="tool-status">Day 1</div>      </div>    </div>    <div>      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Collaboration & Analytics</div>      <div class="tool-row">        <div class="tool-icon blue">ZM</div>        <div>          <div class="tool-name">Zoom</div>          <div class="tool-desc">All internal and cross-functional meetings. Join recurring People team sessions via the shared People Calendar.</div>        </div>        <div class="tool-status">Day 1</div>      </div>      <div class="tool-row">        <div class="tool-icon" style="background:#4A154B">SL</div>        <div>          <div class="tool-name">Slack</div>          <div class="tool-desc">Primary communication. See channel list in Section 04. Key channel: <strong>#people-team</strong>.</div>        </div>        <div class="tool-status">Day 1</div>      </div>      <div class="tool-row">        <div class="tool-icon gold">AN</div>        <div>          <div class="tool-name">Workday Reports / PowerBI</div>          <div class="tool-desc">People analytics and dashboards — headcount, attrition, hiring pipeline, engagement scores. Ask Sofia Bué Alves for access and key dashboards. <a href="https://sites.google.com/outsystems.com" class="event-link">People Dashboard →</a></div>        </div>        <div class="tool-status">Week 1</div>      </div>      <div class="tool-row">        <div class="tool-icon green">GD</div>        <div>          <div class="tool-name">Google Drive — People Folder</div>          <div class="tool-desc">Policies, templates, job description library, programme docs. Source of truth for People team materials. <a href="https://drive.google.com" class="event-link">People Drive →</a></div>        </div>        <div class="tool-status">Day 1</div>      </div>      <div class="tool-row">        <div class="tool-icon">CAL</div>        <div>          <div class="tool-name">People Team Calendar</div>          <div class="tool-desc">Shared calendar for People team rituals, programme milestones, and key deadlines. Ask Sofia Bué Alves to add you. <a href="https://calendar.google.com" class="event-link">Calendar →</a></div>        </div>        <div class="tool-status">Day 1</div>      </div>    </div>  </div></section><!-- ══════════════ TEAM ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">04</span>    <h2 class="section-title">Your Team — Key Introductions</h2>    <div class="section-rule"></div>  </div>  <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">USA Leadership & Americas / West Team</div>  <table class="team-table">    <thead>      <tr>        <th>Name</th>        <th>Role</th>        <th>Why they matter to you</th>        <th>Slack / Contact</th>      </tr>    </thead>    <tbody>      <!-- Row 1: Always the direct manager -->      <tr>        <td class="name-cell">Sofia Bué Alves</td>        <td class="role-cell">Senior Director, People Development & Experience<br>Your direct manager</td>        <td>focused on people experience, culture programs, and team development across the global People org. She'll want to align on your onboarding priorities and first priorities in your 1:1 this week.</td>        <td class="slack-cell">@sofia.alves</td>      </tr>      <!-- Row 2: Always the department leader (sourced from Workday org chart) -->      <tr>        <td class="name-cell">Mark Quigley</td>        <td class="role-cell">Chief People Officer<br>Your department leader</td>        <td>Mark owns the entire People organisation — talent acquisition, people development, total rewards, people operations, and HRIS. His Q2 priorities centre on the V2MOM cultural activation program, scaling the leadership development agenda, and reaching 100% V2MOM completion by end of Q2 2026. Follow him in <strong>#general</strong> and company All Hands replays for strategic direction on culture and people programs.</td>        <td class="slack-cell">@mark.quigley</td>      </tr>      <!-- Rows 3+: People-specific peers and partners -->      <tr>        <td class="name-cell">Teresa Sousa</td>        <td class="role-cell">People — People Team</td>        <td>Your closest team peer. Get a 1:1 in week 1 to understand their current work and how your remits connect.</td>        <td class="slack-cell">@teresa.sousa</td>      </tr>      <tr>        <td class="name-cell">Monica Alves</td>        <td class="role-cell">People — People Team</td>        <td>The People team is focused on activating the V2MOM cultural framework, completing the Q2 V2MOM rollout, and scaling leadership development programs across a growing global organisation.</td>        <td class="slack-cell">@monica.alves</td>      </tr>      <tr>        <td class="name-cell">Kate Guarino</td>        <td class="role-cell">Leader — People — Development & Experience</td>        <td>One of your primary internal client group leaders. Understanding their team's People needs is key to your impact in this role. Prioritise an intro 1:1 this week.</td>        <td class="slack-cell">@kate.guarino</td>      </tr>      <tr>        <td class="name-cell">Missy Ellis</td>        <td class="role-cell">Senior Director, Total Rewards &amp; People Operations</td>        <td>Missy owns Total Rewards and People Ops — your go-to for comp frameworks, benefits, and Workday processes. Connect with her early to understand how the operational backbone of the People team works.</td>        <td class="slack-cell">@missy.ellis</td>      </tr>      <tr>        <td class="name-cell">Your People Ops partner (confirm with Sofia)</td>        <td class="role-cell">Finance / Comp Partner</td>        <td>Your partner for compensation benchmarking, headcount budgets, and offer approvals. Build this relationship early — most People decisions have a finance component.</td>        <td class="slack-cell">@people-ops</td>      </tr>    </tbody>  </table></section><!-- ══════════════ SLACK CHANNELS ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">05</span>    <h2 class="section-title">Slack Channels — Join These Now</h2>    <div class="section-rule"></div>  </div>  <div class="channel-grid">    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">general</div>        <div class="channel-desc">Company-wide channel. All-hands announcements, leadership messages, and company news. Read daily.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">#people-team</div>        <div class="channel-desc">Your primary People team channel. Introduce yourself here on Day 1. Team updates, programme discussions, and coordination.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">one-revenue-team</div>        <div class="channel-desc">All-hands for the revenue organisation. Essential for understanding the business your People work supports. Active Sales Plays, SPIFF, and leadership updates.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">one-conference</div>        <div class="channel-desc">ONE '26 2026 planning (June 2–3, 2026). Check with Sofia Bué Alves on People team attendance eligibility.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">womenofoutsystems</div>        <div class="channel-desc">Community channel for women at OutSystems. Active community for networking, support, and events.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">ase-internal</div>        <div class="channel-desc">Agentic Systems Engineering updates and questions. Important for understanding the product context your hiring and L&D programmes support.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">digital-spot</div>        <div class="channel-desc">IT support and system access. Your first stop for any provisioning issues, access requests, or technical blockers.</div>      </div>    </div>    <div class="channel-item">      <div class="channel-hash">#</div>      <div class="channel-body">        <div class="channel-name">v2mom-questions</div>        <div class="channel-desc">Questions and discussion on V2MOM submissions. Relevant given 100% employee V2MOM coverage is a Q2 company target — People owns this programme.</div>      </div>    </div>  </div>  <div class="aside-box" style="margin-top:16px">    <strong>People Team Drive</strong>    The People Google Drive folder is your source of truth for all policies, templates, job description libraries, programme documentation, and comp frameworks. Ask Sofia Bué Alves for the top-level folder link on Day 1 and bookmark it. <a href="https://drive.google.com" style="color:var(--accent);text-decoration:none;font-weight:540">People Drive →</a>  </div></section><!-- ══════════════ OFFICE LOGISTICS ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">06</span>    <h2 class="section-title">Office & Logistics</h2>    <div class="section-rule"></div>  </div>  <div class="logistics-grid">    <div class="logistics-cell">      <div class="lc-label">IT & Access Issues</div>      <div class="lc-value">Digital Spot</div>      <div class="lc-sub">Message @Digital Spot or post in #digital-spot. They handle Slack access, Jira, and app permissions.</div>    </div>    <div class="logistics-cell">      <div class="lc-label">Systems & Provisioning</div>      <div class="lc-value">Day 1 checklist</div>      <div class="lc-sub">SFDC · Seismic · Deal Mate · Compass · Gong · Zoom · Slack workspaces</div>    </div>    <div class="logistics-cell">      <div class="lc-label">SPIFF / Compensation Qs</div>      <div class="lc-value">Sales Operations</div>      <div class="lc-sub"><a href="mailto:sales.operations.team@outsystems.com" style="color:var(--accent);text-decoration:none">sales.operations.team@outsystems.com</a> or DM Madeline Dibble in Slack.</div>    </div>    <div class="logistics-cell">      <div class="lc-label">Sales Content</div>      <div class="lc-value">Seismic</div>      <div class="lc-sub">Source of truth for all plays, decks, and battlecards. Do not send outdated slide decks.</div>    </div>    <div class="logistics-cell">      <div class="lc-label">Enablement Questions</div>      <div class="lc-value">Bobbie Jo Frazier</div>      <div class="lc-sub">Revenue Launchpad scheduling, Sales Play sessions, and any training access issues.</div>    </div>    <div class="logistics-cell">      <div class="lc-label">Company Intranet</div>      <div class="lc-value">Compass</div>      <div class="lc-sub">Account health, customer data, org charts. Also see the <em>Customer Score</em> — new as of April 8.</div>    </div>  </div></section><!-- ══════════════ Q2 PRIORITIES ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">07</span>    <h2 class="section-title">Q2 People Priorities</h2>    <div class="section-rule"></div>  </div>  <div class="spiff-banner">    <div>      <div class="spiff-label">Active Programme · Q2 2026</div>      <div class="spiff-title">Q2 V2MOM completion sprint (goal: 100% by end of Q2 2026)</div>    </div>    <div style="text-align:right;">      <div class="spiff-mult" style="font-size:22px;opacity:0.85;">Q2</div>      <div class="spiff-sub">Next key date:<br>V2MOM submission deadline — end of Q2 2026</div>    </div>  </div>  <div class="two-col">    <div class="info-card">      <div class="card-label">V2MOM Target — People Function</div>      <p>100% of employees with V2MOMs completed and submitted by end of Q2 2026.</p>      <p style="margin-top:8px;font-size:12px;color:var(--muted)">As a People team member, you play a direct role in driving and supporting this company-wide target.</p>      <p style="margin-top:8px"><a href="https://apps.outsystems.app/V2MOM/" style="color:var(--accent);font-size:12px;text-decoration:none;font-weight:500">V2MOM App →</a></p>    </div>    <div class="info-card">      <div class="card-label">Key People Frameworks — Bookmark These</div>      <p><strong>Career Ladder</strong> — <a href="https://sites.google.com/outsystems.com" style="color:var(--accent);text-decoration:none">Career Ladder →</a></p>      <p><strong>Comp Framework</strong> — <a href="https://wd5.myworkday.com/outsystems" style="color:var(--accent);text-decoration:none">Comp Framework →</a></p>      <p><strong>Performance Framework</strong> — <a href="https://outsystems.latticehq.com" style="color:var(--accent);text-decoration:none">Perf Framework →</a></p>      <p><strong>Manager Guide</strong> — <a href="https://sites.google.com/outsystems.com" style="color:var(--accent);text-decoration:none">Manager Guide →</a></p>    </div>  </div><!-- ══════════════ RESOURCES ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">08</span>    <h2 class="section-title">Essential Resources — Bookmark These</h2>    <div class="section-rule"></div>  </div>  <div class="resource-row">    <div class="res-type">Strategy</div>    <a href="https://sites.google.com/outsystems.com">People Strategy & Roadmap</a>    <div class="res-note">Read in week 1</div>  </div>  <div class="resource-row">    <div class="res-type">Handbook</div>    <a href="https://sites.google.com/outsystems.com">Employee Handbook</a>    <div class="res-note">Policies & guidelines</div>  </div>  <div class="resource-row">    <div class="res-type">HRIS</div>    <a href="https://wd5.myworkday.com/outsystems">Workday — Employee Data & Org Chart</a>    <div class="res-note">System of record</div>  </div>  <div class="resource-row">    <div class="res-type">Hiring</div>    <a href="https://app.greenhouse.io">Greenhouse — Applicant Tracking System</a>    <div class="res-note">Open roles & pipelines</div>  </div>  <div class="resource-row">    <div class="res-type">Learning</div>    <a href="https://outsystems.docebosaas.com">Docebo — Learning Management System</a>    <div class="res-note">L&D programmes</div>  </div>  <div class="resource-row">    <div class="res-type">Performance</div>    <a href="https://outsystems.latticehq.com">Lattice</a>    <div class="res-note">Reviews & engagement</div>  </div>  <div class="resource-row">    <div class="res-type">JD Template</div>    <a href="https://app.greenhouse.io">Job Description Template Library</a>    <div class="res-note">Standard JD formats</div>  </div>  <div class="resource-row">    <div class="res-type">Frameworks</div>    <a href="https://sites.google.com/outsystems.com">Career Ladder & Levelling Guide</a>    <div class="res-note">Role definitions</div>  </div>  <div class="resource-row">    <div class="res-type">V2MOM</div>    <a href="https://apps.outsystems.app/V2MOM/">V2MOM App — Company & Team</a>    <div class="res-note">Read in week 1</div>  </div>  <div class="resource-row">    <div class="res-type">Conference</div>    <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE '26 Internal App</a>    <div class="res-note">June 2–3, 2026</div>  </div><!-- ══════════════ FAQ ══════════════ --><section class="section">  <div class="section-header">    <span class="section-num">09</span>    <h2 class="section-title">Common First-Week Questions</h2>    <div class="section-rule"></div>  </div>  <div class="faq-item">    <div class="faq-q">What is Agentic Systems Engineering and why does it matter to the People team?</div>    <div class="faq-a">ASE is OutSystems' new platform category announced March 31, 2026 — repositioning us as the governed AI platform for enterprise agentic systems. As a People professional, you need to understand what we build and sell: it shapes the talent profiles you hire for, the skills you develop, and how you talk to candidates about the company's direction. Watch the <a href="https://www.youtube.com/watch?v=QwSJnd-NSQU">product sizzle video</a> and read the <a href="https://docs.google.com/document/d/1u8t5rJ1N7iFvYEpmM6rkR0BYzK9vzMRHQg_7RO3-hxA/edit">ASE FAQ</a> in your first week.</div>  </div>  <div class="faq-item">    <div class="faq-q">What is the V2MOM and what's my role in it?</div>    <div class="faq-a">The V2MOM (Vision, Values, Methods, Obstacles, Measures) is OutSystems' operating framework — every employee from the CEO down has one. A key Q2 company target is 100% employee V2MOM coverage by end of Q2 2026. The People team directly owns driving and supporting this programme. Log in to the <a href="https://apps.outsystems.app/V2MOM/">V2MOM App</a> on Day 1, read the company and your manager's V2MOM, and ask Sofia Bué Alves about your team's role in the Q2 completion push.</div>  </div>  <div class="faq-item">    <div class="faq-q">Who are my key internal clients and how do I engage them?</div>    <div class="faq-a">Your primary client groups are People — Development & Experience. Your key contacts are Kate Guarino and Sofia Bué Alves. Prioritise intro 1:1s with both in your first week. Come prepared with questions about their current headcount challenges, development priorities, and any open People asks. Don't wait for them to come to you.</div>  </div>  <div class="faq-item">    <div class="faq-q">What People systems do I need access to on Day 1?</div>    <div class="faq-a">Your core stack: <strong>Workday</strong> (employee records and org chart), <strong>Greenhouse</strong> (hiring pipelines), <strong>Docebo</strong> (learning programmes), <strong>Lattice</strong> (performance and engagement), and the <strong>V2MOM App</strong>. If any access is missing on Day 1, post in <strong>#digital-spot</strong> immediately. Don't wait — blocked access in week 1 costs time you can't recover.</div>  </div>  <div class="faq-item">    <div class="faq-q">What is the current active People programme I'm joining?</div>    <div class="faq-a">The current active programme is <strong>Q2 V2MOM completion sprint (goal: 100% by end of Q2 2026)</strong>. The next key milestone is <strong>V2MOM submission deadline — end of Q2 2026</strong>. Ask Sofia Bué Alves on Day 1 exactly where things stand and what your immediate contribution should be. Don't assume you have weeks to warm up — there may be live deliverables you're joining mid-flight.</div>  </div>  <div class="faq-item">    <div class="faq-q">Where do I find People policies, templates, and frameworks?</div>    <div class="faq-a">The <strong>People Google Drive</strong> is the source of truth: <a href="https://drive.google.com">https://drive.google.com</a>. Key documents: Employee Handbook, Job Description Template Library, Career Ladder, Comp Framework, Performance Framework, and Manager Guide. Links are in the Resources section of this guide. Never use a document found outside the official People Drive — it may be outdated.</div>  </div>  <div class="faq-item">    <div class="faq-q">What is the ONE Conference and is it relevant to me?</div>    <div class="faq-a">ONE '26 is OutSystems' flagship customer and prospect conference, June 2–3, 2026. It's primarily a revenue event but People team attendance is considered on a case-by-case basis — check with Sofia Bué Alves. There's also an active internal registration campaign (the ONE World Cup SPIFF) which you may need to support from a People / headcount reporting angle. Apply via <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">the ONE Internal App</a> if eligible.</div>  </div>  <div class="faq-item">    <div class="faq-q">How do I stay connected to what's happening across the business?</div>    <div class="faq-a">Three habits to build from Day 1: (1) Read <strong>#one-revenue-team</strong> daily — this is where business-critical updates land. (2) Check the <strong>V2MOM App</strong> weekly — it reflects shifting company priorities in real time. (3) Monitor <strong>#general</strong> for leadership announcements, org changes, and culture moments. The People function is most effective when it's connected to business context, not operating in isolation.</div>  </div><!-- ══════════════ FOOTER ══════════════ --><footer class="footer">  <p>OUTSYSTEMS PEOPLE · USA · Americas / West<br>     Loren Mastronardi — People Development Lead<br>     Generated May 11, 2026</p>  <p style="text-align:right">Prepared by Revenue Ops · People Enablement<br>Questions → Bobbie Jo Frazier or Sarah Cropp</p></footer><div class="sources-list">  Sources: [1] <span style="color:var(--muted)">Slack #one-revenue-team (May 2026)</span> · [2] <span style="color:var(--muted)">Google Calendar — Google Calendar (May 11, 2026)</span> · [3] <span style="color:var(--muted)">Google Drive — Google Drive (May 11, 2026)</span> · [2] <a href="https://www.google.com/calendar/event?eid=MmU3bmY3cThza3BzbGJodWJpNDE3OGsxYXUgY2F0YXJpbmEuc291c2FAb3V0c3lzdGVtcy5jb20" style="color:var(--muted)">Google Calendar — Enablement, Coaching & Onboarding</a> (Apr 23, 2026) · [3] Google Calendar — Sync about Onboarding, Enablement Sales Reps (Apr 21, 2026) · [4] <a href="https://docs.google.com/document/d/12mdVJb3eL1-UzEBZIQL-Jv8RLCbGO7rYD9FMl5NPcfU/edit" style="color:var(--muted)">Google Drive — Onboarding Agent Technical Spec</a> (Apr 2026)</div></body></html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loren Mastronardi — Week One at OutSystems · People</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,40,360;0,40,540;0,40,720;1,40,360&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #171717;
+    --paper: #FFFFFF;
+    --rule: #C7C7C7;
+    --accent: #E62028;
+    --accent-soft: #F9D0D2;
+    --green: #171717;
+    --green-soft: #F5F5F5;
+    --gold: #A51018;
+    --gold-soft: #F9D0D2;
+    --blue: #454545;
+    --blue-soft: #F5F5F5;
+    --muted: #666666;
+    --mono: 'DM Sans', Calibri, sans-serif;
+    --serif: 'DM Sans', Calibri, sans-serif;
+    --sans: 'DM Sans', Calibri, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 360;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-top: 4px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 28px 0 20px;
+    margin-bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr 120px auto;
+    align-items: center;
+    gap: 24px;
+  }
+  .masthead-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .masthead-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(34px, 6vw, 56px);
+    font-weight: 720;
+    line-height: 1.0;
+    letter-spacing: -1px;
+  }
+
+  .masthead h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .masthead-meta {
+    text-align: right;
+  }
+
+  .masthead-meta .badge {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 5px 10px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .masthead-meta p {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--mono);
+    line-height: 1.7;
+  }
+
+  /* ── BYLINE STRIP ── */
+  .byline-strip {
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 0;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .byline-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .byline-item .label {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .byline-item .value {
+    font-size: 13px;
+    font-weight: 540;
+    color: var(--ink);
+  }
+
+  /* ── WELCOME PULL-QUOTE ── */
+  .welcome-block {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 40px;
+    margin-bottom: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .welcome-block .lead {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  .welcome-block .lead strong {
+    font-weight: 720;
+  }
+
+  .welcome-block .lead em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .context-card {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .context-card .context-title {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  .context-card .context-stat {
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding-top: 14px;
+  }
+
+  .context-card .stat-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 3px;
+  }
+
+  .context-card .stat-value {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 720;
+    line-height: 1.3;
+  }
+
+  .context-card .stat-sub {
+    font-size: 11px;
+    opacity: 0.65;
+    margin-top: 2px;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: .1em;
+    min-width: 24px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 720;
+    letter-spacing: -0.3px;
+  }
+
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── SCHEDULE ── */
+  .schedule-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .schedule-day {
+    background: var(--paper);
+    display: grid;
+    grid-template-columns: 100px 1fr;
+  }
+
+  .schedule-day.highlight {
+    background: var(--accent-soft);
+  }
+
+  .day-label {
+    padding: 16px;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .day-name {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 720;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .day-tag {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .day-events {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .event {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .event-time {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    min-width: 60px;
+    padding-top: 2px;
+    letter-spacing: .04em;
+  }
+
+  .event-body {}
+
+  .event-title {
+    font-size: 13px;
+    font-weight: 540;
+    line-height: 1.3;
+  }
+
+  .event-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .event-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 10px;
+  }
+
+  .event-link:hover { text-decoration: underline; }
+
+  .pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .pill-red { background: var(--accent); color: white; }
+  .pill-green { background: var(--green); color: white; }
+  .pill-gold { background: var(--gold); color: white; }
+  .pill-blue { background: var(--blue); color: white; }
+  .pill-outline { border: 1px solid var(--rule); color: var(--muted); }
+
+  /* ── 2-COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* ── INFO CARDS ── */
+  .info-card {
+    border: 1px solid var(--rule);
+    padding: 20px;
+  }
+
+  .info-card .card-label {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .info-card .card-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 720;
+    margin-bottom: 12px;
+  }
+
+  .info-card p {
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .info-card p strong {
+    font-weight: 540;
+  }
+
+  /* ── TOOL LIST ── */
+  .tool-row {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: start;
+    gap: 10px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tool-row:last-child { border-bottom: none; }
+
+  .tool-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 540;
+    letter-spacing: .05em;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .tool-icon.green { background: var(--green); }
+  .tool-icon.gold { background: var(--gold); }
+  .tool-icon.blue { background: var(--blue); }
+  .tool-icon.red { background: var(--accent); }
+
+  .tool-name {
+    font-size: 13.5px;
+    font-weight: 540;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+
+  .tool-desc {
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+
+  .tool-status {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--green);
+    padding-top: 3px;
+  }
+
+  /* ── TEAM TABLE ── */
+  .team-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .team-table th {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0 12px 8px 0;
+    border-bottom: 1px solid var(--rule);
+    font-weight: 400;
+  }
+
+  .team-table td {
+    padding: 10px 12px 10px 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+
+  .team-table td:last-child { border-right: none; }
+  .team-table tr:last-child td { border-bottom: none; }
+
+  .name-cell {
+    font-weight: 540;
+    white-space: nowrap;
+  }
+
+  .role-cell {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .slack-cell {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--blue);
+  }
+
+  /* ── CHANNEL LIST ── */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .channel-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px;
+    background: white;
+    border: 1px solid var(--rule);
+  }
+
+  .channel-hash {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .channel-body {}
+
+  .channel-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 540;
+    color: var(--blue);
+    margin-bottom: 2px;
+  }
+
+  .channel-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.35;
+  }
+
+  /* ── FAQ ── */
+  .faq-item {
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 0;
+  }
+
+  .faq-item:first-child { padding-top: 0; }
+
+  .faq-q {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 720;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+
+  .faq-q::before {
+    content: 'Q';
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--accent);
+    letter-spacing: .1em;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .faq-a {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink);
+    padding-left: 20px;
+  }
+
+  .faq-a a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 540;
+  }
+
+  .faq-a a:hover { text-decoration: underline; }
+
+  /* ── SPIFF BANNER ── */
+  .spiff-banner {
+    background: var(--green);
+    color: white;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .spiff-banner .spiff-label {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 5px;
+  }
+
+  .spiff-banner .spiff-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 720;
+    line-height: 1.3;
+  }
+
+  .spiff-banner .spiff-mult {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 720;
+    line-height: 1;
+    opacity: 0.9;
+  }
+
+  .spiff-sub {
+    font-family: var(--mono);
+    font-size: 9px;
+    opacity: 0.65;
+    text-align: right;
+    letter-spacing: .06em;
+  }
+
+  /* ── OFFICE ── */
+  .logistics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 20px;
+  }
+
+  .logistics-cell {
+    background: var(--paper);
+    padding: 16px;
+  }
+
+  .logistics-cell .lc-label {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .logistics-cell .lc-value {
+    font-size: 13px;
+    font-weight: 540;
+    line-height: 1.4;
+  }
+
+  .logistics-cell .lc-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  /* ── RESOURCES ── */
+  .resource-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 12.5px;
+  }
+
+  .resource-row:last-child { border-bottom: none; }
+
+  .resource-row .res-type {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    background: var(--gold-soft);
+    color: var(--gold);
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-width: 58px;
+    text-align: center;
+  }
+
+  .resource-row a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 540;
+  }
+
+  .resource-row a:hover { text-decoration: underline; }
+
+  .resource-row .res-note {
+    color: var(--muted);
+    font-size: 11px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 60px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer p {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: .06em;
+  }
+
+  .sources-list {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    line-height: 1.8;
+    letter-spacing: .03em;
+    margin-top: 8px;
+  }
+
+  /* ── SIDEBAR ASIDE ── */
+  .aside-box {
+    border-left: 3px solid var(--accent);
+    padding: 14px 16px;
+    background: var(--accent-soft);
+    margin-top: 16px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .aside-box strong {
+    display: block;
+    font-family: var(--mono);
+    font-size: 8.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  /* responsiveness */
+  @media (max-width: 680px) {
+    .welcome-block, .two-col { grid-template-columns: 1fr; }
+    .logistics-grid { grid-template-columns: 1fr 1fr; }
+    .channel-grid { grid-template-columns: 1fr; }
+    .masthead { grid-template-columns: 1fr auto; }
+    .masthead-logo { display: none; }
+    .masthead-meta { text-align: left; }
+    body { padding: 28px 18px 60px; }
+  }
+
+  @media print {
+    body { background: white; padding: 20px; }
+    .spiff-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .context-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar { display: flex; gap: 4px; margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
+  .progress-step { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+  .progress-step-bar { height: 6px; background: var(--rule); }
+  .progress-step.done .progress-step-bar { background: var(--ink); }
+  .progress-step.active .progress-step-bar { background: var(--accent); }
+  .progress-label { font-family: var(--mono); font-size: 8px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .progress-step.active .progress-label { color: var(--accent); font-weight: 540; }
+  .progress-step.done .progress-label { color: var(--ink); }
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════ MASTHEAD ══════════════ -->
+<header class="masthead">
+  <div>
+    <div class="masthead-label">OutSystems · People</div>
+    <h1>Welcome,<br><em>Loren.</em></h1>
+  </div>
+  <div class="masthead-logo">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+      <defs>
+        <mask id="donut-ring">
+          <circle cx="50" cy="50" r="48" fill="white"/>
+          <circle cx="50" cy="50" r="22" fill="black"/>
+        </mask>
+      </defs>
+      <circle cx="50" cy="50" r="48" fill="#E62028" mask="url(#donut-ring)"/>
+    </svg>
+  </div>
+  <div class="masthead-meta">
+    <div class="badge">Day One Guide</div>
+    <p>Role: People Development Lead<br>
+       Function: People Development — Americas / West<br>
+       Manager: Sofia Bué Alves<br>
+       Start: May 11, 2026</p>
+  </div>
+</header>
+
+<div class="byline-strip">
+  <div class="byline-item">
+    <span class="label">Location</span>
+    <span class="value">Los Angeles, CA (Americas / West)</span>
+  </div>
+  <div class="byline-item">
+    <span class="label">Manager</span>
+    <span class="value">Sofia Bué Alves</span>
+  </div>
+  <div class="byline-item">
+    <span class="label">Department Leader</span>
+    <span class="value">Mark Quigley, Chief People Officer</span>
+  </div>
+  <div class="byline-item">
+    <span class="label">Company Mission</span>
+    <span class="value">We provide the agentic systems platform that enterprise leaders trust to build and secure their applications, agents, and mission critical systems.</span>
+  </div>
+</div>
+
+
+
+<!-- ══ PROGRESS ══ -->
+<div>
+  <div class="progress-bar">
+    <div class="progress-step active"><div class="progress-step-bar"></div><span class="progress-label">Week 1 · Onboard</span></div>
+    <div class="progress-step "><div class="progress-step-bar"></div><span class="progress-label">Week 2 · Listen</span></div>
+    <div class="progress-step "><div class="progress-step-bar"></div><span class="progress-label">Week 3 · Contribute</span></div>
+    <div class="progress-step "><div class="progress-step-bar"></div><span class="progress-label">Week 4 · Own</span></div>
+  </div>
+</div>
+
+<!-- ══════════════ WELCOME ══════════════ -->
+<section class="section">
+  <div class="welcome-block">
+    <div>
+      <div class="masthead-label" style="margin-bottom:12px">§ Welcome</div>
+      <p class="lead">
+        You're joining OutSystems at <strong>one of the most pivotal moments in our history</strong>. In 2026 we set an ambitious V2MOM — grow to €550M ARR, put 10,000 AI agents in production, and reach 100% V2MOM coverage across every employee. The People function is at the centre of that: hiring the talent, developing the skills, and building the culture that makes it possible.
+      </p>
+      <p class="lead" style="margin-top:16px">
+        Your first week is structured and purposeful. By Friday, you should have your core systems live, your key relationships started, and a clear picture of your function's Q2 priorities. The People team has invested seriously in making you <strong>effective from Day One</strong> — lean into it.
+      </p>
+      <div class="aside-box">
+        <strong>Your Manager's Context</strong>
+        Sofia Bué Alves is leading the full People Development & Experience function across OutSystems globally. She recently shout-out'd the Lisbon and other office teams for running operations smoothly alongside their primary work.
+      </div>
+    </div>
+
+    <div class="context-card">
+      <div class="context-title">Company Snapshot · Q2 2026</div>
+      <div class="context-stat">
+        <div class="stat-label">Category</div>
+        <div class="stat-value">Agentic Systems Engineering</div>
+        <div class="stat-sub">Launched March 31, 2026 — OutSystems is pioneering a new category</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">ARR Target</div>
+        <div class="stat-value">€550.1M in 2026</div>
+        <div class="stat-sub">Path to €1B by 2029</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">Current Programme</div>
+        <div class="stat-value">V2MOM completion sprint — 100% of employees to complete by end of Q2 2026</div>
+        <div class="stat-sub">Q2 2026</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">V2MOM App</div>
+        <div class="stat-value"><a href="https://apps.outsystems.app/V2MOM/" style="color:white;text-decoration:none">V2MOM App</a></div>
+        <div class="stat-sub">Read yours and your team's V2MOMs in week 1</div>
+      </div>
+      <div class="context-stat">
+        <div class="stat-label">ONE Conference</div>
+        <div class="stat-value">ONE Conference — June 2–3, 2026</div>
+        <div class="stat-sub">Applications closed April 24 — check with your manager on attendance eligibility</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ ONBOARDING & LEARNING ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Onboarding &amp; Learning</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="spiff-banner">
+    <div>
+      <div class="spiff-label">OutSystems Academy / internal LMS · Start on Day 1</div>
+      <div class="spiff-title"><a href="https://learn.outsystems.com" style="color:white;text-decoration:none;">People Onboarding — Week 1 Learning Path →</a></div>
+    </div>
+    <div style="text-align:right;">
+      <div class="spiff-mult" style="font-size:22px;opacity:0.85;">Day 1</div>
+      <div class="spiff-sub">Complete before your<br>first team meeting</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ WEEK SCHEDULE ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Your First Week — Day by Day</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="schedule-grid">
+
+    <div class="schedule-day">
+      <div class="day-label">
+        <div class="day-name">Mon</div>
+        <div class="day-tag">Day One</div>
+      </div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">9 AM</div>
+          <div class="event-body">
+            <div class="event-title">IT Setup & System Access <span class="pill pill-red">Priority</span></div>
+            <div class="event-note">Laptop, Okta/SSO, email, corporate VPN. Contact Digital Spot via <strong>#digital-spot</strong> for any access requests.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">10 AM</div>
+          <div class="event-body">
+            <div class="event-title">1:1 with Sofia Bué Alves</div>
+            <div class="event-note">Align on your function (People Development), Q2 priorities, and currently focused on people capability building and the employee experience as OutSystems scales into the Agentic era. Reach out on Slack for a first-week 1:1 to align on priorities and how you can contribute fastest.. Ask about current programmes and immediate deliverables.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Afternoon</div>
+          <div class="event-body">
+            <div class="event-title">Workday, OutSystems Academy / internal LMS & Workday activation</div>
+            <div class="event-note">Your core People systems. Log in and complete your profile on Day 1. See <em>Tools & Access</em> section below.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">EOD</div>
+          <div class="event-body">
+            <div class="event-title">Join all Slack channels listed in this guide</div>
+            <div class="event-note">Introduce yourself in <strong>#general</strong> and <strong>#people-team</strong>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="day-label">
+        <div class="day-name">Tue</div>
+        <div class="day-tag">Listen & Learn</div>
+      </div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">Morning</div>
+          <div class="event-body">
+            <div class="event-title">Read the Company V2MOM <span class="pill pill-gold">Required</span></div>
+            <div class="event-note">Understand OutSystems' Vision, Values, Methods, Obstacles, and Measures for 2026. Then read your team's V2MOMs at <a href="https://apps.outsystems.app/V2MOM/" class="event-link">V2MOM App →</a></div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">All day</div>
+          <div class="event-body">
+            <div class="event-title">People Strategy & Roadmap Deep Dive</div>
+            <div class="event-note">Review the People strategy doc and current-quarter roadmap. Ask Sofia Bué Alves for the link. Understand Mark Quigley's priorities and how your function contributes.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Afternoon</div>
+          <div class="event-body">
+            <div class="event-title">1:1 Introduction with Client Group Leads</div>
+            <div class="event-note">Schedule intros with Kim Seabrook and Woodson Martin — your primary internal partners. Ask about their current headcount, development, and People pain points.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day highlight">
+      <div class="day-label">
+        <div class="day-name">Wed</div>
+        <div class="day-tag">Systems Day</div>
+      </div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">All day</div>
+          <div class="event-body">
+            <div class="event-title">People Systems Deep Dive <span class="pill pill-blue">Self-paced</span></div>
+            <div class="event-note">Workday, Greenhouse, OutSystems Academy / internal LMS, and Workday. Get familiar with dashboards and data views relevant to your function.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Afternoon</div>
+          <div class="event-body">
+            <div class="event-title">Review Active Programmes & Calendars</div>
+            <div class="event-note">Understand what is currently running: V2MOM completion sprint — 100% of employees to complete by end of Q2 2026. Next key date: ONE Conference: June 2–3, 2026.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">EOD</div>
+          <div class="event-body">
+            <div class="event-title">Review the Employee Handbook & Policies</div>
+            <div class="event-note">Familiarise yourself with key policies. <a href="https://outsystems.sharepoint.com" class="event-link">Employee Handbook →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="day-label">
+        <div class="day-name">Thu</div>
+        <div class="day-tag">Relationships</div>
+      </div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">Morning</div>
+          <div class="event-body">
+            <div class="event-title">Meet your People team peers <span class="pill pill-red">Priority</span></div>
+            <div class="event-note">Intro 1:1s with Sofia Bué Alves's team (@sofia.alves) and Kate Guarino (VP, People Success) (@kate.guarino). Understand their remits and current workload.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Afternoon</div>
+          <div class="event-body">
+            <div class="event-title">Shadow a People process or team meeting <span class="pill pill-gold">Recommended</span></div>
+            <div class="event-note">Ask Sofia Bué Alves to include you in a relevant in-progress meeting — a hiring panel, L&D session, or team review — to see the work in context.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">EOD</div>
+          <div class="event-body">
+            <div class="event-title">Agentic Systems Engineering Orientation</div>
+            <div class="event-note">OutSystems launched <em>Agentic Systems Engineering</em> in March 2026 — our new company category. As a People professional, you need to understand what we're selling and building. Watch the <a href="https://www.youtube.com/watch?v=QwSJnd-NSQU" class="event-link">Product Sizzle Video →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="day-label">
+        <div class="day-name">Fri</div>
+        <div class="day-tag">Synthesis Day</div>
+      </div>
+      <div class="day-events">
+        <div class="event">
+          <div class="event-time">Morning</div>
+          <div class="event-body">
+            <div class="event-title">Document your Week 1 observations</div>
+            <div class="event-note">Write down: what you've learned, gaps you've spotted, and your top questions. This becomes the basis of your 30-day plan — ask Sofia Bué Alves if there's a standard template.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">Midday</div>
+          <div class="event-body">
+            <div class="event-title">End-of-week check-in with Sofia Bué Alves</div>
+            <div class="event-note">Share your observations and questions. Surface any access blockers. Confirm your Weekly 1:1s with your manager; People team syncs as scheduled cadence going forward.</div>
+          </div>
+        </div>
+        <div class="event">
+          <div class="event-time">EOD</div>
+          <div class="event-body">
+            <div class="event-title">Apply for ONE Conference 2026 <span class="pill pill-outline">Check eligibility</span></div>
+            <div class="event-note">June 2–3, 2026. Apply via the <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation" class="event-link">ONE Internal App →</a>. Check with Sofia Bué Alves on People team attendance eligibility.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div></div>
+
+  <div class="aside-box" style="margin-top:16px">
+    <strong>People Onboarding Cadence</strong>
+    Beyond week one, expect a structured 30-60-90 day plan with Sofia Bué Alves. Key milestones: understanding your client groups by Day 30, contributing to an active programme by Day 60, and owning a deliverable end-to-end by Day 90. Ask Sofia Bué Alves for the People team onboarding checklist on Day 1.
+  </div>
+</section>
+
+
+<!-- ══════════════ TOOLS & ACCESS ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Tools & Access</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="two-col" style="margin-bottom:24px">
+    <div>
+      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Core People Systems</div>
+
+      <div class="tool-row">
+        <div class="tool-icon red">WD</div>
+        <div>
+          <div class="tool-name">Workday (Workday)</div>
+          <div class="tool-desc">HRIS — employee records, org chart, compensation, performance, and reporting. Your system of record. <a href="https://outsystems.workday.com" class="event-link">Workday →</a></div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon blue">ATS</div>
+        <div>
+          <div class="tool-name">Greenhouse</div>
+          <div class="tool-desc">Applicant Tracking System — all open roles, candidate pipelines, and hiring workflows. <a href="https://app.greenhouse.io" class="event-link">Greenhouse →</a></div>
+        </div>
+        <div class="tool-status">Week 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon green">LMS</div>
+        <div>
+          <div class="tool-name">OutSystems Academy / internal LMS</div>
+          <div class="tool-desc">Learning Management System — all L&D content, onboarding programmes, and learning paths. <a href="https://learn.outsystems.com" class="event-link">OutSystems Academy / internal LMS →</a></div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon gold">PM</div>
+        <div>
+          <div class="tool-name">Workday</div>
+          <div class="tool-desc">Performance management, engagement surveys, and 1:1 tracking. <a href="https://outsystems.workday.com" class="event-link">Workday →</a></div>
+        </div>
+        <div class="tool-status">Week 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon">V2M</div>
+        <div>
+          <div class="tool-name">V2MOM App</div>
+          <div class="tool-desc">Company and individual V2MOMs. Read the company, department, and your manager's V2MOM in your first week. <a href="https://apps.outsystems.app/V2MOM/" class="event-link">V2MOM App →</a></div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Collaboration & Analytics</div>
+
+      <div class="tool-row">
+        <div class="tool-icon blue">ZM</div>
+        <div>
+          <div class="tool-name">Zoom</div>
+          <div class="tool-desc">All internal and cross-functional meetings. Join recurring People team sessions via the shared People Calendar.</div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon" style="background:#4A154B">SL</div>
+        <div>
+          <div class="tool-name">Slack</div>
+          <div class="tool-desc">Primary communication. See channel list in Section 04. Key channel: <strong>#people-team</strong>.</div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon gold">AN</div>
+        <div>
+          <div class="tool-name">Power BI / Compass</div>
+          <div class="tool-desc">People analytics and dashboards — headcount, attrition, hiring pipeline, engagement scores. Ask Sofia Bué Alves for access and key dashboards. <a href="https://app.powerbi.com" class="event-link">People Dashboard →</a></div>
+        </div>
+        <div class="tool-status">Week 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon green">GD</div>
+        <div>
+          <div class="tool-name">Google Drive — People Folder</div>
+          <div class="tool-desc">Policies, templates, job description library, programme docs. Source of truth for People team materials. <a href="https://drive.google.com" class="event-link">People Drive →</a></div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-icon">CAL</div>
+        <div>
+          <div class="tool-name">People Team Calendar</div>
+          <div class="tool-desc">Shared calendar for People team rituals, programme milestones, and key deadlines. Ask Sofia Bué Alves to add you. <a href="https://calendar.google.com" class="event-link">Calendar →</a></div>
+        </div>
+        <div class="tool-status">Day 1</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ TEAM ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Your Team — Key Introductions</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Americas Leadership & Americas / West Team</div>
+
+  <table class="team-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Why they matter to you</th>
+        <th>Slack / Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Row 1: Always the direct manager -->
+      <tr>
+        <td class="name-cell">Sofia Bué Alves</td>
+        <td class="role-cell">Senior Director, People Development & Experience<br>Your direct manager</td>
+        <td>leading the full People Development & Experience function across OutSystems globally. She recently shout-out'd the Lisbon and other office teams for running operations smoothly alongside their primary work.</td>
+        <td class="slack-cell">@sofia.alves</td>
+      </tr>
+      <!-- Row 2: Always the department leader (sourced from Workday org chart) -->
+      <tr>
+        <td class="name-cell">Mark Quigley</td>
+        <td class="role-cell">Chief People Officer<br>Your department leader</td>
+        <td>Mark owns the entire People function — People Development & Experience, Total Rewards & Ops, People Success, Talent Acquisition, and HRIS. His Q2 priorities are driving the V2MOM employee completion sprint (100% by Q2 end) and building an AI-native people practice that supports OutSystems' scaling to €1B. Follow him in #general and company-wide channels for culture and leadership updates.</td>
+        <td class="slack-cell">@mark.quigley</td>
+      </tr>
+      <!-- Rows 3+: People-specific peers and partners -->
+      <tr>
+        <td class="name-cell">Sofia Bué Alves's team</td>
+        <td class="role-cell">People Development — People Team</td>
+        <td>Your closest team peer. Get a 1:1 in week 1 to understand their current work and how your remits connect.</td>
+        <td class="slack-cell">@sofia.alves</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Kate Guarino (VP, People Success)</td>
+        <td class="role-cell">People Development — People Team</td>
+        <td>OutSystems is actively building out People capabilities to support rapid AI-era hiring and the V2MOM cultural transformation in 2026.</td>
+        <td class="slack-cell">@kate.guarino</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Kim Seabrook</td>
+        <td class="role-cell">Leader — All OutSystems employees & managers</td>
+        <td>One of your primary internal client group leaders. Understanding their team's People needs is key to your impact in this role. Prioritise an intro 1:1 this week.</td>
+        <td class="slack-cell">@kim.seabrook</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Woodson Martin</td>
+        <td class="role-cell">Leader — All OutSystems employees & managers</td>
+        <td>Second key internal partner. Ask about their current People priorities and any open asks to the People team.</td>
+        <td class="slack-cell">@woodson.martin</td>
+      </tr>
+      <tr>
+        <td class="name-cell">Missy Ellis</td>
+        <td class="role-cell">Finance / Comp Partner</td>
+        <td>Your partner for compensation benchmarking, headcount budgets, and offer approvals. Build this relationship early — most People decisions have a finance component.</td>
+        <td class="slack-cell">@missy.ellis</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- ══════════════ SLACK CHANNELS ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Slack Channels — Join These Now</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="channel-grid">
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">general</div>
+        <div class="channel-desc">Company-wide channel. All-hands announcements, leadership messages, and company news. Read daily.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">#people-team</div>
+        <div class="channel-desc">Your primary People team channel. Introduce yourself here on Day 1. Team updates, programme discussions, and coordination.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">one-revenue-team</div>
+        <div class="channel-desc">All-hands for the revenue organisation. Essential for understanding the business your People work supports. Active Sales Plays, SPIFF, and leadership updates.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">one-conference</div>
+        <div class="channel-desc">ONE 2026 2026 planning (June 2–3, 2026). Check with Sofia Bué Alves on People team attendance eligibility.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">womenofoutsystems</div>
+        <div class="channel-desc">Community channel for women at OutSystems. Active community for networking, support, and events.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">ase-internal</div>
+        <div class="channel-desc">Agentic Systems Engineering updates and questions. Important for understanding the product context your hiring and L&D programmes support.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">digital-spot</div>
+        <div class="channel-desc">IT support and system access. Your first stop for any provisioning issues, access requests, or technical blockers.</div>
+      </div>
+    </div>
+    <div class="channel-item">
+      <div class="channel-hash">#</div>
+      <div class="channel-body">
+        <div class="channel-name">v2mom-questions</div>
+        <div class="channel-desc">Questions and discussion on V2MOM submissions. Relevant given 100% employee V2MOM coverage is a Q2 company target — People owns this programme.</div>
+      </div>
+    </div>
+  </div>
+  <div class="aside-box" style="margin-top:16px">
+    <strong>People Team Drive</strong>
+    The People Google Drive folder is your source of truth for all policies, templates, job description libraries, programme documentation, and comp frameworks. Ask Sofia Bué Alves for the top-level folder link on Day 1 and bookmark it. <a href="https://drive.google.com" style="color:var(--accent);text-decoration:none;font-weight:540">People Drive →</a>
+  </div>
+</section>
+
+
+<!-- ══════════════ OFFICE LOGISTICS ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Office & Logistics</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="logistics-grid">
+    <div class="logistics-cell">
+      <div class="lc-label">IT & Access Issues</div>
+      <div class="lc-value">Digital Spot</div>
+      <div class="lc-sub">Post in <strong>#digital-spot</strong> or message @Digital Spot. They handle Okta/SSO, system provisioning, and app permissions.</div>
+    </div>
+    <div class="logistics-cell">
+      <div class="lc-label">Systems — Day 1 Checklist</div>
+      <div class="lc-value">People Stack</div>
+      <div class="lc-sub">Workday · Workday · Greenhouse · OutSystems Academy / internal LMS · Workday · V2MOM App · Slack · Zoom · Google Workspace</div>
+    </div>
+    <div class="logistics-cell">
+      <div class="lc-label">Comp & Benefits Questions</div>
+      <div class="lc-value">Missy Ellis</div>
+      <div class="lc-sub">DM @missy.ellis in Slack. Your partner for compensation queries, offer approvals, and benefits enrolment.</div>
+    </div>
+    <div class="logistics-cell">
+      <div class="lc-label">People Policies & Templates</div>
+      <div class="lc-value">Google Drive — People Folder</div>
+      <div class="lc-sub">Source of truth for all People assets — policies, JD templates, frameworks, and programme docs. Ask Sofia Bué Alves for the folder link on Day 1.</div>
+    </div>
+    <div class="logistics-cell">
+      <div class="lc-label">Onboarding & L&D Questions</div>
+      <div class="lc-value">Sofia Bué Alves</div>
+      <div class="lc-sub">Your first port of call for any programme, access, or role-scoping questions in week 1. Book your 1:1 for Day 1.</div>
+    </div>
+    <div class="logistics-cell">
+      <div class="lc-label">Org Chart & Employee Data</div>
+      <div class="lc-value">Workday</div>
+      <div class="lc-sub">Up-to-date org structure, reporting lines, and employee records. Also accessible via the <a href="https://outsystems.workday.com" style="color:var(--accent);text-decoration:none">Workday portal →</a></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ Q2 PRIORITIES ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Q2 People Priorities</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="spiff-banner">
+    <div>
+      <div class="spiff-label">Active Programme · Q2 2026</div>
+      <div class="spiff-title">V2MOM completion sprint — 100% of employees to complete by end of Q2 2026</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="spiff-mult" style="font-size:22px;opacity:0.85;">Q2</div>
+      <div class="spiff-sub">Next key date:<br>ONE Conference: June 2–3, 2026</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="info-card">
+      <div class="card-label">V2MOM Target — People Function</div>
+      <p>100% of employees with V2MOMs completed and submitted by end of Q2 2026.</p>
+      <p style="margin-top:8px;font-size:12px;color:var(--muted)">As a People team member, you play a direct role in driving and supporting this company-wide target.</p>
+      <p style="margin-top:8px"><a href="https://apps.outsystems.app/V2MOM/" style="color:var(--accent);font-size:12px;text-decoration:none;font-weight:500">V2MOM App →</a></p>
+    </div>
+    <div class="info-card">
+      <div class="card-label">Key People Frameworks — Bookmark These</div>
+      <p><strong>Career Ladder</strong> — <a href="https://outsystems.sharepoint.com" style="color:var(--accent);text-decoration:none">Career Ladder →</a></p>
+      <p><strong>Comp Framework</strong> — <a href="https://outsystems.sharepoint.com" style="color:var(--accent);text-decoration:none">Comp Framework →</a></p>
+      <p><strong>Performance Framework</strong> — <a href="https://outsystems.sharepoint.com" style="color:var(--accent);text-decoration:none">Perf Framework →</a></p>
+      <p><strong>Manager Guide</strong> — <a href="https://outsystems.sharepoint.com" style="color:var(--accent);text-decoration:none">Manager Guide →</a></p>
+    </div>
+  </div>
+
+<!-- ══════════════ RESOURCES ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Essential Resources — Bookmark These</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="resource-row">
+    <div class="res-type">Strategy</div>
+    <a href="https://outsystems.sharepoint.com">People Strategy & Roadmap</a>
+    <div class="res-note">Read in week 1</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Handbook</div>
+    <a href="https://outsystems.sharepoint.com">Employee Handbook</a>
+    <div class="res-note">Policies & guidelines</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">HRIS</div>
+    <a href="https://outsystems.workday.com">Workday — Employee Data & Org Chart</a>
+    <div class="res-note">System of record</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Hiring</div>
+    <a href="https://app.greenhouse.io">Greenhouse — Applicant Tracking System</a>
+    <div class="res-note">Open roles & pipelines</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Learning</div>
+    <a href="https://learn.outsystems.com">OutSystems Academy / internal LMS — Learning Management System</a>
+    <div class="res-note">L&D programmes</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Performance</div>
+    <a href="https://outsystems.workday.com">Workday</a>
+    <div class="res-note">Reviews & engagement</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">JD Template</div>
+    <a href="https://drive.google.com">Job Description Template Library</a>
+    <div class="res-note">Standard JD formats</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Frameworks</div>
+    <a href="https://outsystems.sharepoint.com">Career Ladder & Levelling Guide</a>
+    <div class="res-note">Role definitions</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">V2MOM</div>
+    <a href="https://apps.outsystems.app/V2MOM/">V2MOM App — Company & Team</a>
+    <div class="res-note">Read in week 1</div>
+  </div>
+  <div class="resource-row">
+    <div class="res-type">Conference</div>
+    <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">ONE 2026 Internal App</a>
+    <div class="res-note">June 2–3, 2026</div>
+  </div>
+
+<!-- ══════════════ FAQ ══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2 class="section-title">Common First-Week Questions</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is Agentic Systems Engineering and why does it matter to the People team?</div>
+    <div class="faq-a">ASE is OutSystems' new platform category announced March 31, 2026 — repositioning us as the governed AI platform for enterprise agentic systems. As a People professional, you need to understand what we build and sell: it shapes the talent profiles you hire for, the skills you develop, and how you talk to candidates about the company's direction. Watch the <a href="https://www.youtube.com/watch?v=QwSJnd-NSQU">product sizzle video</a> and read the <a href="https://docs.google.com/document/d/1u8t5rJ1N7iFvYEpmM6rkR0BYzK9vzMRHQg_7RO3-hxA/edit">ASE FAQ</a> in your first week.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the V2MOM and what's my role in it?</div>
+    <div class="faq-a">The V2MOM (Vision, Values, Methods, Obstacles, Measures) is OutSystems' operating framework — every employee from the CEO down has one. A key Q2 company target is 100% employee V2MOM coverage by end of Q2 2026. The People team directly owns driving and supporting this programme. Log in to the <a href="https://apps.outsystems.app/V2MOM/">V2MOM App</a> on Day 1, read the company and your manager's V2MOM, and ask Sofia Bué Alves about your team's role in the Q2 completion push.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Who are my key internal clients and how do I engage them?</div>
+    <div class="faq-a">Your primary client groups are All OutSystems employees & managers. Your key contacts are Kim Seabrook and Woodson Martin. Prioritise intro 1:1s with both in your first week. Come prepared with questions about their current headcount challenges, development priorities, and any open People asks. Don't wait for them to come to you.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What People systems do I need access to on Day 1?</div>
+    <div class="faq-a">Your core stack: <strong>Workday</strong> (employee records and org chart), <strong>Greenhouse</strong> (hiring pipelines), <strong>OutSystems Academy / internal LMS</strong> (learning programmes), <strong>Workday</strong> (performance and engagement), and the <strong>V2MOM App</strong>. If any access is missing on Day 1, post in <strong>#digital-spot</strong> immediately. Don't wait — blocked access in week 1 costs time you can't recover.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the current active People programme I'm joining?</div>
+    <div class="faq-a">The current active programme is <strong>V2MOM completion sprint — 100% of employees to complete by end of Q2 2026</strong>. The next key milestone is <strong>ONE Conference: June 2–3, 2026</strong>. Ask Sofia Bué Alves on Day 1 exactly where things stand and what your immediate contribution should be. Don't assume you have weeks to warm up — there may be live deliverables you're joining mid-flight.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Where do I find People policies, templates, and frameworks?</div>
+    <div class="faq-a">The <strong>People Google Drive</strong> is the source of truth. Links are in the Resources section of this guide. Key documents: Employee Handbook, Job Description Template Library, Career Ladder, Comp Framework, Performance Framework, and Manager Guide. Links are in the Resources section of this guide. Never use a document found outside the official People Drive — it may be outdated.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the ONE Conference and is it relevant to me?</div>
+    <div class="faq-a">ONE '26 is OutSystems' flagship customer and prospect conference, June 2–3, 2026. It's primarily a revenue event but People team attendance is considered on a case-by-case basis — check with Sofia Bué Alves. There's also an active internal registration campaign (the ONE World Cup SPIFF) which you may need to support from a People / headcount reporting angle. Apply via <a href="https://outsystemsdt.outsystems.app/ONE26/Requestcreation">the ONE Internal App</a> if eligible.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I stay connected to what's happening across the business?</div>
+    <div class="faq-a">Three habits to build from Day 1: (1) Read <strong>#one-revenue-team</strong> daily — this is where business-critical updates land. (2) Check the <strong>V2MOM App</strong> weekly — it reflects shifting company priorities in real time. (3) Monitor <strong>#general</strong> for leadership announcements, org changes, and culture moments. The People function is most effective when it's connected to business context, not operating in isolation.</div>
+  </div>
+
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <p>OUTSYSTEMS PEOPLE · Americas · Americas / West<br>
+     Loren Mastronardi — People Development Lead<br>
+     Generated May 11, 2026</p>
+  <p style="text-align:right">Prepared by Revenue Enablement / GTM AI<br>Questions → Bobbie Jo Frazier or Sarah Cropp</p>
+</footer>
+
+<div class="sources-list">
+  Sources: [1] <span style="color:var(--muted)">Slack #one-revenue-team (May 2026)</span> · [2] <span style="color:var(--muted)">Google Calendar — Google Calendar — People team (May 11, 2026)</span> · [3] <span style="color:var(--muted)">Google Drive — Google Drive — People shared folder (May 11, 2026)</span> · [2] <a href="https://www.google.com/calendar/event?eid=MmU3bmY3cThza3BzbGJodWJpNDE3OGsxYXUgY2F0YXJpbmEuc291c2FAb3V0c3lzdGVtcy5jb20" style="color:var(--muted)">Google Calendar — Enablement, Coaching & Onboarding</a> (Apr 23, 2026) · [3] Google Calendar — Sync about Onboarding, Enablement Sales Reps (Apr 21, 2026) · [4] <a href="https://docs.google.com/document/d/12mdVJb3eL1-UzEBZIQL-Jv8RLCbGO7rYD9FMl5NPcfU/edit" style="color:var(--muted)">Google Drive — Onboarding Agent Technical Spec</a> (Apr 2026)
+</div>
+
+</body>
+</html>
